@@ -1,0 +1,223 @@
+\section{Control flow}
+\begin{minted}[autogobble]{python}
+    if (True): # output: it this isn't true you excecute the elif or else, these don't have a limit also. 
+        pass 
+    elif (True): # output: elif statements don't have a limit. Exclusive
+        pass 
+    else: # output: These have a limit, only one.
+        pass 
+\end{minted}
+%----------------------------------------------------------------------------------------
+\section{For loops}
+\begin{itemize}
+    \item Iterable: something that is iterable. 
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    mylist = [(1,2),(3,4),(5,6),(7,8)]
+    for (a,b) in mylist: # output: This is variable unpacking, this can be done without the parenthesis. 
+        print(a)
+        print(b) 
+    mylist = [(1,2,3),(4,5,6),(7,8,9)]
+    for a,b,c in mylist: # output: tuple unpacking of three variables. 
+        print(a,b,c)
+\end{minted}
+
+%----------------------------------------------------------------------------------------
+\section{While loops}
+\begin{itemize}
+    \item pass $\rightarrow$ do nothing at all. Useful to for placeholders. 
+        \begin{minted}[autogobble]{python}
+            while True: 
+                pass 
+            else: # output: combine the else with the while. 
+                pass
+        \end{minted}
+
+    \item continue $\rightarrow$ used to omit an action, goes to the top of the closest enclosing loop. 
+        \begin{minted}[autogobble]{python}
+            for item in x: 
+                pass 
+        \end{minted}
+
+    \item break $\rightarrow$ breaks out of the closest enclosing loops. 
+        \begin{minted}[autogobble]{python}
+            mystring = "Sammy"
+            for letter in mystring: 
+                if letter == "a":  # this letter will be ommited. 
+                    continue 
+                print(letter)
+            # output: S
+            # output: m
+            # output: m
+            # output: y
+        \end{minted}
+
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    x = 5 
+    while x < 5: 
+        if x == 2: # whenever x = 2 the loop will stop. 
+            break 
+        print(x)
+        x += 1 
+\end{minted}
+
+%----------------------------------------------------------------------------------------
+\section{Useful operators}
+\begin{itemize}
+    \item range(start, stop, step)
+        \begin{itemize}
+            \item start: start index
+            \item stop: all the way up but not including the stop. 
+            \item step: the step size
+        \end{itemize}
+    
+    \item enumerate(iterable) $\rightarrow$ keeps index count automatically. 
+            \begin{minted}[autogobble]{python}
+                index = 0
+                word = 'abcde'
+                for item in word: 
+                    print(index,item)
+                    index += 1
+                # (0,'a')
+                # (1,'b')
+                # (2,'c')
+                # (3,'d')
+                # (4,'e')
+                # The same can be achived with enumerate 
+                for item in enumerate(word):
+                    print(item)
+                # (0,'a')
+                # (1,'b')
+                # (2,'c')
+                # (3,'d')
+                # (4,'e')
+            \end{minted}
+
+    \item zip(iterable1, iterable2, iterablen) $\rightarrow$ zips together iterables. 
+            \begin{minted}[autogobble]{python}
+                mylist1 = [1,2,3]
+                mylist2 = ['a','b','c']
+                mylist3 = [100,200,300]
+                for item in zip(mylist1,mylist2,mylist3): 
+                    print(item)
+                # output: (1,'a',100)
+                # output: (2,'b',200)
+                # output: (3,'c',300)
+            \end{minted}
+    
+    \item in operator $\rightarrow$ returns a boolean value: 
+            \begin{minted}[autogobble]{python}
+                'x' in ['x','y']
+                # output: True 
+                'mykey' in {'mykey':345} # works for the keys 
+                # output: True
+            \end{minted}
+    
+    \item min \& max $\rightarrow$ returns minimum of maximum of an iterable. 
+            \begin{minted}[autogobble]{python}
+                mylist = [1,2,3]
+                min(mylist)
+                # output: 1
+                max(mylist)
+                # output: 3
+                mylist = "abcd"
+                min(mylist)
+                # output: a
+                max(mylist)
+                # output: d
+            \end{minted}
+    
+    \item random library functions: 
+        \begin{itemize}
+            \item shuffle $\rightarrow$ shuffles elements of a list, this is a void function. 
+                \begin{minted}[autogobble]{python}
+                    from random import shuffle 
+                    mylist = [1,2,3,4,5,6,7,8,9,10]
+                    shuffle(mylist)
+                    # output: [3, 9, 5, 1, 2, 10, 8, 6, 7, 4] -> it shuffles it
+                \end{minted}
+
+            \item randint $\rightarrow$ selects random int in range.
+                \begin{minted}[autogobble]{python}
+                    from random import randint 
+                    mynum = randint(0,10)
+                    # output: 3 -> random number in range 0 to 9
+                \end{minted}
+        \end{itemize}
+    
+    \item input function: 
+        \begin{itemize}
+            \item Input always returns a string.
+        \end{itemize}
+            \fvset{frame=single,numbers=left,numbersep=3pt,breakanywhere=true,breaklines=true}
+            \begin{minted}[autogobble]{python}
+                result = input("Enter a number: ")
+                # output: Enter a number: -> you will be required to enter input.
+            \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Lists comprehensions}
+\begin{itemize}
+    \item This is used for generating lists.
+    \item Syntax is: \placeholder{what will be appended} for \placeholder{element} in \placeholder{iterable}  
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    mylist = [letter for letter in 'string']
+    # output: ['s', 't', 'r', 'i', 'n', 'g']
+\end{minted}
+\begin{minted}[autogobble]{python}
+    mylist = [num for num in range(0,11)]
+    # grab the square of every number in that list.
+    mylist = [num**2 for num in range(0,11)]
+    # output: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+\end{minted}
+\begin{itemize}
+    \item You can also add conditional statements.
+    \item Syntax is: [\placeholder{what will be appended} for \placeholder{element} in \placeholder{iterable} if (\placeholder{condition})]
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    mylist = [x for x in range(0,11) if x % 2 == 0]
+    # output: [0, 2, 4, 6, 8, 10]
+\end{minted}
+
+\subsection{Example}
+Celsius to Fahrenheit: 
+\begin{minted}[autogobble]{python}
+    fahrenheit = []
+    celsius = [0,10,20,34.5]
+    for temp in celsius: 
+        fahrenheit.append(((9/5)*temp + 32))
+    # output: [32.0, 50.0, 68.0, 94.1]
+
+    # Alternatively on a one liner
+    fahrenheit = [((9/5)*temp + 32) for temp in celsius]
+    # output: [32.0, 50.0, 68.0, 94.1]
+\end{minted}
+
+\subsection{List comprehension using if and else}
+\begin{minted}[autogobble]{python}
+    results = [x if x % 2 == 0 else 'ODD' for x in range(0,11)]
+    # output: [0, 'ODD', 2, 'ODD', 4, 'ODD', 6, 'ODD', 8, 'ODD', 10]
+\end{minted}
+
+\begin{itemize}
+    \item The syntax is: [\placeholder{element} if \placeholder{condition is wanted} else \placeholder{if condition isn't wanted return} \placeholder{what to return in case the else is excecuted} for \placeholder{element} in \placeholder{iterable}]
+\end{itemize}
+
+\subsection{Nested loops in list comprehension}
+Syntax is: [\placeholder{what will be appended} for \placeholder{element} in \placeholder{iterable} for \placeholder{second element} in \placeholder{second iterable}]
+\begin{minted}[autogobble]{python}
+    mylist = []
+    for x in [2,4,6]:
+        for y in [1,10,1_000]:
+            mylist.append(x*y)
+    # output: [2, 20, 2000, 4, 40, 4000, 6, 60, 6000]
+
+    # Alternative one liner
+    myresult = [x*y for x in [2,4,6] for y in [1,10,1_000]]
+    # output: [2, 20, 2000, 4, 40, 4000, 6, 60, 6000]
+\end{minted}
+

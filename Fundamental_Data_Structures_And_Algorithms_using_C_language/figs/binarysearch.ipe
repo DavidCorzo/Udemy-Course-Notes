@@ -1,0 +1,506 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipe SYSTEM "ipe.dtd">
+<ipe version="70212" creator="Ipe 7.2.13">
+<info created="D:20200729223055" modified="D:20200806164703"/>
+<preamble>\usepackage{listings}
+\usepackage{algorithm2e}
+\usepackage{algorithmicx}
+\usepackage{mathtools}</preamble>
+<ipestyle name="basic">
+<symbol name="arrow/arc(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/farc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/ptarc(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fptarc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="mark/circle(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</symbol>
+<symbol name="mark/disk(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+</path>
+</symbol>
+<symbol name="mark/fdisk(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+0.5 0 0 0.5 0 0 e
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</group>
+</symbol>
+<symbol name="mark/box(sx)" transformations="translations">
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</symbol>
+<symbol name="mark/square(sx)" transformations="translations">
+<path fill="sym-stroke">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+</path>
+</symbol>
+<symbol name="mark/fsquare(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+-0.5 -0.5 m
+0.5 -0.5 l
+0.5 0.5 l
+-0.5 0.5 l
+h
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="mark/cross(sx)" transformations="translations">
+<group>
+<path fill="sym-stroke">
+-0.43 -0.57 m
+0.57 0.43 l
+0.43 0.57 l
+-0.57 -0.43 l
+h
+</path>
+<path fill="sym-stroke">
+-0.43 0.57 m
+0.57 -0.43 l
+0.43 -0.57 l
+-0.57 0.43 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="arrow/fnormal(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/pointed(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fpointed(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/linear(spx)">
+<path stroke="sym-stroke" pen="sym-pen">
+-1 0.333 m
+0 0 l
+-1 -0.333 l
+</path>
+</symbol>
+<symbol name="arrow/fdouble(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/double(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<pen name="heavier" value="0.8"/>
+<pen name="fat" value="1.2"/>
+<pen name="ultrafat" value="2"/>
+<symbolsize name="large" value="5"/>
+<symbolsize name="small" value="2"/>
+<symbolsize name="tiny" value="1.1"/>
+<arrowsize name="large" value="10"/>
+<arrowsize name="small" value="5"/>
+<arrowsize name="tiny" value="3"/>
+<color name="red" value="1 0 0"/>
+<color name="green" value="0 1 0"/>
+<color name="blue" value="0 0 1"/>
+<color name="yellow" value="1 1 0"/>
+<color name="orange" value="1 0.647 0"/>
+<color name="gold" value="1 0.843 0"/>
+<color name="purple" value="0.627 0.125 0.941"/>
+<color name="gray" value="0.745"/>
+<color name="brown" value="0.647 0.165 0.165"/>
+<color name="navy" value="0 0 0.502"/>
+<color name="pink" value="1 0.753 0.796"/>
+<color name="seagreen" value="0.18 0.545 0.341"/>
+<color name="turquoise" value="0.251 0.878 0.816"/>
+<color name="violet" value="0.933 0.51 0.933"/>
+<color name="darkblue" value="0 0 0.545"/>
+<color name="darkcyan" value="0 0.545 0.545"/>
+<color name="darkgray" value="0.663"/>
+<color name="darkgreen" value="0 0.392 0"/>
+<color name="darkmagenta" value="0.545 0 0.545"/>
+<color name="darkorange" value="1 0.549 0"/>
+<color name="darkred" value="0.545 0 0"/>
+<color name="lightblue" value="0.678 0.847 0.902"/>
+<color name="lightcyan" value="0.878 1 1"/>
+<color name="lightgray" value="0.827"/>
+<color name="lightgreen" value="0.565 0.933 0.565"/>
+<color name="lightyellow" value="1 1 0.878"/>
+<dashstyle name="dashed" value="[4] 0"/>
+<dashstyle name="dotted" value="[1 3] 0"/>
+<dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
+<dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
+<textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
+<textsize name="Large" value="\Large"/>
+<textsize name="LARGE" value="\LARGE"/>
+<textsize name="huge" value="\huge"/>
+<textsize name="Huge" value="\Huge"/>
+<textsize name="footnote" value="\footnotesize"/>
+<textstyle name="center" begin="\begin{center}" end="\end{center}"/>
+<textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
+<textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
+<gridsize name="4 pts" value="4"/>
+<gridsize name="8 pts (~3 mm)" value="8"/>
+<gridsize name="16 pts (~6 mm)" value="16"/>
+<gridsize name="32 pts (~12 mm)" value="32"/>
+<gridsize name="10 pts (~3.5 mm)" value="10"/>
+<gridsize name="20 pts (~7 mm)" value="20"/>
+<gridsize name="14 pts (~5 mm)" value="14"/>
+<gridsize name="28 pts (~10 mm)" value="28"/>
+<gridsize name="56 pts (~20 mm)" value="56"/>
+<anglesize name="90 deg" value="90"/>
+<anglesize name="60 deg" value="60"/>
+<anglesize name="45 deg" value="45"/>
+<anglesize name="30 deg" value="30"/>
+<anglesize name="22.5 deg" value="22.5"/>
+<opacity name="10%" value="0.1"/>
+<opacity name="30%" value="0.3"/>
+<opacity name="50%" value="0.5"/>
+<opacity name="75%" value="0.75"/>
+<tiling name="falling" angle="-60" step="4" width="1"/>
+<tiling name="rising" angle="30" step="4" width="1"/>
+</ipestyle>
+<page>
+<layer name="alpha"/>
+<view layers="alpha" active="alpha"/>
+<path layer="alpha" matrix="1 0 0 1 -72 16" stroke="white">
+112 768 m
+112 624 l
+128 624 l
+128 768 l
+h
+</path>
+<path matrix="1 0 0 1 -72 16" stroke="white">
+112 752 m
+112 736 l
+128 736 l
+128 752 l
+h
+</path>
+<path matrix="1 0 0 1 -72 16" stroke="white">
+128 720 m
+128 704 l
+112 704 l
+112 720 l
+h
+</path>
+<path matrix="1 0 0 1 -72 16" stroke="white">
+112 688 m
+112 672 l
+128 672 l
+128 688 l
+h
+</path>
+<path matrix="1 0 0 1 -72 16" stroke="white">
+112 656 m
+112 640 l
+128 640 l
+128 656 l
+h
+</path>
+<path matrix="1 0 0 1 -72 16" stroke="white">
+128 624 m
+128 768 l
+112 768 l
+112 624 l
+h
+</path>
+<path matrix="1 0 0 1 -72 16" stroke="white">
+112 768 m
+112 624 l
+128 624 l
+128 768 l
+h
+</path>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 756" stroke="white" type="label" width="8.302" height="6.42" depth="0" valign="baseline">2
+</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 740" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">12</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 724" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">15</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 708" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">25</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 692" stroke="white" type="label" width="13.284" height="6.42" depth="0" valign="baseline">32
+</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 676" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">47</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 660" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">54</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 644" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">59</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="116 628" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">68</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 756" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 0</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 740" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 1</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 724" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 2</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 708" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 3</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 692" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 4</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 676" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 5</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 660" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 6</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 644" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 7</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="104 628" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 8</text>
+<path matrix="1 0 0 1 -72 16" stroke="white" arrow="normal/normal">
+148 760 m
+132 760 l
+</path>
+<path matrix="1 0 0 1 -72 16" stroke="white" arrow="normal/normal">
+144 632 m
+148 632 l
+148 632 l
+132 632 l
+</path>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="152 760" stroke="white" type="label" width="27.674" height="6.918" depth="0" valign="baseline">lb = 0</text>
+<text matrix="1 0 0 1 -72 16" transformations="translations" pos="152 632" stroke="white" type="label" width="30.441" height="6.918" depth="0" valign="baseline">ub = 8</text>
+<text matrix="1 0 0 1 -40 16" transformations="translations" pos="72 776" stroke="white" type="label" width="215.221" height="6.926" depth="1.93" valign="baseline">Search for target 59 in the following list of size 9.</text>
+<text matrix="1 0 0 1 -68 16" transformations="translations" pos="172 736" stroke="white" type="label" width="135.043" height="14.441" depth="9.47" valign="baseline" style="math">\displaystyle m = \left\lfloor \frac{lb + wb}{2} \right\rfloor = \left\lfloor \frac{0 + 8}{2}  \right\rfloor = 4 
+</text>
+<path matrix="1 0 0 1 -40 16" stroke="white" arrow="normal/normal">
+284 740 m
+300 740 l
+300 696 l
+100 696 l
+</path>
+<text matrix="1 0 0 1 224 104" transformations="translations" pos="52 696" stroke="white" type="minipage" width="188" height="39.314" depth="34.41" valign="top" size="small">Compare the middle element and check whether it contains the target (59). If it doesn&apos;t contain the target compare if the target is bigger or smaller than the middle element; if the target is greater the middle might be in the upper half, if the target is less than the middle then the target might be in the lower half. 
+</text>
+<text matrix="1 0 0 1 16 8" transformations="translations" pos="256 712" stroke="white" type="minipage" width="208" height="47.274" depth="42.39" valign="top">\begin{algorithm}[H]
+    \uIf{middle.data == target}{
+        we have found the target\; 
+    }
+    \uElseIf{middle.data $&lt;$ target}{
+        the target might be in the lower half\;
+    }
+    \ElseIf{middle.data $&gt;$ target}{
+        the target might be in the upper half\; 
+    }
+\end{algorithm}</text>
+<text transformations="translations" pos="32 624" stroke="white" type="minipage" width="448" height="19.139" depth="14.18" valign="top">Since we have determined that list[4] is 32 and the target 59, the  target is clearly larger than the middle, thus we understand that the target can only be in the upper half of the list, thus we only have to search the upper half.</text>
+<path matrix="1 0 0 1 32 -188" stroke="white">
+112 688 m
+112 672 l
+128 672 l
+128 688 l
+h
+</path>
+<path matrix="1 0 0 1 32 -188" stroke="white">
+112 656 m
+112 640 l
+128 640 l
+128 656 l
+h
+</path>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="116 676" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">47</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="116 660" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">54</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="116 644" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">59</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="116 628" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">68</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 756" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 0</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 740" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 1</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 724" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 2</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 708" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 3</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 692" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 4</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 676" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 5</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 660" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 6</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 644" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 7</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="104 628" stroke="white" type="label" width="3.39" height="3.21" depth="0" valign="baseline">\tiny 8</text>
+<path matrix="1 0 0 1 32 -272" stroke="white" arrow="normal/normal">
+148 760 m
+132 760 l
+</path>
+<path matrix="1 0 0 1 32 -188" stroke="white" arrow="normal/normal">
+144 632 m
+148 632 l
+148 632 l
+132 632 l
+</path>
+<text matrix="1 0 0 1 32 -272" transformations="translations" pos="152 760" stroke="white" type="label" width="27.674" height="6.918" depth="0" valign="baseline">lb = 5</text>
+<text matrix="1 0 0 1 32 -188" transformations="translations" pos="152 632" stroke="white" type="label" width="30.441" height="6.918" depth="0" valign="baseline">ub = 8</text>
+<text matrix="1 0 0 1 40 -48" transformations="translations" pos="84 512" stroke="white" type="label" width="20.014" height="38.322" depth="33.41" valign="baseline" style="math">\begin{cases}
+ \\ \\ \\ \\ \\
+\end{cases} 
+</text>
+<path matrix="1 0 0 1 20 0" stroke="white">
+124 500 m
+124 436 l
+140 436 l
+140 500 l
+h
+</path>
+<path matrix="1 0 0 1 20 0" stroke="white" fill="darkgray" opacity="50%" stroke-opacity="opaque">
+140 500 m
+140 580 l
+124 580 l
+124 500 l
+h
+</path>
+<text matrix="1 0 0 1 12 76" transformations="translations" pos="20 504" stroke="white" type="minipage" width="84" height="47.745" depth="42.86" valign="top">We can forget the first part of the list and focus on the upper half since we already know that the target is in the upper half and is not the middle.</text>
+<path stroke="white" arrow="normal/normal">
+64 484 m
+64 468 l
+116 468 l
+</path>
+<path stroke="white">
+24 808 m
+24 632 l
+508 632 l
+508 808 l
+h
+</path>
+<path stroke="white">
+24 632 m
+24 424 l
+508 424 l
+508 632 l
+h
+</path>
+<text matrix="1 0 0 1 -52 0" transformations="translations" pos="232 576" stroke="white" type="minipage" width="112" height="17.899" depth="12.93" valign="top">We now determine the next middle, we apply the same formula above.</text>
+<text matrix="1 0 0 1 4 -216" transformations="translations" pos="172 736" stroke="white" type="label" width="169.912" height="14.441" depth="9.47" valign="baseline" style="math">\displaystyle m = \left\lfloor \frac{lb + wb}{2} \right\rfloor = \left\lfloor \frac{5 + 8}{2}  \right\rfloor = \left\lfloor 7.5 \right\rfloor = 7
+</text>
+<path stroke="white" arrow="normal/normal">
+352 524 m
+356 524 l
+356 460 l
+164 460 l
+</path>
+<text transformations="translations" pos="212 464" stroke="white" type="label" width="27.012" height="6.42" depth="0" valign="baseline">$m = 7$</text>
+<text transformations="translations" pos="368 572" stroke="white" type="minipage" width="124" height="30.806" depth="25.87" valign="top">Now we compare if the middle is the target, it indeed is, we now have found the target in the list with as little operations as posible.</text>
+<path stroke="white">
+368 424 m
+368 504 l
+508 504 l
+508 424 l
+h
+</path>
+<text matrix="1 0 0 1 0 -20" transformations="translations" pos="376 496" stroke="white" type="minipage" width="124" height="12.693" depth="7.72" valign="top">Target is contained in the 7$^{th}$ index of the list.</text>
+<group matrix="1 0 0 1 -80 60">
+<path matrix="1 0 0 1 112 -248" stroke="white">
+112 752 m
+112 736 l
+128 736 l
+128 752 l
+h
+</path>
+<path matrix="1 0 0 1 112 -248" stroke="white">
+128 720 m
+128 704 l
+112 704 l
+112 720 l
+h
+</path>
+<text matrix="1 0 0 1 112 -248" transformations="translations" pos="116 756" stroke="white" type="label" width="8.302" height="6.42" depth="0" valign="baseline">2
+</text>
+<text matrix="1 0 0 1 112 -248" transformations="translations" pos="116 740" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">12</text>
+<text matrix="1 0 0 1 112 -248" transformations="translations" pos="116 724" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">15</text>
+<text matrix="1 0 0 1 112 -248" transformations="translations" pos="116 708" stroke="white" type="label" width="9.963" height="6.42" depth="0" valign="baseline">25</text>
+<text matrix="1 0 0 1 112 -248" transformations="translations" pos="116 692" stroke="white" type="label" width="13.284" height="6.42" depth="0" valign="baseline">32
+</text>
+<path matrix="1 0 0 1 80 -60" stroke="white">
+160 500 m
+160 516 l
+144 516 l
+144 500 l
+h
+</path>
+<path matrix="1 0 0 1 80 -60" stroke="white">
+160 532 m
+160 548 l
+144 548 l
+144 532 l
+h
+</path>
+<path matrix="1 0 0 1 80 -60" stroke="white">
+160 564 m
+160 580 l
+144 580 l
+144 564 l
+h
+</path>
+</group>
+</page>
+</ipe>

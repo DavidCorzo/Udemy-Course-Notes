@@ -1,0 +1,8 @@
+*.aux
+*.fdb_latexmk
+*.log
+*.syntex.gz
+*.toc
+*.fls
+*.pygtex
+*.pygstyle

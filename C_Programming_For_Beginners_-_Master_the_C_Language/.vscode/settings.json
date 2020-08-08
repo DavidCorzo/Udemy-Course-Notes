@@ -1,0 +1,19 @@
+{
+    "ltex.disabledRules": [
+        "AGREEMENT_SENT_START"
+    ],
+    "ltex.ignoreRuleInSentence": [
+        {
+            "rule": "MORFOLOGIK_RULE_EN_US",
+            "sentence": "^\\QThis value is used to initialize pnumber in the secong statement.\\E$"
+        },
+        {
+            "rule": "BEEN_PART_AGREEMENT",
+            "sentence": "^\\QDon't be mislead by the name “arithmetic”, itself just means adding or subtracting to a pointer.\\E$"
+        },
+        {
+            "rule": "LARGE_NUMBER_OF",
+            "sentence": "^\\QMemory thus consists of a large number of bits that are arranged in to groups of eight called bytes and each byte has a unique address.\\E$"
+        }
+    ]
+}

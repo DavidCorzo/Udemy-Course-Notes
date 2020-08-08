@@ -1,0 +1,32 @@
+\begin{itemize}
+    \item Notice the syntax: ``\#include <stdio.h>'', we know that this is a preprocesor directive.
+    \item Directive = Statement
+    \item Not strictly part of the program necesarily but the compiler will complain if you don't have it.
+    \item These directives can be anywhere in the source code but it's convention to have them in the very first line.
+    \item This statement says to the program to get the header files needed to compile correctly. The ``.h'' is a header files, they are called headers because they must be the first thing (by convention) in your source code.
+    \item Header files:
+        \begin{itemize}
+            \item They define information about some of the funcitons used in the source code.
+            \item The stdio.h is a C standard library file, for example ``printf()'', it comes with the C programming language.
+            \item stdio.h is short for standard input/output, which means that we are going to use this library for input output operation.
+            \item Header files specify infromation that the compiler uses to integrate any predefined functions within a program.
+            \item We'll create our very own header files.
+            \item It helps with the modularity feature of quality code.
+        \end{itemize}
+    
+    \item Syntax of header files:
+        \begin{itemize}
+            \item Header files are case sensative, always use lower case.
+            \item You can call header files in one of two ways:
+                \begin{itemize}
+                    \item With angle brackets: \#include <DavidsHeaderFile.h>; this syntax is used to call for the header specified in \textbf{one or more standard system directories}.
+                    \item With double quotes: \#include "DavidsHeaderFile.h"; this double quote syntax tells C to look for the header file in the \textbf{current directory}.
+                \end{itemize}
+            
+            \item The double quotes are usually for libraries made by developers.
+            \item Every C compiler that conforms to the C11 standard will have a set of standard header files supplied with it.
+            \item  
+        \end{itemize}
+    
+    \item \#ifndef and \#define to protect against multiple inclusions of a header file; this is used to not import headers more than once.
+\end{itemize}

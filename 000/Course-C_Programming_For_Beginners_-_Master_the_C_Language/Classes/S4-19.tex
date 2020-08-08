@@ -1,0 +1,25 @@
+\begin{itemize}
+    \item It's very useful to have user input in your program, there are an array of ways of doing this, one such way is the command line or terminal arguments, another is to ask explicitly in the terminal.
+    \item We'll use scanf, it's the most general.
+    \item scanf can be used to get text in a file as well.
+    \item This function reads from the standard input stream ``stdin'' and scans that input according to the format provided; \%s, \%d, \%c, \%f, etc; for floats, strings, chars, integers.
+    \item The stdin stream is by default trated by text and then convert to the desired dta type like \%d.
+    \item 2014 $\rightarrow$ chr 2 0 1 4 $\rightarrow$ convertion to int 2014.
+    \item The scanf uses pointers to variables to store the inputed data.
+    \item 3 Rules of scanf: 
+        \begin{enumerate}
+            \item It will return the number of items that is successfully reads.
+            \item To store values in a variable get the variable and set it as scanf's second argument preceeded by an ampersand \&.
+            \item If you use scanf to read a string into a character arry, don't use an \&.
+        \end{enumerate}
+    \item scanf has to have two arguments, the first is the data type you will need to be converted, the second will be the \& variable, if the variable is anything but a string you \textbf{don't} use the ampersand.
+    \item scanf uses whitespaces (newlines, tabs and spaces) separates into fields.
+    \item Remember to specify the data you input.
+    \item When a program uses scanf it pauses the collect the input and will continue upon detecting the return key.
+    \item Example:
+        \fvset{frame=single,numbers=left,numbersep=3pt} 
+        \VerbatimInput{Classes/Examples/S4-19.c}
+    
+    \item To read a double you can use the specifier \%lf.
+    \item Problems with scanf is that if you execute multiple scanf's they won't execute properly, flush the data out with getchar.
+\end{itemize}

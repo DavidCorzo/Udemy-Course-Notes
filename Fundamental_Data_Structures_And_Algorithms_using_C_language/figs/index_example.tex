@@ -1,0 +1,1796 @@
+\begin{center}
+    \begin{longtable}{ |p{6cm}|p{11cm}| }
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=0] = 'm';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'m'} is an operand, thus we just  append it to the post-fix string. 
+            \end{itemize}
+            &  
+                \begin{itemize}
+                    \item The stack looks like this: 
+                        {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {} {} {} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                        }
+                    
+                    \item The post-fix string looks like this: 
+                        {
+                            \begin{minted}[autogobble]{c}
+                                postfix = "m";
+                            \end{minted}
+                        }
+                \end{itemize}
+            \\
+            
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=1] = '+'; 
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'+'} is an operator, since the stack is empty then we just append it to the stack without checking precedence.  
+            \end{itemize}
+            &  
+                \begin{itemize}
+                    \item The stack looks like this: 
+                        {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {} {} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                        }
+                    
+                    \item The post-fix string looks like this: 
+                        {
+                            \begin{minted}[autogobble]{c}
+                                postfix = "m";
+                            \end{minted}
+                        }
+                \end{itemize}
+            \\
+            
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline 
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=2] = '(';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'('} is an operator; the stack is not empty so we need to check precedence, taking in to account that the stack top is \verb|'+'| and the token is \verb|'('| if we check the precedence of this using the table above we can observe that the \verb|(| character .
+                \item We push it to the stack if the precedence function evaluates to false.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('+','('); // -> false
+                \end{minted}
+            }
+            &  
+                \begin{itemize}
+                    \item The stack looks like this: 
+                        {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {(} {} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                        }
+                    
+                    \item The post-fix string looks like this: 
+                        {
+                            \begin{minted}[autogobble]{c}
+                                postfix = "m";
+                            \end{minted}
+                        }
+                \end{itemize}
+            \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}    \\ 
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=3] = 'a'
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'a'} is an operand; this we just append to the post-fix string.
+            \end{itemize}
+            &  
+                \begin{itemize}
+                    \item The stack looks like this: 
+                        {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {(} {+} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                        }
+                    
+                    \item The post-fix string looks like this: 
+                        {
+                            \begin{minted}[autogobble]{c}
+                                postfix = "ma";
+                            \end{minted}
+                        }
+                \end{itemize}
+            \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline        
+        {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=4] = '+'
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'+'} is an operator, the stack is not empty, since this is the case the precedence needs to be evaluated.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('(','+'); // -> false
+                \end{minted}
+            }
+            &  
+                \begin{itemize}
+                    \item The stack looks like this: 
+                        {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {(} {+} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                        }
+                    
+                    \item The post-fix string looks like this: 
+                        {
+                            \begin{minted}[autogobble]{c}
+                                postfix = "ma";
+                            \end{minted}
+                        }
+                \end{itemize}
+            \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+        {
+            \begin{minted}[autogobble]{c}
+                infix_string[i=5] = '(';
+            \end{minted}
+        }
+        \begin{itemize}
+            \item The parenthesis is an operator, we compare it using the precedence function, and we note that the function returns false because \verb|+| has less precedence than \verb|(|.
+        \end{itemize}
+        {
+            \begin{minted}[autogobble]{c}
+                precedence('+','('); // -> false
+            \end{minted}
+        }
+        & 
+        \begin{itemize}
+            \item The stack looks like this: 
+                {
+                \begin{center}
+                    \begin{tabular}{ c }
+                        \mintinline{c}{OperandStack =} \\ \\
+                    \end{tabular}
+                    \begin{bytefield}{10}
+                        \bitheader{0-9} \\
+                        \bitboxes{1}{ {+} {(} {+} {(} {} {} {} {} {} {}}
+                    \end{bytefield}
+                \end{center}
+                }
+            
+            \item The post-fix string looks like this: 
+                {
+                    \begin{minted}[autogobble]{c}
+                        postfix = "ma";
+                    \end{minted}
+                }
+        \end{itemize}
+        \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=6] = '(';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item 
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('(','('); // -> false
+                \end{minted}
+            }
+            &  
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {(} {+} {(} {(} {} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                    }
+                
+                \item The post-fix string looks like this: 
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "ma";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=7] = 'b';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'b'} is an operand, so we just append it to the post-fix string.
+            \end{itemize}
+            &  
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {(} {+} {(} {(} {} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                    }
+                
+                \item The post-fix string looks like this: 
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mab";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{
+                                {} {} {}
+                                {} {} {} 
+                                {} {} {$\uparrow$} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=8] = '-';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'-'} is an operator, since the stack is not empty, we call the precedence function, the stack top is \mintinline{c}{'('} and the token is \mintinline{c}{'-'}, this evaluates to false.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('(','-'); // -> false
+                \end{minted}
+            }
+            &  
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {(} {+} {(} {(} {-} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                    }
+                
+                \item The post-fix string looks like this: 
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mab";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{
+                                {} {} {}
+                                {} {} {} 
+                                {} {} {} 
+                                {$\uparrow$} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        \hline
+        \hline
+        %----------------------------------------------------------------------------------------
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=9] = 'c';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'c'} is an operand, thus we just append it to the post-fix string.
+            \end{itemize}
+            &  
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {(} {+} {(} {(} {-} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                    }
+                
+                \item The post-fix string looks like this: 
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{
+                                {} {} {}
+                                {} {} {} 
+                                {} {} {} 
+                                {} {$\uparrow$} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=10] = ')';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{')'} is an operator, the stack is not empty, but, upon checking precedence this evaluates to true.  
+                \item The rule when the precedence function returns true is to pop the stack top until the precedence is false again.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('-',')'); // -> true
+                \end{minted}
+            }
+            &  
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {(} {+} {(} {(} {-} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                    \begin{minted}[autogobble]{c}
+                        postfix.append(pop(&OperandStack));
+                    \end{minted}
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {(} {+} {(} {(} {} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                    \begin{itemize}
+                        \item Now we must compare the stack top that is now \mintinline{c}{'('} with the token which is \mintinline{c}{')'}, in that case what the precedence function returns is false, but the case will be special.
+                    \end{itemize}
+                    \begin{minted}[autogobble]{c}
+                        // check precedence again
+                        precedence('(',')'); // -> false
+                    \end{minted}
+                    \begin{itemize}
+                        \item In the case that stack top is \verb|'('| and the token is \verb|')'|, this case evaluates to false but it will be treated differently. 
+                        \item What must be done is pop the stack once and discard the token.
+                    \end{itemize}
+                    \begin{minted}[autogobble]{c}
+                        pop(&OperandStack);
+                    \end{minted}
+                    \begin{tabular}{ c }
+                        \mintinline{c}{OperandStack =} \\ \\
+                    \end{tabular}
+                    \begin{bytefield}{10}
+                        \bitheader{0-9} \\
+                        \bitboxes{1}{ {+} {(} {+} {(} {} {} {} {} {} {}}
+                    \end{bytefield}
+                    }
+                
+                \item The post-fix string looks like this: 
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \large 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{
+                                {} {} {}
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {$\uparrow$} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} 
+                                {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=11] = '*';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item The \mintinline{c}{'*'} character has higher precedence, since the precedence function returns false, we push the character to the stack.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('(','*'); // -> false
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                           \begin{tabular}{ c }
+                        \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {(} {+} {(} {*} {} {} {} {} {}}
+                        \end{bytefield}
+                        \end{center}
+                    }
+            
+            \item The post-fix string looks like this: 
+                {
+                    \begin{minted}[autogobble]{c}
+                        postfix = "mabc-";
+                    \end{minted}
+                }
+        \end{itemize}
+            \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=12] = '(';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item The character \mintinline{c}{'('} has higher precedence than \mintinline{c}{*} thus the precedence function returns false. 
+                \item We must push in to the stack. 
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('*','('); // -> false 
+                \end{minted}
+            }
+            &  
+                \begin{itemize}
+                    \item The stack looks like this: 
+                        {
+                            \begin{center}
+                               \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {(} {+} {(} {*} {(} {} {} {} {}}
+                            \end{bytefield}
+                            \end{center}
+                        }
+                
+                \item The post-fix string looks like this: 
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+            } \\
+        %----------------------------------------------------------------------------------------
+        \hline
+        \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=13] = 'd';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item This is an operand, we just append to the post-fix string.
+            \end{itemize}
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {(} {*} {(} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-d";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\ 
+        \hline 
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+            \begin{minipage}{\linewidth}
+            {
+                \begin{center}
+                    \begin{bytefield}{27}
+                        \\
+                        \Huge 
+                        \bitheader{0-26} \\ 
+                        \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                        \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} {} }
+                    \end{bytefield}
+                \end{center}
+            }
+            \end{minipage}
+            } \\
+            
+            %----------------------------------------------------------------------------------------
+            \hline
+            \hline
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=14] = '+';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item The \mintinline{c}{'+'} has higher precedence, this means the precedence function returns false. 
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('(','+'); // -> false
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {(} {*} {(} {+} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-d";
+                        \end{minted}
+                    }
+            \end{itemize}
+        \\ 
+        \hline
+        \hline
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+            \begin{minipage}{\linewidth}
+            {
+                \begin{center}
+                    \begin{bytefield}{27}
+                        \\
+                        \Huge 
+                        \bitheader{0-26} \\ 
+                        \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                        \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} {} }
+                    \end{bytefield}
+                \end{center}
+            }
+            \end{minipage}
+            } \\
+            \hline
+            \hline
+        %----------------------------------------------------------------------------------------
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=15] = 'k';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'k'} is an operator, thus we just append it to the post-fix string.
+            \end{itemize}
+        & 
+        \begin{itemize}
+            \item The stack looks like this: 
+                {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {(} {+} {(} {*} {(} {+} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                }
+            
+            \item The post-fix string looks like this:
+                {
+                    \begin{minted}[autogobble]{c}
+                        postfix = "mabc-dk";
+                    \end{minted}
+                }
+        \end{itemize}
+    \\ 
+    \hline
+    \hline
+    %----------------------------------------------------------------------------------------
+    \multicolumn{2}{|l|}{
+        \begin{minipage}{\linewidth}
+        {
+            \begin{center}
+                \begin{bytefield}{27}
+                    \\
+                    \Huge 
+                    \bitheader{0-26} \\ 
+                    \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                    \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} {} }
+                \end{bytefield}
+            \end{center}
+        }
+        \end{minipage}
+        } \\
+    \hline
+    \hline
+    %----------------------------------------------------------------------------------------
+            {
+            \begin{minted}[autogobble]{c}
+                infix_string[i=16] = ')';
+            \end{minted}
+            }
+            \begin{itemize}
+                \item The stack top is \mintinline{c}{'+'} and the token is \mintinline{c}{')'}, meaning that the precedence function will return true. 
+                \item This means that we must pop the stack, append the operators poped to the post-fix string until the precedence function returns 
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('+',')'); // -> true
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {(} {*} {(} {+} {} {} {}}
+                            \end{bytefield}
+                            \begin{minted}[autogobble]{c}
+                                postfix.append(pop(&OperandStack));
+                            \end{minted}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {(} {*} {(} {} {} {} {}}
+                            \end{bytefield}
+                            \begin{itemize}
+                                \item Continue with the precedence checking until true. 
+                            \end{itemize}
+                            \begin{minted}[autogobble]{c}
+                                precedence('(',')');
+                            \end{minted}
+                            \begin{itemize}
+                                \item This is false, but this is the exceptional case, for the case \mintinline{c}{'('} as the stack top and token \mintinline{c}{')'} we pop the stack and discard the token as well. 
+                            \end{itemize}
+                            \begin{minted}[autogobble]{c}
+                                pop(&OperandStack);
+                            \end{minted}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {(} {*} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+";
+                        \end{minted}
+                    }
+            \end{itemize}
+        \\ 
+        \hline
+        \hline
+        %----------------------------------------------------------------------------------------
+        %----------------------------------------------------------------------------------------
+    \multicolumn{2}{|l|}{
+        \begin{minipage}{\linewidth}
+        {
+            \begin{center}
+                \begin{bytefield}{27}
+                    \\
+                    \Huge 
+                    \bitheader{0-26} \\ 
+                    \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                    \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} {} }
+                \end{bytefield}
+            \end{center}
+        }
+        \end{minipage}
+        } \\
+    \hline
+    \hline
+    
+    %----------------------------------------------------------------------------------------
+        
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=17] = ')';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item This is an operator, and needs to evaluated for precedence, in this case it is true, thus we need to pop the stack and append the poped element to the post-fix string until the precedence function returns false. 
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('*',')'); // -> true
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {(} {*} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                        \begin{itemize}
+                            \item The \mintinline{c}{'*'} character constituting the stack top and the token \mintinline{c}{')'} will cause a true to be returned from the precedence function. Thus pop it and append it to the post-fix string.
+                        \end{itemize}
+                        \begin{minted}[autogobble]{c}
+                            postfix.append(pop(&OperandStack));
+                        \end{minted}
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {(} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                        \begin{itemize}
+                            \item The stack top is \mintinline{c}{'('} and the token is \mintinline{c}{')'}, this is the exception case, we pop and discard.
+                        \end{itemize}
+                        \begin{minted}[autogobble]{c}
+                            pop(&OperandStack);
+                        \end{minted}
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                    \bitheader{0-9} \\
+                                    \bitboxes{1}{ {+} {(} {+} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+*";
+                        \end{minted}
+                    }
+            \end{itemize}
+            \\
+            \hline
+            \hline
+            
+            %----------------------------------------------------------------------------------------
+            \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+            \hline
+            \hline
+            %----------------------------------------------------------------------------------------
+            
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=18] = ')';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item The stack top is \mintinline{c}{'+'} and the token is \mintinline{c}{')'}, the precedence function returns true, thus we pop the stack and append to the post-fix string.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('+',')'); // -> true
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {(} {+} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                            \begin{minted}[autogobble]{c}
+                                postfix.append(pop(&OperandStack));
+                            \end{minted}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {(} {} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                            \begin{itemize}
+                                \item Again we check for precedence.
+                            \end{itemize}
+                            \begin{minted}[autogobble]{c}
+                                precedence('(',')');
+                            \end{minted}
+                            \begin{itemize}
+                                \item This case we discard.
+                            \end{itemize}
+                            \begin{minted}[autogobble]{c}
+                                pop(&OperandStack);
+                            \end{minted}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {} {} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+*+";
+                        \end{minted}
+                    }
+            \end{itemize}
+        \\ 
+        \hline 
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+            \hline
+            \hline
+            
+        %----------------------------------------------------------------------------------------
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=19] = '$';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item The token \mintinline{c}{'$'} and the stack top \mintinline{c}{+} will cause the precedence function to return false.
+                \item We push the \$ to the stack. 
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('+','$'); // -> false
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {\$} {} {} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+*+";
+                        \end{minted}
+                    }
+            \end{itemize}
+        \\ 
+        \hline
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+        \hline
+        \hline
+        %----------------------------------------------------------------------------------------
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=20] = '(';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item The \mintinline{c}{'('} has higher precedence, so the function will return false, if it is false we push it to the stack as always.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('$','('); // -> false
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {\$} {(} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+*+";
+                        \end{minted}
+                    }
+            \end{itemize}
+        \\
+        \hline 
+        \hline
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+        \hline
+        \hline        
+        %----------------------------------------------------------------------------------------
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=21] = 'x';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item \mintinline{c}{'x'} is an operand. Just append it to the post-fix string.
+            \end{itemize}
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {\$} {(} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+*+x";
+                        \end{minted}
+                    }
+            \end{itemize}
+        \\ 
+        \hline
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+        \hline
+        \hline  
+        
+        %----------------------------------------------------------------------------------------
+        
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=22] = '+';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item The \mintinline{c}{'+'} operator has more precedence than \mintinline{c}{'('} so the function returns false. 
+                \item Thus we just push the token to the stack.
+            \end{itemize}
+            {
+                \begin{minted}[autogobble]{c}
+                    precedence('(','+'); // -> false
+                \end{minted}
+            }
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {\$} {(} {+} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+*+x";
+                        \end{minted}
+                    }
+            \end{itemize}
+        \\ 
+        \hline 
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+        \hline 
+        \hline
+        %----------------------------------------------------------------------------------------
+        
+            {
+                \begin{minted}[autogobble]{c}
+                    infix_string[i=23] = 'y';
+                \end{minted}
+            }
+            \begin{itemize}
+                \item This is an operand, we just append it to the post-fix string.
+            \end{itemize}
+            &
+            \begin{itemize}
+                \item The stack looks like this: 
+                    {
+                        \begin{center}
+                            \begin{tabular}{ c }
+                                \mintinline{c}{OperandStack =} \\ \\
+                            \end{tabular}
+                            \begin{bytefield}{10}
+                                \bitheader{0-9} \\
+                                \bitboxes{1}{ {+} {\$} {(} {+} {} {} {} {} {} {}}
+                            \end{bytefield}
+                        \end{center}
+                    }
+                
+                \item The post-fix string looks like this:
+                    {
+                        \begin{minted}[autogobble]{c}
+                            postfix = "mabc-dk+*+xy";
+                        \end{minted}
+                    }
+            \end{itemize} \\ 
+        \hline 
+        \hline
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+        \hline 
+        \hline
+        %----------------------------------------------------------------------------------------
+        {
+            \begin{minted}[autogobble]{c}
+                infix_string[i=24] = ')';
+            \end{minted}
+        }
+        \begin{itemize}
+            \item The \mintinline{c}{')'} character has lower precedence than \mintinline{c}{+} thus we pop the stack and append the popped item to the post-fix string.
+        \end{itemize}
+        {
+            \begin{minted}[autogobble]{c}
+                precedence('+',')'); // -> true
+            \end{minted}
+        }
+        & 
+        \begin{itemize}
+            \item The stack looks like this: 
+                {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {\$} {(} {+} {} {} {} {} {} {}}
+                        \end{bytefield}
+                        \begin{minted}[autogobble]{c}
+                            postfix.append(pop(&OperandStack));
+                        \end{minted}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {\$} {(} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                        \begin{itemize}
+                            \item Check precedence again.
+                        \end{itemize}
+                        \begin{minted}[autogobble]{c}
+                            precedence('(',')'); // -> false
+                        \end{minted}
+                        \begin{itemize}
+                            \item This is an exception case, we discard the \mintinline{c}{'('}.
+                        \end{itemize}
+                        \begin{minted}[autogobble]{c}
+                            pop(&OperandStack);
+                        \end{minted}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {\$} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                }
+            
+            \item The post-fix string looks like this:
+                {
+                    \begin{minted}[autogobble]{c}
+                        postfix = "mabc-dk+*+xy+";
+                    \end{minted}
+                }
+        \end{itemize}
+        \\ 
+        \hline
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} {} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+        \hline 
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        {
+            \begin{minted}[autogobble]{c}
+                infix_string[i=25] = '*';
+            \end{minted}
+        }
+        \begin{itemize}
+            \item The \mintinline{c}{'$'} returns true because it has higher precedence than \mintinline{c}{'*'}.
+        \end{itemize}
+        {
+            \begin{minted}[autogobble]{c}
+                precedence('$','*'); // -> true
+            \end{minted}
+        }
+        & 
+        \begin{itemize}
+            \item The stack looks like this: 
+                {
+                    \begin{center}
+                        \begin{itemize}
+                            \item We pop the stack until the precedence function returns true. 
+                        \end{itemize}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {\$} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                        \begin{minted}[autogobble]{c}
+                            postfix.append(pop(&OperandStack));
+                        \end{minted}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                        \begin{itemize}
+                            \item We check precedence again.
+                        \end{itemize}
+                        \begin{minted}[autogobble]{c}
+                            precedence('+','*'); // -> false
+                        \end{minted}
+                        \begin{itemize}
+                            \item Since this is false, we just push it to the stack. 
+                        \end{itemize}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {*} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                }
+            
+            \item The post-fix string looks like this:
+                {
+                    \begin{minted}[autogobble]{c}
+                        postfix = "mabc-dk+*+xy+$";
+                    \end{minted}
+                }
+        \end{itemize}
+        \\ 
+        \hline
+        \hline
+        
+        %----------------------------------------------------------------------------------------
+        \multicolumn{2}{|l|}{
+                \begin{minipage}{\linewidth}
+                {
+                    \begin{center}
+                        \begin{bytefield}{27}
+                            \\
+                            \Huge 
+                            \bitheader{0-26} \\ 
+                            \bitboxes{1}{{m} {+} {(} {a} {+} {(} {(} {b} {-} {c} {)} {*} {(} {d} {+} {k} {)} {)} {)} {\$} {(} {x} {+} {y} {)} {*} {p} } \\
+                            \bitboxes[]{1}{{} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {} {$\uparrow$} }
+                        \end{bytefield}
+                    \end{center}
+                }
+                \end{minipage}
+                } \\
+        \hline 
+        \hline
+
+        %----------------------------------------------------------------------------------------
+        {
+            \begin{minted}[autogobble]{c}
+                infix_string[i=26] = 'p';
+            \end{minted}
+        }
+        \begin{itemize}
+            \item This is an operand, thus we just appendt it to the post-fix string. 
+        \end{itemize}
+        & 
+        \begin{itemize}
+            \item The stack looks like this: 
+                {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {*} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                    \end{center}
+                }
+            
+            \item The post-fix string looks like this:
+                {
+                    \begin{minted}[autogobble]{c}
+                        postfix = "mabc-dk+*+xy+$p";
+                    \end{minted}
+                }
+        \end{itemize}
+        \\ 
+        \hline
+        \hline
+        \begin{itemize}
+            \item We have reached the top of the string. Now whatever content is in the stack must be emptyed and appended to the post-fix string.
+        \end{itemize}
+        & 
+        \begin{itemize}
+            \item The stack looks like this: 
+                {
+                    \begin{center}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {*} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                        \begin{minted}[autogobble]{c}
+                            postfix.append(pop(&OperandStack));
+                        \end{minted}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {+} {} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                        \begin{minted}[autogobble]{c}
+                            postfix.append(pop(&OperandStack));
+                        \end{minted}
+                        \begin{tabular}{ c }
+                            \mintinline{c}{OperandStack =} \\ \\
+                        \end{tabular}
+                        \begin{bytefield}{10}
+                            \bitheader{0-9} \\
+                            \bitboxes{1}{ {} {} {} {} {} {} {} {} {} {}}
+                        \end{bytefield}
+                        \begin{itemize}
+                            \item The stack is now empty.
+                        \end{itemize}
+                    \end{center}
+
+                }
+            
+            \item The post-fix string looks like this:
+                {
+                    \begin{minted}[autogobble]{c}
+                        postfix = "mabc-dk+*+xy+$p*+";
+                    \end{minted}
+                }
+        \end{itemize}
+    \end{longtable}
+\end{center}

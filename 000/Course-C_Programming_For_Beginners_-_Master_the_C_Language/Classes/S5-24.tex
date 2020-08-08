@@ -1,0 +1,26 @@
+\subsection{}
+\begin{itemize}
+    \item Command line arguments are a way of passing data in to your program. 
+    \item Requires the user to enter small amounts of information in the terminal.
+    \item You can pass this data in the command line, you can request this data in many ways using request the data in the program, or you can use the command line.
+    \item The main function can recieve command line arguments, the first argument must be the number of arguments, this will be an intiger value; the second argument is an array of character pointers.
+    \item First entry in this second argument is a pointer to the name of the program that is executing.
+    \item The first argument is regarded as argc, the decond is regarded as argv.
+    \item Example:
+        \begin{Verbatim}[breaklines=true, breakanywhere=true]
+            int main ( int argc /* this will be the first argument*/ , char *argv /*the argv is the second */)
+            {
+                int numberOfArguments = argc;
+                char *argument1 = argv[0];
+                char *argument2 = argv[1];
+                printf("Number of arguments: %d", numberOfArguments);
+                printf("Argument 1 is the program name: %s", argument1);
+                printf("Argument 2 is the program name: %s", argument2);
+
+                return 0;
+            }
+        \end{Verbatim}
+    
+    \item This is a way of passing data to the program withut asking for them.
+    \item You can access many arguments in the array (the second way), this way you don't have to enter anything.
+\end{itemize}

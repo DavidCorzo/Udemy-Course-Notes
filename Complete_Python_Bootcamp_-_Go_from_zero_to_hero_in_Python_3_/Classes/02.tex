@@ -1,0 +1,44 @@
+%----------------------------------------------------------------------------------------
+\section{Comparison operators}
+\begin{center}
+    \begin{tabular}{ |c|l| }
+        \hline
+            a == b & a is b \\
+        \hline
+            a != b & a is not b \\ 
+        \hline
+            a $>$ b & a is greater than b \\ 
+        \hline
+            a $<$ b & a is less than b \\ 
+        \hline
+            a $>$= b & a is grater or equals b \\ 
+        \hline
+            a $<$= b & a is less than or equal to b \\ 
+        \hline
+    \end{tabular}
+\end{center}
+\begin{itemize}
+    \item In python, 2.0 == 2 is True. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Chaining comparison operators in Python with logical operators}
+\subsection{Logical operators}
+\begin{itemize}
+    \item and
+    \item or 
+    \item not
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    1 < 2 < 3 
+    # output: True -> Chaining
+    1 < 2 and 2 < 3 
+    # output: True -> Comparison operators you can also use parenthesis.
+    (1 < 2) and (2 < 3) 
+    # output: True -> with parenthesis comparison operators. 
+    not(1 == 1) 
+    # output: False -> returns the oposite.
+    not 1 == 1  
+    # output: False -> the same but with no parenthesis.
+\end{minted}

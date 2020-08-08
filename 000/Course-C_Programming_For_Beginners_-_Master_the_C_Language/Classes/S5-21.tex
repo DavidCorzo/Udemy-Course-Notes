@@ -1,0 +1,78 @@
+\begin{itemize}
+    \item C suports diferent types of data.
+    \item The basic data types in C are the:
+        \begin{itemize}
+            \item int 
+            \item float 
+            \item double 
+            \item char 
+            \item \_Bool
+        \end{itemize}
+    
+    \item The diference between these types are the amount of memory that is going to be allocated to store them; this is important for the compiler and for the programmer.
+    \item Difereces:
+        \begin{itemize}
+            \item The amount of memory.
+            \item Machine dependent for memory allocation. A windows machine can allocate more or less memory depending on the machine.
+        \end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Int}
+\begin{itemize}
+    \item Data type to store integral values only.
+    \item You can use negative values, it can store all the values of $\mathbb{Z}$.
+    \item You can assign a hexadecimal number, to do this use \verb|int something = 0xFFEF0D;|.
+    \item Rules:
+        \begin{itemize}
+            \item No embedded spaces are permitted between the digits.
+            \item Big numbers can't be written with comma separators.
+        \end{itemize}
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Float}
+\begin{itemize}
+    \item Data type for numbers with decimal places.
+    \item Floating-point such as 3.14
+    \item You can represent scientific notation in C, an example is \verb|1.7e4| one point seven times 10 e to the power of four.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Double}
+\begin{itemize}
+    \item Very similar to the float, but can store a bigger float.
+    \item A double allocates two times the memory allocated for the float.
+    \item All floating point constant are taken as doubles by the compiler.
+    \item To make somehting a float append f at the end ot the decimal number, 14.5f.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{\_Bool}
+\begin{itemize}
+    \item Data types to store the values true or false, 0 or 1, it's for binary choices.
+    \item Will store a true or false value.
+    \item 0 is used to indicate a false value, 1 indicates a true value.
+    \item They are stored as 0 or 1 not as true or false.
+    \item With C89 compiler you can use bool prefix for this data type.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Other data types}
+\begin{itemize}
+    \item There are other data types that allows you to have a more specified type of int for example, use:
+        \begin{itemize}
+            \item short
+            \item long
+            \item unsigned
+        \end{itemize}
+    
+    \item This is an extra adjetive that allows you to be more eficient.
+    \item Short int uses less memory than an int.
+    \item Long use more memory than an int.
+    \item A double is a type of long float.
+    \item You can use long long adjectives.
+    \item You can use them like this:
+        \begin{Verbatim}[breaklines=true, breakanywhere=true]
+            long int = 98L; 
+        \end{Verbatim}
+    
+    \item If you dont want an int to store a negative number you can use the unsigned adjective, this is in theory, some compilers don't enforce it. Basically to extend the int to be $\mathbb{Z}^{+}$.
+    \item You can combine these such as short int, signed short, long unsigned.
+
+\end{itemize}

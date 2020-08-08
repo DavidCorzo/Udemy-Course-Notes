@@ -1,0 +1,123 @@
+\section{Creating and using arrays}
+\begin{itemize}
+    \item Arrays permit storing many values associated to a single variable. 
+    \item Allows us to group values together, under the same name. No longer do you need a separate variable for a new value. 
+    \item A limitation is that an array has to be declared with the size from the beginning, and all the elements need to be of the same type. 
+    \item Declaring an array, data inside an array are called elements. 
+    \item Syntax is: \mintinline{c}{long numbers[10];} an array named numbers with 10 elements. 
+    \item To access an array you must write data to one or more of the indexes. Indexes start from 0. 
+    \item You can access the array by typing the index number or an equivalent expression that results in a number that corresponds to an index in the array. 
+    \item It's common to use a loop to access an array. 
+    \item Trying to access an index outside a range of the array you'll get a \verb|array out of bounds error|. An \verb|array out of bounds error| can crash your program, can also not crash your program but make it run with bugs. 
+    \item The compiler cannot check for out of bounds errors so your program will still compile. This type of error is a run time error. 
+    \item Assigning values to an array, syntax is: \mintinline{c}{grades[100] = 95;} 
+\end{itemize}
+\subsubsection{Example}
+\inputcode{\lang}{\code/index_out_of_bounds.c}
+
+%----------------------------------------------------------------------------------------
+\section{Creating and using arrays}
+\begin{itemize}
+    \item Initialization, you can intialize the array in the same line, using curly braces. 
+    \item Example: \mintinline{c}{int counters[5] = {0,0,0,0,0};}
+    \item It's not necessary to initialize the entire array. 
+    \item Example: \mintinline{c}{float sample_data[500] = {100.0,300.0,500.5};} this will initialize only the first three elements, the remaining elements are set to 0. 
+    \item You can also initial only certain indices, such as: \mintinline{c}{float sample_data[500] = {[2]=500.5,[1]=300.0,[0] = 100.0};} not all compilers allow this but some do. 
+    \item The array size needs to be a positive number. 
+\end{itemize}
+\subsection{Example}
+\inputcode{\lang}{\code/initialization_arrays.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{Multidimensional arrays}
+\begin{itemize}
+    \item C allows arrays of any dimension to be defined. 
+    \item Two-dimensional array can have a use case for spreadsheet and matrices. 
+    \item Syntax is:
+        \begin{minted}[autogobble]{c}
+            int numbers[3][4] = { 
+                {10,20,30,40},
+                {15,25,35,45},
+                {47,48,49,50}
+            }
+        \end{minted}
+    
+    \item The inner brackets are optional, do it for readability. 
+    \item You can also initialize only a limited number of elements in you array. In the example we initialize the first three elements out of 5 in the nested array. In this case the inner pairs of braces are required. 
+        \begin{minted}[autogobble]{c}
+            int matrix[4][5] = { 
+                {10,5,-3},
+                {9,0,0},
+                {32,20,1},
+                {0,0,8}
+            }; 
+        \end{minted}
+    
+    \item You can also use designated initializers.
+        \mint{c}{int matrix[4][3] = {[0][0] = 1, [1][1] = 5, [2][2] = 9};}
+    
+    \item You can declare a three-dimensional array like this: \mintinline{c}{int box[10][20][30];}
+    \item You can visualize dimensions like this: 
+        \begin{itemize}
+            \item One-dimension: row of data. 
+            \item Two-dimensional: table of data, matrix, spreadsheet. 
+            \item Three-dimensional: stack of data tables. 
+        \end{itemize}
+    
+    \item The more dimensions you have, the more nested for loops you need to iterate through them.
+    \item Example of initialization of a three-dimensional array: 
+        \begin{minted}[autogobble]{c}
+            int numbers[2][3][4] = {
+                {
+                    {10,20,30,40},
+                    {15,25,35,45},
+                    {47,48,49,50}
+                },
+                {
+                    {10,20,30,40},
+                    {15,25,35,45},
+                    {47,48,49,50}
+                }
+            }; 
+        \end{minted}
+    
+    \item Iteration in an n dimensional array: The number of nested loops corresponds directly with the dimensions of arrays. 
+        \begin{minted}[autogobble]{c}
+            int sum = 0;
+            for (int i = 0, i = 0; i < 2; ++i) {
+                for (int j = 0; j < 3; ++j) {
+                    for (int k = 0; k < 4, ++k) {
+                        sum += numbers[i][j][k];
+                    }
+                }
+            }
+        \end{minted}
+    
+    \item In C there is no limit to the number of nested loops you can have. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Variable length arrays}
+\begin{itemize}
+    \item Arrays are of a fixed length after they are declared, this is a problem. 
+    \item Variable length is introduced in C99, variable length just means that instead of hard-coding the array size, you can have a variable that does that for you, the array is still going to have a fixed size but it won't be hard coded, this was useful when they were transcribing FORTRAN algorithms to C. 
+    \item Examples:  
+        \begin{minted}[autogobble]{c}
+            int n = 5, m = 8; 
+            float a9[m][n]; // this wasn't allowed before C99. 
+        \end{minted}
+    
+    \item It was introduced for compatibility with FORTRAN libraries. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Challenge: generate prime numbers from 0 to 100}
+\inputcode{\lang}{\code/challenge_primes.c}
+\inputcode{\lang}{\code/challenge_rainfall.c}
+
+
+%----------------------------------------------------------------------------------------
+

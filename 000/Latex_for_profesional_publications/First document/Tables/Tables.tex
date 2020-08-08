@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+
+\title{Tables, Floats and the tabular Enviroment}
+\author{David Corzo}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+Let's make the tables.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{The Tabular Enviroment}
+
+This is a way to make a nice justified table
+\smallskip \newline
+Try out the smallskip command.
+\bigskip \newline
+Try out the big skip command.
+\vspace{0.5cm}\newline
+For more precise skips of spacing use vspace command.
+\newline \smallskip
+
+\begin{tabular}{|||c||c|||}
+\hline \hline
+Name & David Corzo \\
+\hline \hline
+Subject & Writing with \LaTeX \\
+\hline \hline
+Grade & A+ \\
+\hline \hline
+\end{tabular}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Floats: Table}
+
+%here, top of the page, bottom of the page, next page
+\begin{table}[htbp]
+\caption{My Gradebook}
+\begin{center}
+\begin{tabular}{|||c||c|||}
+\hline \hline
+Name & David Corzo \\
+\hline \hline
+Subject & Writing with \LaTeX \\
+\hline \hline
+Grade & A+ \\
+\hline \hline
+\end{tabular}
+\end{center}
+%create you label to identify the table you've created
+\label{tab:grades}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%this is for making references to already made tables
+
+
+\vspace{.5cm}
+
+
+\subsection{References}
+You can reference my grads in table ~\ref{tab:grades}
+
+
+
+\end{document}
+
+
+
+
+
+

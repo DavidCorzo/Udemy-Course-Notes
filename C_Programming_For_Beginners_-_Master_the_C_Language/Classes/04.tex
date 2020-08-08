@@ -1,0 +1,242 @@
+\section{Overview}
+\begin{itemize}
+    \item The concept of memory is directly related to variables and data types. 
+    \item Each byte of a computer has been labeled with a number called an address.
+    \item The address of a byte is unique.
+    \item This all happens in RAM, which can be thought of as an ordered sequence of boxes with binary placeholders. 
+    \item Memory thus consists of a large number of bits that are arranged in to groups of eight called bytes and each byte has a unique address. 
+\end{itemize}
+
+\section{Variables}
+\begin{itemize}
+    \item Programs are only useful if they can manipulate data. 
+    \item Constants are the opposite of a variable.
+    \item Variables are types of data may change or assigned values as the program runs.
+    \item Variables are the names you give to computer memory which are used to store in a computer program, more practical than memorizing all the hexadecimal addresses. 
+    \item 
+\end{itemize}
+
+\subsection{Naming rules}
+Cannot be: 
+\begin{itemize}
+    \item All variable names must begin with a letter or an underscore.
+    \item It can be afterward followed by any combination of letters (upper and lower), underscores or digits. 
+\end{itemize}
+Examples of invalid variable names: 
+\begin{itemize}
+    \item \verb|temp$value|: dollar sign isn't valid.
+    \item \verb|my flag|: embedded spaces aren't permitted.
+    \item \verb|3Jason|: variables can't start with a digit. 
+    \item \verb|int|: is a reserved keyword. 
+\end{itemize}
+Remember: 
+\begin{itemize}
+    \item Have self documenting variable names.
+\end{itemize}
+
+\section{Data types}
+\begin{itemize}
+    \item A way for the computer to identify and use data types such as integers, strings, chars, etc.
+    \item Different data types occupy different memory sizes. 
+    \item In C everything is a primitive data type, there are no objects.
+    \item Primitive data types are types that are not objects and store all sorts of data. 
+\end{itemize}
+\subsection{Declaring variables}
+\begin{itemize}
+    \item Syntax: \placeholder{data type} \placeholder{variable name}
+    \item C requires all variables to be declared before use. 
+\end{itemize}
+\subsection{Initializing variables}
+\begin{itemize}
+    \item To initialize a variable means to assign a starting, or initial value.
+    \item This can be done during the declaration such as \mintinline{c}|int x = 10;| or after the declaration \mintinline{c}{int x; x = 10;}.
+    \item Use the \mintinline{c}{=} operator to assign values. 
+\end{itemize}
+
+\section{Examples}
+\inputcode{\lang}{\code/variables.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{Basic data types}
+Data types suported: 
+\begin{itemize}
+    \item \mintinline{c}{int}
+    \item \mintinline{c}{float}
+    \item \mintinline{c}{double}
+    \item \mintinline{c}{char}
+    \item \mintinline{c}{_Bool}
+\end{itemize}
+What the type means: 
+\begin{itemize}
+    \item How many memory needs to be allocated for each variable. 
+    \item This is system dependent or machine dependent, meaning depending on your machine, the memory allocated is determined. 
+    \item An int can take 32 bits or 64 bits depending on you machine. 
+\end{itemize}
+
+\subsection{\mintinline{c}{int}}
+\begin{itemize}
+    \item Can contain integer values.
+    \item These values can be negative. 
+    \item If the int integer is preceded by a 0x (lower or upper), the value is a hexadecimal one. Ex: \mintinline{c}{int rgbcolor = 0xFFEF0D;}
+    \item No embedded spaces are permitted between the digits.
+    \item Values greater than 3 digits can't be separated using commas. 
+\end{itemize}
+\subsection{\mintinline{c}{float}}
+\begin{itemize}
+    \item Contains: numbers with decimal places. 
+    \item Floating points can be also expressed in scientific notation. Ex: 1.7e4 is $1.7e^4$.
+\end{itemize}
+\subsection{\mintinline{c}{double}}
+\begin{itemize}
+    \item The same as a float, the difference is that the memory allocated is double a float, this means you can store higher numbers. 
+    \item All floating-point constants are taken as double values by the C compiler by default.
+    \item To explicitly express a float, append either an f of F to the end of the number. Ex: 12.5f
+\end{itemize}
+\subsection{\mintinline{c}{_Bool}}
+\begin{itemize}
+    \item Data type for binary values, true or false. 
+    \item Yes or no. 
+    \item 0 is a false value, 1 is a true value. 
+\end{itemize}
+\subsection{Other data types}
+C can represent other data types: 
+\begin{itemize}
+    \item You can have more specified adjectives to describe your data type more specifically. 
+    \item Three adjective keywords (called data specifiers), you can also just put short, long of unsigned: syntax is: \placeholder{adjective} \placeholder{datatype} 
+        \begin{enumerate}
+            \item \mintinline{c}{short}: less memory as an int. 
+            \item \mintinline{c}{long}: more memory as an int. Append an l of L at the end of the number. 
+            \item \mintinline{c}{unsigned}: is used for variables that have only non-negative values, this is just like having an absolute value for your data type, the accuracy of the integer value is extended. 
+            \item *extra: signed: means they can be negative and positive. 
+        \end{enumerate}
+\end{itemize}
+\subsection{Examples}
+\inputcode{\lang}{\code/data_types.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{Enums and Chars}
+\subsection{\mintinline{c}{enum}}
+\begin{itemize}
+    \item Data type that allows a programmer to define a variable and specify the valid values that could be stored into that variable. 
+    \item You create an enum so that only includes values you predefine. 
+    \item Syntax: enum \placeholder{name} \{\placeholder{valid values}\}
+    \item Example: \mintinline{c}{enum primaryColor { red,yellow,blue }}
+
+    \item No other values other than the predefined values. 
+    \item The compiler treats enum values as integer values.
+    \item Enums can still be assigned index numbers using the \mintinline{c}|=| operator. 
+\end{itemize}
+\subsection{\mintinline{c}{char}}
+\begin{itemize}
+    \item chars represent \textbf{single} characters.
+    \item chars literals use single quotes such as 'a'.
+    \item You can declare an unsigned char because of the ASCII table. 
+    \item You can used numerical codes and it will take it as an ASCII table value and convert it. 
+\end{itemize}
+\subsection{Escape character}
+\begin{itemize}
+    \item Characters that represents an action. 
+    \item Also called escape sequences. 
+    \item Ex: \verb|char x = '\n'|
+\end{itemize}
+Escape sequences table: 
+\begin{center}
+    \begin{tabular}{ |p{7cm}|p{7cm}| }
+        \hline
+            \textbf{Sequence} & \textbf{Meaning} \\
+        \hline \hline
+            \mintinline{c}{"\a"}   & Alert (ANSI C)\\ 
+        \hline
+            \mintinline{c}{"\b"}   & Backspace \\ 
+        \hline
+            \mintinline{c}{"\f"}   & Form feed \\ 
+        \hline
+            \mintinline{c}{"\n"}   & Newline \\ 
+        \hline
+            \mintinline{c}{"\r"}   & Carriage return \\ 
+        \hline
+            \mintinline{c}{"\t"}   & Horizontal tab \\ 
+        \hline
+            \mintinline{c}{"\v"}   & Vertical tap \\ 
+        \hline
+            \mintinline{c}{"\\"}   & Backslash (\verb|\|) \\ 
+        \hline
+            \mintinline{c}{"\'"}   & Single quote \\ 
+        \hline
+            \mintinline{c}{"\""}   & Double quote \\ 
+        \hline
+            \mintinline{c}{"\?"}   & Question mark (?) \\ 
+        \hline
+            \mintinline{c}{"\0oo"} & Octal value \\ 
+        \hline
+            \mintinline{c}{"\xhh"} & Hexadecimal value \\  
+        \hline
+    \end{tabular}
+\end{center}
+Taken from ``C Primer Plus'', Prata. 
+\subsection{Code}
+\inputcode{\lang}{\code/enums_chars.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{Format specifiers}
+\begin{itemize}
+    \item These are used to display the value of variables using printf(). 
+    \item Also used to convert data. 
+    \item You can format data precision using a format specifier. Syntax: \verb|%.<precision>f|
+\end{itemize}
+\subsection{Table}
+\begin{center}
+    \begin{tabular}{ |p{5cm}|p{5cm}| }
+        \hline
+            \textbf{Type} &  \textbf{printf chars} \\
+        \hline \hline
+            \mintinline{c}{char}                    & \mintinline{c}{"%c"}                  \\
+        \hline
+            \mintinline{c}{_Bool}                   & \mintinline{c}{"%i"},  \mintinline{c}{"%u"} \\
+        \hline
+            \mintinline{c}{short int}               & \mintinline{c}{"%hi"}, \mintinline{c}{"%hx"}, \mintinline{c}{"%ho"}      \\
+        \hline
+            \mintinline{c}{unsigned short int}      & \mintinline{c}{"%hu"}, \mintinline{c}{"%hx"}, \mintinline{c}{"%ho"}      \\
+        \hline
+            \mintinline{c}{int}                     & \mintinline{c}{"%i"},  \mintinline{c}{"%x"},  \mintinline{c}{"%o"}   \\
+        \hline
+            \mintinline{c}{unsigned int}            & \mintinline{c}{"%u"},  \mintinline{c}{"%x"},  \mintinline{c}{"%o"} \\
+        \hline
+            \mintinline{c}{long int}                & \mintinline{c}{"%li"}, \mintinline{c}{"%lx"}, \mintinline{c}{"%lo"} \\
+        \hline
+            \mintinline{c}{unsigned long int}       & \mintinline{c}{"%lu"}, \mintinline{c}{"%lx"}, \mintinline{c}{"%lo"} \\
+        \hline
+            \mintinline{c}{long long int}           & \mintinline{c}{"%lli"},\mintinline{c}{"%llx"},\mintinline{c}{"%llo"} \\
+        \hline
+            \mintinline{c}{unsigned long long int}  & \mintinline{c}{"%llu"},\mintinline{c}{"%llx"},\mintinline{c}{"%llo"} \\
+        \hline
+            \mintinline{c}{float}                   & \mintinline{c}{"%f"},  \mintinline{c}{"%e"},  \mintinline{c}{"%g"}, \mintinline{c}{"%a"} \\
+        \hline
+            \mintinline{c}{double}                  & \mintinline{c}{"%f"},  \mintinline{c}{"%e"},  \mintinline{c}{"%g"}, \mintinline{c}{"%a"} \\
+        \hline 
+            \mintinline{c}{long double}             & \mintinline{c}{"%Lf"}, \mintinline{c}{"$Le"}, \mintinline{c}{"%Lg"} \\ 
+        \hline
+    \end{tabular}
+\end{center}
+Taken from ``Programming in C'', Kochan.
+
+\subsection{Examples}
+\inputcode{\lang}{\code/format_specifiers.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{Command line arguments}
+\begin{itemize}
+    \item Sometimes data is required via the command line. 
+    \item In order to send command line arguments add the main() function parameters, and compile. After compiling type in the command line: \placeholder{executable name} \placeholder{command line args}
+\end{itemize}
+\inputcode{\lang}{\code/command_line_args.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{Challenge 1}
+\inputcode{\lang}{\code/challenge_command_line_perimeter.c}
+\inputcode{\lang}{\code/challenge_enums.c}
