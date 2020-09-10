@@ -149,23 +149,100 @@ In this implementation the root is accessed at the end. The position where we ac
 \section{Constructing a binary tree from a given traversal list}
 \begin{itemize}
     \item In-order traversal list: $D,B,F,E,G,A,H,C,I$
-        \begin{itemize}
-            \item Because we know that the root is $A$ we know that everything on the right of $A$ will be the left-sub-tree and anything on the right will be the right-sub-tree.
-        \end{itemize}
-
-    \item Pre-order traversal list: $A,C,D,E,F,G,C,H,I$
-        \begin{itemize}
-            \item As a rule we know that the first letter will always be the root. 
-            \item 
-        \end{itemize}
-        
+    \item Pre-order traversal list: $A,B,D,E,F,G,C,H,I$
     \item Post-order traversal list: $D,F,G,E,B,H,I,C,A$
-        \begin{itemize}
-            \item 
-        \end{itemize}
 \end{itemize}
 
-% \begin{figure}[H]
-    % \centering
-    % \includegraphics[]{\figs/constructionbt}
-% \end{figure}
+\subsection{Developing the tree using the in-order and pre-order lists}
+\begin{itemize}
+    \item The pre-order traversal, we access the root of the entire tree first. Thus, $A$ will be the root of the tree.
+    \item In the in-order traversal, we locate $A$, we know that everything to the left of A in the in-order traversal list is the left sub-tree and everything to the right is the right sub-tree.
+        \begin{itemize}
+            \item With this information we know that: 
+            \begin{figure}[H]
+                \centering
+                \includegraphics[]{\figs/constructingbt}
+            \end{figure}
+        \end{itemize}
+
+    \item Know exmining the elements of the left subtree, we have $D,B,F,E,G$ Notice that these elements exist consecutively after the A in the pre-order traversal, not ordered but consecutively:
+        \[
+            \text{ Pre-order traversal list: }\; A,\overbrace{B,D,E,F,G}^{\text{ L. sub-tree }},C,H,I 
+        \]
+    
+    \item By examining the rest, this means the remaining letters: $C,H,I$ are the right sub-tree.
+        \[
+            \text{ Pre-order traversal list: }\; A,B,D,E,F,G,\overbrace{C,H,I}^{\text{ R. sub-tree }} 
+        \]
+    
+    \item Notice in the pre-order traversal, the first letter of the left sub-tree is $B$, this means the $B$ is the root of the left sub-tree.
+    \item Now, locate $B$ in the in-order traversal list, anything to the left of $B$ is the left sub-tree of root $B$ and anything to the right is the right sub-tree of root $B$.
+        \begin{align*}
+            \text{ Pre-order traversal list of the L. sub-tree of root B:}\quad & B,D,E,F,G \\
+            \text{ In-order traversal list of the L. sub-tree of root B: }\quad & \overbrace{D}^{\text{ R.sub-tree }},B,\overbrace{F,E,G}^{\text{ L. sub-tree }} \\
+        \end{align*}
+    
+    \item Notice in the pre-order traversal, the first letter of the right sub-tree is $C$, thus this is the root of the right sub-tree.
+    \item Now, locate $C$ in the in-order traversal list, anything to the left is the left sub-tree, anything to the right is the right sub-tree.
+    
+    \item With the information thus discovered we know the following: 
+        \begin{align*}
+            \text{ Pre-order traversal list of the R. sub-tree of root C:}\quad & \overbrace{C}^{\text{ Root }},H,I \\
+            \text{ In-order traversal list of the R. sub-tree of root C: }\quad & \overbrace{H}^{\text{ L. sub-tree }},C,\overbrace{I}^{R. sub-tree} \\
+        \end{align*}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{\figs/constructingbt1}
+        \end{figure}
+    
+    \item Notice the pre-order traversal $A,B,D,E,F,G,C,H,I$ after the $D$ the next is the $E$ this means this is the root of the right sub-tree of the tree of root $B$. 
+    \item Notice with the in-order traversal list corresponding to the right sub-tree of tree of root $B$: $F,E,G$, $E$ is the root, this means anything to the left is the left sub-tree, anything to the right is the right sub-tree of tree root $E$. 
+    \item Repeat the process for the $C$ right sub-tree.
+    \item The end result is:
+        \begin{figure}[H]
+            \centering
+            \includegraphics[]{\figs/constructingbt2}
+        \end{figure}
+\end{itemize}
+
+\subsection{Developing a tree from in-order and post-order traversal lists}
+% \item In-order traversal list: $D,B,F,E,G,A,H,C,I$
+% \item Pre-order traversal list: $A,B,D,E,F,G,C,H,I$
+% \item Post-order traversal list: $D,F,G,E,B,H,I,C,A$
+\begin{itemize}
+    \item The root of the tree is the very last element, in this case it's $A$ .
+    \item Track $A$ in in-order traversal. Left: $D,B,F,E,G,$ Right: $H,C,I$.
+    \item Identify the left and right tree in the in-order traversal list, then track the contents of both trees to the post order traversal list. Right: $H,I,C$ Left: $D,F,G,E,B$ read from left to right.
+    \item The right sub-tree traversal list of root $A$'s  last letter is the root of the Right sub-tree. Right: $H,I,C$ so $C$ is the root of the right sub-tree. Checking in the in-order traversal list we find the root $C$, anything to the left is the left sub-tree, and the same for the right. In-order traversal: $H,C,I$, $H$ is the left sub-tree and $I$ is the right-sub-tree. 
+    \item The left sub-tree traversal list of root $A$'s last letter is the root of the left sub-tree. Left: $D,F,G,E,B$ so root is $B$. Checking them in the in-order traversal list we find the root $B$ in $D,B,F,E,G$ to the left we have the left sub-tree, same for the right. 
+    \item Repeating the process should land us in the same result. 
+\end{itemize}
+
+\section{How to define a structure of a Node for a binary tree}
+We need three elements:
+\begin{enumerate}
+    \item A search key: 
+    \item Left-pointer: pointing to the left sub-tree, if no sub-tree point to null. 
+    \item Right-pointer: pointing to the right sub-tree, if no sub-tree point to null.
+\end{enumerate}
+
+\section{Binary search tree}
+\begin{itemize}
+    \item To apply binary search on list/array elements, the list or array must be sorted.
+    \item Sorting algorithms worse case complexity of quicksort or merge sort is $O(n*\log_{}\p{ n } )$.
+    \item The worse case complexity of binary search is $O(\log_{}\p{ n } )$.
+    \item The overall instead of sorting with quick sort or merge sort and getting complexity $O(n*\log_{}\p{ n } )$ performance, using a binary search tree the elements will be accomodated while they are being inserted thus the complexity will always be $O(\log_{}\p{ n } )$.
+\end{itemize}
+Binary search tree definition: 
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{\figs/binary_search_tree}
+\end{figure}
+Example: 
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{\figs/binary_search_tree_example}
+\end{figure}
+
+\section{Binary tree implementation}
+\inputcode{c}{\code/binary_tree.c}
