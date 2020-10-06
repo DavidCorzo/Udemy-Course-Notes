@@ -1,0 +1,13 @@
+{
+    "ltex.workspaceFolderDictionary": {
+        "en-US": [
+            "MaxOSX"
+        ]
+    },
+    "ltex.workspaceFolderDisabledRules": {
+        "en-US": [
+            "A_INFINITIVE",
+            "MORFOLOGIK_RULE_EN_US"
+        ]
+    }
+}

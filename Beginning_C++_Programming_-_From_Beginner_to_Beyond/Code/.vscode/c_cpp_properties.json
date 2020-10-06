@@ -9,8 +9,7 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
-            ],
-            // "intelliSenseMode": "gcc-x64", 
+            ], 
             "browse": {
                 "path": [
                     "${workspaceRoot}",

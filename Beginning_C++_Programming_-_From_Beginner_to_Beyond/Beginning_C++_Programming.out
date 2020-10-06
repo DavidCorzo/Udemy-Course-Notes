@@ -1,0 +1,24 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Why learn C++?}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Modern C++ and the C++ standard}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Modern C++ and C++ Standard}{section.1.2}% 4
+\BOOKMARK [1][-]{section.1.3}{How does it all work?}{chapter.1}% 5
+\BOOKMARK [2][-]{subsection.1.3.1}{The C++ build process}{section.1.3}% 6
+\BOOKMARK [2][-]{subsection.1.3.2}{Integrated Development Environments \(IDEs\)}{section.1.3}% 7
+\BOOKMARK [0][-]{chapter.2}{Installation and setup}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Installing C++ Compiler for windows}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.2}{VSCode Project Setting Up}{chapter.2}% 10
+\BOOKMARK [0][-]{chapter.3}{Curriculum Overview}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Curriculum overview}{chapter.3}% 12
+\BOOKMARK [0][-]{chapter.4}{Getting Started}{}% 13
+\BOOKMARK [1][-]{section.4.1}{Writting our first program}{chapter.4}% 14
+\BOOKMARK [1][-]{section.4.2}{Building our first program}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.3}{What are compiler errors?}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.3.1}{Examples of errors}{section.4.3}% 17
+\BOOKMARK [1][-]{section.4.4}{What are compiler warnings?}{chapter.4}% 18
+\BOOKMARK [1][-]{section.4.5}{Linked errors}{chapter.4}% 19
+\BOOKMARK [2][-]{subsection.4.5.1}{Example}{section.4.5}% 20
+\BOOKMARK [1][-]{section.4.6}{Runtime Errors}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.7}{What are logic errors?}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.8}{Section challenge solution}{chapter.4}% 23
+\BOOKMARK [0][-]{chapter.5}{Structure of a C++ program}{}% 24
