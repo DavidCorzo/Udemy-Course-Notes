@@ -22,3 +22,9 @@
 \BOOKMARK [1][-]{section.4.7}{What are logic errors?}{chapter.4}% 22
 \BOOKMARK [1][-]{section.4.8}{Section challenge solution}{chapter.4}% 23
 \BOOKMARK [0][-]{chapter.5}{Structure of a C++ program}{}% 24
+\BOOKMARK [1][-]{section.5.1}{Overview of structure of a C++ program}{chapter.5}% 25
+\BOOKMARK [1][-]{section.5.2}{\043include Preprocessor directive}{chapter.5}% 26
+\BOOKMARK [1][-]{section.5.3}{Comments in C++}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.4}{The main\(\) function}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.5}{Namespaces}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.6}{Basic input and output }{chapter.5}% 30
