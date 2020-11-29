@@ -1,0 +1,245 @@
+\section{Introduction to recursion}
+\begin{itemize}
+    \item Anything done with recursion can be done with a loop.
+    \item Memory sided way in which recursion goes on. 
+    \item Compare between recursive and iterative approaches of problem solving. 
+    \item Tail recursion. 
+\end{itemize}
+It is recommended to try to understand recursion in an abstract way.
+
+\section{Basic concept of recursion}
+A function that calls itself until a base condition is met.
+\begin{itemize}
+    \item The following program is an example of a recursive function call, the problem is that the function will call itself infinitely, we don't have anything to actually break out of the recursive call.
+        \begin{minted}[autogobble]{c}
+            void print(){
+                printf("Hello!!\n");
+                print(); // recursive call
+            }
+        \end{minted}
+    \item Suppose another example, we want to print a variable $k$ inside the print function, can you guess what will it print as the value of $k$? 
+        \begin{minted}[autogobble]{c}
+            void print(){
+                int k = 1;
+                printf("Hello!!,k = %d\n",k);
+                k++;
+                print(); // recursive call
+            }
+            /* Output: 
+            Hello!!,k = 1
+            Hello!!,k = 1
+            Hello!!,k = 1
+            Hello!!,k = 1
+            ...
+            */ 
+        \end{minted}
+        \begin{itemize}
+            \item Even though we increment $k$ before calling the function again recursively we still get 1, this is because upon calling the function again we are creating. $k$ is allocated every time the function calls itself.
+        \end{itemize}
+    
+    \item We can solve this by making the $k$ variable static, this means that you don't want to allocate a new space for $k$ every time the function calls itself but rather the space allocated will be always the same.
+        \begin{itemize}
+            \item Static variables are meant to reference only one allocated space during the entirety of the program and exist once during the entirety of the program.
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            void print(){
+                static int k = 1;
+                printf("Hello!!,k = %d\n",k);
+                k++;
+                print(); // recursive call
+            }
+            /* Output:
+            Hello!!,k = 1
+            Hello!!,k = 2
+            Hello!!,k = 3
+            Hello!!,k = 4
+            ...
+            */
+        \end{minted}
+        \begin{itemize}
+            \item As we can see $k$  is incrementing now because the $k$ variable has been declared static. 
+        \end{itemize}
+    
+    \item The recursive function above will never terminate, it doesn't have a case in which you want to break the recursion, we can use this with a simple if-else statement, and to this if-else statement we give the name as the \emph{base case} which will break the loop.
+        \begin{minted}[autogobble]{c}
+            void print(){
+                static int k = 1;
+                printf("Hello!!,k = %d\n",k);
+                k++;
+                if (k <= 3){
+                    print(); // recursive call
+                } else {
+                    return;
+                }
+            }
+            /* Output:
+            Hello!!,k = 1
+            Hello!!,k = 2
+            Hello!!,k = 3
+
+            */
+        \end{minted}
+        \begin{itemize}
+            \item Remember to look at this abstractly, if you inspect all the function calls at a low level you will find it more difficult to understand recursion.
+        \end{itemize}
+    
+    \item Usually we don't use recursion like this, $k$ would be a parameter and the function would be called with variable parameters. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{When and how to terminate — the base condition of recursion}
+\begin{itemize}
+    \item If we were to print a variable number of times we must accept a parameter and based on that execute the function. 
+        \begin{minted}[autogobble]{c}
+            void print(int n){
+                if (n <= 0){
+                    return; 
+                }
+                printf("Hello!!\n");
+                print(n-1); // recursive call
+            }
+        \end{minted}
+        \begin{itemize}
+            \item In order to meet the base condition and eventually terminate the recursive calls  
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Let us go into the depth of the call}
+\begin{figure}[H]
+    \centering
+    \includegraphics[]{\figs/recursion} 
+\end{figure}
+\begin{itemize}
+    \item If you were to place anything below the recursive call it will be executed after the calls have been made.
+\end{itemize}
+\begin{minted}[autogobble]{c}
+    void print(int n){
+    if (n <= 0){
+        return; 
+    }
+    printf("Hello!!\n");
+    print(n-1); // recursive call
+}
+/* Output: 
+Hello!!, n = 3
+Hello!!, n = 2
+Hello!!, n = 1
+
+*/
+\end{minted}
+\begin{itemize}
+    \item If we were to make the print statement after the recursive call the order will be inverted. 
+\end{itemize}
+\begin{minted}[autogobble]{c}
+void print(int n){
+    if (n <= 0){
+        return; 
+    }
+    print(n-1); // recursive call
+    printf("Hello!!\n");
+}
+/* Output: 
+Hello!!, n = 1
+Hello!!, n = 2
+Hello!!, n = 3
+
+*/
+\end{minted}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{\figs/recursion1} 
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+\section{Recursion example — Juggler Sequence}
+\url{https://en.wikipedia.org/wiki/Juggler_sequence}
+\inputcode{c}{\code/juggler.c}
+
+\section{Recursion example — Finding Factorial}
+\url{https://es.wikipedia.org/wiki/Factorial#:~:text=Podemos%20definir%20el%20factorial%20de,menores%20o%20iguales%20que%20n.}
+\inputcode{c}{\code/factorial.c}
+
+\section{Recursion example —  Binary Search}
+\inputcode{c}{\code/bsearchrec.c}
+
+\section{Recursion example — Decimal to Binary}
+\inputcode{c}{\code/dec_to_bin_rec.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{Calling a function — Operating system creates a stack}
+\begin{itemize}
+    \item The operating system creates a stack and pushes all the function calls. Then as the functions are executed they get popped. 
+    \item The compiler will create this stack. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{When there is no need for a stack}
+\begin{itemize}
+    \item Sometimes we don't need to preserve the variables and data structures declared before a function. 
+    \item Depending on the compiler, if the function call is the last thing done, the variables are not pushed to the call stack. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Tail recursion}
+\begin{itemize}
+    \item The stack saves and preserves the context, meaning variables and data structures for their usage, this is what makes recursion possible. 
+    \item Without the stack and the preservation of the current context recursion would not be possible.
+    \item When the recursion function is the last thing performed in the function, we call it \emph{tail recursion}; when there are more instructions below the recursive call we call it \emph{non-tail recursion}, tail is more efficient because the context must not be pushed to the stack, the non-tail recursion is more inefficient for the extra time pushing and popping. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Recursion versus iteration}
+This is a debate and every programmer must know this. 
+\subsection{When both are equivalent}
+\begin{itemize}
+    \item In the case of tail recursion, you can do this using a for loop, we know that tail recursion doesn't have a stack in memory, so this is equivalent for tail recursion. 
+\end{itemize}
+
+Be aware of apparent tail recursion that looks like tail recursion but is not. 
+
+\begin{minted}[autogobble]{c}
+    long factorial(unsigned n){
+        if (n == 0){
+            return 1L;
+        } 
+        return n * factorial(n-1);
+        // after the recursive call is done
+        // we multiply n, this implies a stack being created in memory. 
+    }
+\end{minted}
+
+\subsection{When a loop is better}
+\begin{itemize}
+    \item Use a loop when you can not find an equivalent of recursive logic to implement tail recursion. 
+    \item Tail recursion takes as much complexity as a for loop, thus when we can not find an equivalent tail-recursive operation, we must go with a for loop. 
+\end{itemize}
+
+\subsection{When recursion is better}
+Take the example of a decimal to binary converter, without the stack this problem cannot be solved, we can use the stack provided by the compiler, the alternative implementation to the recursion is iteration, in the iteration we need to implement the stack ourselves, keep track of all the variables, this implies more code, less readability and bigger code. Better we use the stack already implemented for us and use recursion. In conclusion when you need a stack and the stack is indispensable to the purpose, use the call stack and do the job recursively, if you don't need a stack, don't use a stack.
+
+\subsection{Synthesis in a programmer's way}
+\begin{center}
+    \begin{algorithm}[H]
+        \SetAlgoLined
+        \large
+        \uIf{you can convert the recursion to tail recursion}{
+            Iteration and recursion are equivalent\; 
+            \# the factorial implementation the call stack is required for the recursive implementation, but you can do the same without a stack, for factorial the iteration is better. 
+        }
+        \uIf{we can not convert the loop to tail recursion \&\& it doesn't require a stack}{
+            iteration is better\; 
+        }
+        \uIf{when we need a stack explicitly to solve a problem}{
+            recursion is better\; 
+            \# This is preferred rather to implementing our own stack. 
+        }
+        \caption{When to use recursion or iteration}
+    \end{algorithm}
+\end{center}

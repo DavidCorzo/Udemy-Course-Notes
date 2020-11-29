@@ -1,0 +1,8 @@
+{
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\system32\\cmd.exe",
+    "files.associations": {
+        "*.c": "c"
+    },
+    "window.zoomLevel": 0,
+    "editor.fontSize": 20
+}

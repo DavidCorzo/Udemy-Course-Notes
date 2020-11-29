@@ -1,0 +1,57 @@
+\begin{center}
+    \begin{tabular}{ |l|l| }
+        \hline
+            False scenarios & True scenarios \\ 
+        \hline
+            \mintinline{c}{precedence('+','/') = false;} & \mintinline{c}{precedence('+','+') = true;}  \\ 
+        \hline
+            \mintinline{c}{precedence('+','$') = false;} & \mintinline{c}{precedence('+','-') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('+','(') = false;} & \mintinline{c}{precedence('+',')') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('-','*') = false;} & \mintinline{c}{precedence('-','+') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('-','/') = false;} & \mintinline{c}{precedence('-','-') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('-','$') = false;} & \mintinline{c}{precedence('-',')') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('-','(') = false;} & \mintinline{c}{precedence('*','+') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('*','$') = false;} & \mintinline{c}{precedence('*','-') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('*','(') = false;} & \mintinline{c}{precedence('*','*') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('/','$') = false;} & \mintinline{c}{precedence('*','/') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('/','(') = false;} & \mintinline{c}{precedence('*',')') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('$','(') = false;} & \mintinline{c}{precedence('/','+') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('(','+') = false;} & \mintinline{c}{precedence('/','-') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('(','-') = false;} & \mintinline{c}{precedence('/','*') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('(','*') = false;} & \mintinline{c}{precedence('/','/') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('(','/') = false;} & \mintinline{c}{precedence('/',')') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('(','$') = false;} & \mintinline{c}{precedence('$','+') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('(','(') = false;} & \mintinline{c}{precedence('$','-') = true;}  \\
+        \hline
+            \mintinline{c}{precedence('(',')') = false;} & \mintinline{c}{precedence('$','*') = true;}  \\
+        \hline
+            \mintinline{c}{precedence(')','+') = false;} & \mintinline{c}{precedence('$','/') = true;}  \\
+        \hline
+            \mintinline{c}{precedence(')','-') = false;} & \mintinline{c}{precedence('$','$') = true;}  \\
+        \hline
+            \mintinline{c}{precedence(')','*') = false;} & \mintinline{c}{precedence('$',')') = true;}  \\
+        \hline
+            \mintinline{c}{precedence(')','/') = false;} & \mintinline{c}{precedence(')',')') = true;}  \\
+        \hline
+            \mintinline{c}{precedence(')','$') = false;} &  \\
+        \hline
+            \mintinline{c}{precedence(')','(') = false;} &  \\
+        \hline
+    \end{tabular}
+\end{center}

@@ -1,0 +1,345 @@
+\section{What beginners don't know}
+\begin{itemize}
+    \item Command line basics: 
+        \begin{itemize}
+            \item Windows, macOS, Linux 
+        \end{itemize}
+    
+    \item Installing python and making it a path environment variable. 
+    \item Difference between distributions.
+    \item How to google search for answering one's own questions. 
+    \item How to run python code. 
+    \item Difference between an IDE and python. 
+    \item What is syntax highlighting. 
+    \item Variables and their purpose. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+
+\section{Basic data types}
+\begin{center}
+    \begin{tabular}{ |l|l| }
+        \hline
+            Name & Type  \\
+        \hline
+            Integers & int \\ 
+        \hline
+            Floating point & float \\ 
+        \hline
+            Strings & str \\ 
+        \hline
+            Lists & list \\ 
+        \hline
+            Dictionaries & dict \\ 
+        \hline
+            Tuples & tup \\ 
+        \hline
+            Sets & set \\ 
+        \hline
+            Booleans & bool \\ 
+        \hline
+    \end{tabular}
+\end{center}
+
+
+%----------------------------------------------------------------------------------------
+\section{Numbers}
+\begin{center}
+    \begin{tabular}{ |p{5cm}|p{5cm}|p{5cm}| }
+        \hline\\[0.25cm]
+            Modulo & 20 \% 2 & $\displaystyle 20\times\pmod{2}$  \\[0.45cm]
+            \hline
+            Powers & 2 ** 2  & $\displaystyle 2^2$  \\[0.45cm]
+            \hline
+            Floor & 10 // 3  & $\displaystyle \floor{\frac{10}{3} } $  \\[0.45cm]
+            \hline
+            Grouping & (10 + 3) / 3 & $\displaystyle \frac{10+3}{3} $ \\[0.45cm] 
+        \hline
+    \end{tabular}
+\end{center}
+
+%----------------------------------------------------------------------------------------
+\section{Variable names}
+Rules: 
+\begin{itemize}
+    \item No spaces 
+    \item Can't use these: \mintinline{python}{;"',<>\()!@#$%^&*~-+|}
+    \item Don't use keywords. 
+\end{itemize}
+\subsection{Dynamic typing}
+\begin{itemize}
+    \item Python is a dynamically typed language.
+    \item This means you can reassign variables to different data types. 
+    \item This makes Python very flexible in assigning data types, this is different to other languages that are ``Statically-Typed''.
+\end{itemize}
+\begin{center}
+    \begin{tabular}{ |p{8.5cm}|p{8.5cm}| }
+        \hline
+            Pros & Cons \\
+        \hline
+            \begin{itemize}
+                \item Easy to work with
+                \item Faster development process 
+            \end{itemize}
+            & 
+            \begin{itemize}
+                \item May result in bugs for unexpected data types.
+                \item You need to be aware of \verb|type()| function to check this. 
+            \end{itemize}
+            \\ 
+        \hline
+    \end{tabular}
+\end{center}
+
+
+
+%----------------------------------------------------------------------------------------
+\section{Strings}
+\begin{itemize}
+    \item In Python ' and " are the same in strings. 
+    \item String indexing: used to extract a single character in a string. a[index] 
+    \item String slicing: grabs an interval of indexes. a[start:stop:step]
+        \begin{itemize}
+            \item start: numerical index for the slice start. 
+            \item stop index you will go up to but not include. 
+            \item step: the size of the jump you take. 
+        \end{itemize}
+    
+    \item Special characters: \verb|\n, \t, \d|
+    \item the lenght function: len(a) -$>$ how many elements are in the string. 
+\end{itemize}
+\subsection{Normal and reverse indexes}
+\begin{center}
+    \begin{tabular}{ |l|l|l|l|l|l|l|l|l|l|l|l|l| }
+        \hline
+            H & E & L & L & O &   & W & O & R & L & D & ! \\
+            \hline
+            0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 \\ 
+            \hline
+            0 & -11 & -10 & -9 & -8 & -7 & -6 & -5 & -4 & -3 & -2 & -1 \\ 
+        \hline
+    \end{tabular}
+\end{center}
+\subsection{Examples}
+\begin{minted}[autogobble]{python}
+    # STRING INDEXES AND REVERSE INDEXES
+    a = "123456"
+    a[1:2] 
+    # output: "2" -> Index 1 up to but not including 2
+    a[1:3]  
+    # output: "23" -> Index 1 up to but not including 3
+    a[:3]   
+    # output: "123" -> Index 0 (default) up to but not including 3
+    a[::]   
+    # output: "123456" -> Normal string 
+\end{minted}
+
+
+%----------------------------------------------------------------------------------------
+\section{String properties}
+\begin{itemize}
+    \item Strings are inmutable: 
+        \begin{minted}[autogobble]{python}
+            name = "david"
+            name[0] = "b" 
+            # OUTPUT: 
+            # Traceback (most recent call last):
+            #   File "<stdin>" line 1, in <module>
+            # TypeError: 'str' object does not support item assignment
+        \end{minted}
+
+        
+    
+    \item You can concactenate using the + and * signs
+        \begin{minted}[autogobble]{python}
+            2 + 3 
+            # output: 5
+            "2" + "3" 
+            # output: "23"
+            "h" * 10 
+            # output: "hhhhhhhhhh" 
+        \end{minted}
+    
+    \item Methods: 
+        \begin{itemize}
+            \item .upper()
+            \item .lower()
+            \item .replace()
+            \item .split()
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Print formating with strings}
+\begin{itemize}
+    \item .format() for string interpolation:
+        \begin{minted}[autogobble]{python}
+            print("this is a string {}".format("inserted"))
+            # output: This is a string inserted
+
+            print("The {} {} {}".format("fox","brown","quick"))
+            # output:  The fox brown quick 
+
+            print("The {2} {1} {0}".format("fox","brown","quick"))
+            # output: The quick brown fox
+
+            print("The {a} {b} {c}".format(a="fox",b="brown",c="quick"))
+            # output: The quick brown fox
+
+            result = 100/777
+            print(result) 
+            # output: 0.1287001287001287
+            # Float formatting formula "{value:width.precision f}"
+            print("The result was {r:1.3f}".format(r=result))
+            # output: The result was 0.129 
+        \end{minted}
+
+    \item f-strings for string interpolation: 
+        \begin{minted}[autogobble]{python}
+            # F-STRING FORMATING
+            var = "World"
+            print(f"Hello {var}")
+            # output: Hello World
+        \end{minted}
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Lists}
+\begin{itemize}
+    \item They suport indexing and slicing.
+        \begin{minted}[autogobble]{python}
+            my_list = [1,2,3] 
+            my_list[1:]
+            # output: [2,3]
+            another_list = [4,5]
+            my_list + another_list 
+            # output: [1,2,3,4,5]
+        \end{minted}
+        
+    \item You can also concactenate lists together. 
+    \item Lists are mutable. 
+\end{itemize}
+\subsection{Methods}
+\begin{itemize}
+    \item .append(\placeholder{something}) -$>$ Appends to the list. 
+    \item .sort() -$>$ sorts the iterable alphabetically or numericaly, this is a void, it doen't return anything, don't assign it to anything because it returns None.
+        \begin{minted}[autogobble]{python}
+            new_list = ['a','e','x','b','c']
+            new_list.sort()
+            new_list
+            # output: ['a','b','c','e','x']
+        \end{minted}
+        
+    \item .pop() $\rightarrow$  eliminates last element and prints it.
+        \begin{minted}[autogobble]{python}
+            my_list.pop(0) 
+            # output: pops element 0.
+        \end{minted}
+        
+    \item .reverse() $\rightarrow$ returns the reverse of the list. 
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Dictionaries}
+\begin{itemize}
+    \item Doesn't need indexes. Just keys and values. 
+    \item Dictionaries are unordered and can't be sorted.
+    \item Methods:
+        \begin{minted}[autogobble]{python}
+            d = {"key1":1,"key2":2}
+        \end{minted}
+\end{itemize}
+
+\subsection{Methods}
+\begin{itemize}
+    \item d.keys() $\rightarrow$ returns all the keys in a dictionary.
+        \begin{minted}[autogobble]{python}
+            d.keys() 
+            # output:  dict_keys(['key1','key2'])
+        \end{minted}
+
+    \item d.values() $\rightarrow$ returns all the values in a dictionary.
+        \begin{minted}[autogobble]{python}
+            d.values() 
+            # output: dict_values([1,2])
+        \end{minted}
+
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Tuples}
+\begin{itemize}
+    \item They are immutable lists essentially. 
+        \begin{minted}[autogobble]{python}
+            t = ('a','a','b')
+            t[0] = 'NEW'
+            # output: 
+            # Traceback (most recent call last):
+            #   File "<stdin>", line 1, in <module>
+            # TypeError: 'tuple' object does not support item assignment
+        \end{minted}
+    \item Useful for immutable applications and memory efficiency.
+\end{itemize}
+\subsection{Methods}
+\begin{itemize}
+    \item t.count('a') $\rightarrow$ counts the occurrences of 'a' in the tuple. 
+    \item t.index('a') $\rightarrow$ returns the index in which the first time 'a' appears. 
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Sets}
+\begin{itemize}
+    \item Unordered collection of unique elements. 
+        \begin{minted}[autogobble]{python}
+            my_set = set()
+        \end{minted}
+    \item There can only be one of each element, no duplicates. 
+    \item Useful for duplicate deletion. 
+\end{itemize}
+
+\subsection{Methods}
+\begin{itemize}
+    \item .add() $\rightarrow$ inserts 1 to the set. 
+        \begin{minted}[autogobble]{python}
+            my_set.add(1) # output: {1}
+            my_set.add(2) # output: {1,2}
+            my_set.add(2) # output: {1,2} -> doesn't add because that is a duplicate. 
+        \end{minted}
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Boolans}
+\begin{itemize}
+    \item Allows only True, False. 
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Files}
+\begin{itemize}
+    \item Opening syntax: 
+        \begin{minted}[autogobble]{python}
+            with open('myfile.txt') as f: 
+                contents = f.read()
+            # or
+            contents = f.read('myfile.txt')
+        \end{minted}
+\end{itemize}
+\subsection{Methods}
+\begin{itemize}
+    \item .read() $\rightarrow$ returns a string with all the contents of the file. 
+    \item .readlines() $\rightarrow$ returns a list with the lines in a file. 
+    \item .seek(\placeholder{index}) $\rightarrow$ sets the cursor to the specified index (usually 0).
+    \item .truncate() $\rightarrow$ deletes all information in a file. 
+    \item .close() $\rightarrow$ closes the file, it's a best practice. 
+\end{itemize}
+\subsection{Permissions on the with open('myfile.txt') statement }
+\begin{itemize}
+    \item \mintinline{python}{mode='r'} $\rightarrow$ permissions are enabled to read a file. 
+    \item \mintinline{python}{mode='w'} $\rightarrow$ permissions are enabled to write and overwrite to a file, or create a new file. 
+    \item \mintinline{python}{mode='r+'} $\rightarrow$ reading and writing permissions.
+    \item \mintinline{python}{mode='w+'} $\rightarrow$ writing and reading, overwriting or creating new files. 
+    \item \mintinline{python}{mode='a'} $\rightarrow$ appends data to the end of a file, overwriting and writing to a file permissions are enabled. 
+\end{itemize}
+

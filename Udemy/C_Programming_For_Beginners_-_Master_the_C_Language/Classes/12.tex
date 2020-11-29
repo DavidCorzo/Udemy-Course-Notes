@@ -1,0 +1,760 @@
+\section{Overview}
+\begin{itemize}
+    \item Structures in C provide another tool for grouping elements together.
+        \begin{itemize}
+            \item A powerful concept that you will use in many C programs that you develop. 
+        \end{itemize}
+    
+    \item Similar to object-oriented programming, structures are thought of as an object but only with data members, no methods. 
+        \begin{itemize}
+            \item You can group data members together, and those can represent essentially data attributes. 
+        \end{itemize}
+    
+    \item Suppose you want to store a data inside a program.
+        \begin{itemize}
+            \item We could create variables for month, day, and year to store the date. 
+        \end{itemize}
+        \mint{c}{int month = 9, day = 25, year = 2015;}
+    
+    \item Suppose your program also needs to store the date of purchase of a particular item.
+        \begin{itemize}
+            \item You must keep track of three separate variables for each date that you use in the program.
+            \item These variables are logically related and should be grouped together. 
+        \end{itemize}
+    
+    \item It would be much better if you could somehow group these sets of three variables
+        \begin{itemize}
+            \item This is precisely what the structure in C allows you to do. 
+            \item Allows us to group together different variables to one name, you can then group different variables of that name, and access the elements in that name (called members).
+        \end{itemize}
+\end{itemize}
+
+\subsection{Creating a structure}
+\begin{itemize}
+    \item A structure declaration describes how a structure is put together.
+        \begin{itemize}
+            \item What elements are inside the structure, what members are contained in the structure. 
+        \end{itemize}
+    
+    \item The \mintinline{c}{struct} keyword enables you to define a collection of variables of various types called a structure that you can treat as a single unit. 
+        \begin{minted}[autogobble]{c}
+            struct date {
+                int month;
+                int day;
+                int year;
+            }
+        \end{minted}
+        \begin{itemize}
+            \item Any data type can populate a struct, you can even put pointers in there. 
+        \end{itemize}
+    
+    \item The above statement defines what a data structure looks like to the C compiler. 
+        \begin{itemize}
+            \item There is no memory allocation for this declaration. 
+        \end{itemize}
+    
+    \item The variable names within the date structure, month, day, and year, are called members or fields:
+        \begin{itemize}
+            \item Members of the structure appear between the braces that follow the struct tag name date.
+            \item This is not an array. 
+        \end{itemize}
+\end{itemize}
+
+\subsection{Using a structure}
+\begin{itemize}
+    \item The definition of date defines a new typa in the language.
+        \begin{itemize}
+            \item Variables can now be declared to be of type struct date. 
+            \item You can think of it as an enum, except an enum can only hold one value, structures can hold many values. This is another data type.
+        \end{itemize}
+        \mint{c}{struct date today;}
+
+    \item You can now declare more variables of type struct date.
+        \mint{c}{struct date purchaseDate;}
+    
+    \item The above statement declares a variable to be of type struct date:
+        \begin{itemize}
+            \item Memory is now allocated for the variables above. 
+            \item Memory is now allocated for three integer values for each variable. 
+        \end{itemize}
+    
+    \item Be certain you understand the difference between defining a structure and declaring variables of the particular structure type. 
+\end{itemize}
+
+\subsection{Accessing memebers in a struct}
+\begin{itemize}
+    \item Now that you know how to define a structure and declare structure variables, you need to be able to refer to the members of a structure. 
+    \item A structure variable name is not a pointer.
+        \begin{itemize}
+            \item You need special syntax to access the members.
+        \end{itemize}
+    
+    \item You can refer to a member of a structure by writing the variable name followed by the period, followed by the member variable name.
+        \begin{itemize}
+            \item The period between the structure variable name and the member name is called the member selection operator. 
+            \item There are no spaces permitted between the variable name, the period, and the member name. 
+            \item Syntax is: \placeholder{variable name}.\placeholder{member name}
+        \end{itemize}
+    
+    \item To set the value of the day in the variable today to 25, you write:
+        \begin{itemize}
+            \item \mintinline{c}{today.day = 25;}
+            \item \mintinline{c}{today.year = 2015;}
+        \end{itemize}
+    
+    \item To test the value of month to see i it is equal to 12:
+        \begin{minted}[autogobble]{c}
+            if (today.month == 12){
+                nextMonth = 1;
+            }
+        \end{minted}
+    
+    \item You use this syntax as if there were normal variables, following the rules of the type. 
+        \inputcode{c}{\code/structs_using.c}
+\end{itemize}
+
+\subsection{Structures in expressions}
+\begin{itemize}
+    \item When it comes to the evaluation of expressions, structure members follow the same rules as ordinary variables do:
+        \begin{itemize}
+            \item Division of an integer structure member by another integer is performed as an integer division. 
+                \mint{c}{century = today.year / 100 + 1;}
+            
+            \item Follow the rules of the type when using a member. 
+        \end{itemize}    
+\end{itemize}
+
+\subsection{Defining the structure and variable at the same time}
+\begin{itemize}
+    \item You do have some flexibility in defining a strucure.
+        \begin{itemize}
+            \item It is valid o declare a variable to be of a particular structure type at the same time that the structure is defined. You can also define no name structures or anonymous structures. 
+            \item Include the variable name (or names) before the terminating semicolon of the structure definition. 
+            \item You can also assign initial values to the variables in the normal fashion. 
+        \end{itemize}
+    
+    \item Declaration of struct and variable at the same time:
+        \begin{minted}[autogobble]{c}
+            struct date {
+                int month;
+                int day;
+                int year;
+            } today; // also creating a variable named today. 
+        \end{minted}
+        \begin{itemize}
+            \item In the above, an instance of the structure, called today (we refer to that as an instance of the structure, to instantiate a structure in a variable), is declared at the same time that the structure is defined:
+                \begin{itemize}
+                    \item Today is a variable of type date. 
+                    \item Right after you do the today you can actually initialize those variables, by using the brackets and initializing the variables. 
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsection{Un-named structures}
+\begin{itemize}
+    \item You also do not have to give the stucture a tag name.
+        \begin{itemize}
+            \item If all the variables of a particular structure type are defined when the structure is defined, the structure name can be committed. 
+            \item This means that the structure is going to be used just once. 
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            /* No struct name */
+            struct { // structure declaration and ...
+                int day;
+                int year;
+                int month;
+            } today; // ... structure variable declaration combined
+        \end{minted}
+    
+    \item A disadvantage of the above is that you can no longer define further instances of the structure in another statement.
+        \begin{itemize}
+            \item All the variables of this structure type you want in your program must be defined in one statement. 
+        \end{itemize}
+\end{itemize}
+
+\subsection*{Three ways of declaring structures}
+\begin{enumerate}
+    \item Define the structure with a tag name and not creating a variable. Create the variable in a separate instance when the memory is allocated.
+    \item Define the structure and a variable at the same time, this allows to immediate usage of the declared variable, and future instances of the structures are possible.
+    \item Create an unnamed struct with no name, and just a variable at the bottom. 
+\end{enumerate}
+
+\subsection{Intializing structures}
+\begin{itemize}
+    \item Intializing structures is similar to initializing arrays:
+        \begin{itemize}
+            \item The elements are listed inside a pair of braces, with each element separated by a comma. 
+            \item The initial values listed inside the curly braces must be constant expressions. 
+        \end{itemize}
+        \mint{c}|struct date today = {7,2,2015};|
+    
+    \item Just like an array initialization, fewer values might be listed than are contained in the structure:
+        \mint{c}|struct date date1 = {12,10};|
+    
+    \item The above sets date.month to 12, and date1.day to 10 but gives no initial value to date.year.
+
+    \item You can also specify the member names in the initialization list.
+        \begin{itemize}
+            \item Enables you to initialize the members in any order, or to only initialize specified members.
+        \end{itemize}
+        \mint{c}{.member = value;}
+        \mint{c}|struct date date1 = {.month = 12, .day = 10};|
+    
+    \item Sets the year member fo the date structuere variable to 2015:
+        \mint{c}|struct date today = {.year = 2015};|
+\end{itemize}
+
+\subsection{Assignment with compound literals}
+\begin{itemize}
+    \item You can assign one or more to a structure in a single statement using what is known as compound literals. % (Might only be in C11)
+        \mint{c}{today = (struct date){9,25,2015};}
+
+    \item This statement can appear anywhere in the program:
+        \begin{itemize}
+            \item It is not a declaration statement.
+            \item The type cast operator is used to tell the compiler the type of the expression. 
+            \item The list of values follows the cast and are to be assigned to the members of the structure, in order. 
+            \item Listed in the same way as if you were initializing a structure variable. The advantage to take here is that you don't have to initialize the individual members in separate lines, you can do it all on one line.
+        \end{itemize}
+    
+    \item You can also specify values using the .member notation:
+        \mint{c}|today = (struct date){.month = 9, .day = 25, .year = 2015};|
+    
+    \item The advantage of using this approach is that the arguments can appear in any order. 
+        \inputcode{c}{\code/struct_one_liner.c}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Structures and arrays}
+\begin{itemize}
+    \item You have seen how useful a structure is in enabling you to logically group related elements together.
+        \begin{itemize}
+            \item For example, it is only necessary to keep track of one variable, instead of three, for each date that is used by the program. 
+            \item To handle 10 different dates in a program, you only have to keep track of 10 different variables, instead of 30. 
+            \item Structs are similar to arrays in that they group variables, but the advantage is that they can hold different data types. 
+        \end{itemize}
+    
+    \item A better method for handling the 10 different dates involves the combination of two powerful features of the C programming language.
+        \begin{itemize}
+            \item Structures and arrays.
+            \item It is perfectly valid to define an array of structures. 
+            \item The concept of an array of structures is a very powerful and important one in C.
+        \end{itemize}
+    
+    \item Declaring an array of structures is like declaring any other kind of array. 
+        \mint{c}{struct date myDates[10];}
+    
+    \item Defines an array called myDates, which consists of 10 elements:
+        \begin{itemize}
+            \item Each element inside the array is defined to be of type struct date. 
+        \end{itemize}
+    
+    \item To identify members of an array of structures, you apply the same rule used for individual structures. 
+        \begin{itemize}
+            \item Follow the structure name with the dot operator and then with the member name. 
+        \end{itemize}
+    
+    \item Referencing a particular structure element inside the array is quite natural:
+        \begin{itemize}
+            \item To set the second date inside the myDates array to August 8,1086:
+                \begin{minted}[autogobble]{c}
+                    myDates[1].month = 8;
+                    myDates[1].day   = 8;
+                    myDates[1].year  = 1986;
+                \end{minted}
+            
+            \item The above references the second element in an array of structs. 
+        \end{itemize}    
+\end{itemize}
+
+\subsection{Intializing an array of structures}
+\begin{itemize}
+    \item Initialization of arrays containing structures is similar to initialization of multidimensional arrays. 
+        \mint{c}{struct myDates[5] = { {12,10,1975}, {12,30,1980}, {11,15,2005}};}
+    
+    \item Sets the first three dates in the array myDate to 12/10/1975, 12/30/1950, and 11/15/2005, the other two will remain uninitialized. 
+    \item The inner pairs of braces are optional. 
+        \mint{c}{struct myDates[5] = { 12,10,1975, 12,30,1980, 11,15,2005};}
+        \begin{itemize}
+            \item This is perfectly valid, however it reduces readability to you program because you only have commas. 
+        \end{itemize}
+    \item If you wanted to initialize just the third element of the array to the specified value. Do this: 
+        \mint{c}{struct date myDate[5] = { [2] = {12,10,1975}};}
+    
+    \item If you just wanted to set the month and day of the secong element of the myDates array to 12 and 30:
+        \mint{c}{struct date myDates[5] = { [1].month = 12, [1].day = 30};}
+\end{itemize}
+
+\subsection{Structures containing arrays}
+\begin{itemize}
+    \item It is also possible to define structures that contain arrays as members:
+        \begin{itemize}
+            \item Most common use is to set up an array of characters inside a structure. 
+        \end{itemize}
+    
+    \item Suppose you wanted to define a structure called month that contains as its members the number of days in the month as well as a three-character abbreviation for the month name:
+        \begin{minted}[autogobble]{c}
+            struct month {
+                int numberOfDays;
+                char name[3];
+            };
+        \end{minted}
+        \begin{itemize}
+            \item This is not allocating any memory, it's just defining it. 
+        \end{itemize}
+    
+    \item This sets up a month structure that contains an integer member called numberOfDays and a character member called name:
+        \begin{itemize}
+            \item Member name is actually an array of three characters.
+        \end{itemize}
+    
+    \item You can now define a variable to be of type struct month and set the proper fields inside aMonth for January. 
+        \begin{minted}[autogobble]{c}
+            struct month aMonth; 
+            aMonth.numberOfDays = 31;
+            aMonth.name[0] = 'J';
+            aMonth.name[1] = 'a';
+            aMonth.name[2] = 'n';
+            // you can use strcpy as well. 
+        \end{minted}
+    
+    \item You can also initialize this variable to the same values like this:
+        \mint{c}{struct month aMonth = {31,{'J','a','n'}};}
+    
+    \item You can set up 12-month structures inside an array to represent each month of the year:
+        \mint{c}{struct month months[12];}
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Nested structures}
+\begin{itemize}
+    \item C allows you to define a structure that itself contains other structures as one or more of its members. 
+        \begin{itemize}
+            \item This means you can have structures inside of structures. 
+        \end{itemize}
+    
+    \item You have seen how it is possible to logically group the month, day, and year into a structure called date:
+        \begin{itemize}
+            \item How about grouping the hours, minutes, and seconds into a structure called time. 
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            struct time {
+                int hours;
+                int minutes; 
+                int seconds;
+            };
+        \end{minted}
+    
+    \item In some applications, you might have the need to group both a date and time together.
+        \begin{itemize}
+            \item You might need to set up a list of events that are to occur at a particular date and time. 
+        \end{itemize}
+    
+    \item You want to have a convenient way to associate both the date and the time together.
+        \begin{itemize}
+            \item Define a new structure, called, for example dateAndTime, which contains as its members two elements.
+            \item Date and time. 
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            struct dateAndTime {
+                struct date sdate;
+                struct time stime;
+            };
+        \end{minted}
+    
+    \item The first member of this structure is of type struct date and is called sdate.
+    \item The second member of the dateAndTime structure os of type struct time and is called stime. 
+    \item Variables can now be defined to be of type struct dateAndTime. 
+        \mint{c}{struct dateAndTime event;}
+\end{itemize}
+    
+\subsection{Accessing members on a nested structure}
+\begin{itemize}
+    \item To reference the date structure of the variable event, the syntax is the same as referencing any member. 
+        \mint{c}{event.sdate}
+    \item To reference a particular member inside one of these structures, a period followed by the member name is tacked on the end. 
+        \begin{itemize}
+            \item The below statement sets the moth of the date structure contained within an event to October, and adds one to the second contained within the time structure. 
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            event.sdate.month = 10;
+            ++event.stime.seconds;
+        \end{minted}
+    
+    \item The event variable can be initialized just like normal:
+        \begin{itemize}
+            \item Sets the date in the variable event to February 1, 2015, and sets the time to 3:30:00.
+            \item Very similar to a multidimensional array. 
+        \end{itemize}
+        \mint{c}{struct dateAndTime event = {{2,1,2015},{3,30,0}}}
+    
+    \item You can use members' name in the initialization:
+        \begin{minted}[autogobble]{c}
+            struct dateAndTime event = {
+                {.month = 2, .day = 1, .year= 2015},
+                {.hour = 3, .minute = 30 .seconds = 0}
+            };
+        \end{minted}
+\end{itemize}
+
+\subsection{An array of nested structures}
+\begin{itemize}
+    \item It is also posible to set up an array of dateAndTime structures.
+        \mint{c}{struct dateAndTime events[100];}
+    
+    \item The array events is declared to contain 100 elements of type struct dateAndTime:
+        \begin{itemize}
+            \item The fouth dateAndTime contained within the array is referenced in the usual index way as events[3].
+        \end{itemize}
+    
+    \item To set the first time in the array to noon:
+        \begin{minted}[autogobble]{c}
+            events[0].stime.hour = 12;
+            events[0].stime.minutes = 0;
+            events[0].stime.seconds = 0;
+        \end{minted}
+\end{itemize}
+
+\subsection{Declare a structure within a structure}
+\begin{itemize}
+    \item You can define the Date structure within the time structure definition.
+        \begin{minted}[autogobble]{c}
+            struct Time {
+                struct Date { // un-named structure
+                    int day; 
+                    int month; 
+                    int year;
+                } dob;
+                int hour;
+                int minutes;
+                int seconds;
+            };
+        \end{minted}
+        \begin{itemize}
+            \item We have a nested structure, but we defined it with the nested structure inside.
+        \end{itemize}
+    
+    \item Notice: the declaration is enclosed within the scope of the Time structure definition:
+        \begin{itemize}
+            \item It does not exist outside it. 
+            \item It becomes impossible to declare a Date variable external to the Time structure. 
+            \item The only way you can use the Date structure in this example is by first instantiating a Time structure and then using the Date structure. 
+            \item You would only do this when you need the Date to never be by itself. 
+            \item This can be looked at as a local structure within a structure. The Date structure in this case has a local scope and has no outside reference to the outside of the Time struct. 
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Structures and pointers}
+\begin{itemize}
+    \item You can declare structures to be pointers, and you can have pointers inside the structures.
+    \item C allows for pointers to structures.
+    \item Pointers to structures are easier to manipulate than structures themselves.
+    \item In some older implementations, a structure cannot be passed as an argument to a function, but a pointer to a structure can, another reason why you want a structure to be declared as a pointer. 
+    \item Even if you can pass a structure as an argument, passing a pointer is more efficient.
+        \begin{itemize}
+            \item Remember if you pass a pointer as a parameter in a function, you can imitate pass by reference, however if you pass in a structure as parameter, structures can be large and can make your program inefficient. 
+        \end{itemize}
+    \item Many data representations use structures containing pointers to other structures. 
+    \item Much more efficient to pass in an address than all the elements of a structure. 
+\end{itemize}
+
+\subsection{Declaring a struct as a pointer}
+\begin{itemize}
+    \item You can define a variable to be a pointer to a struct.
+        \mint{c}{struct date *datePtr;}
+        \begin{itemize}
+            \item This does not allocate to store the structure, this only allocates memory to store the pointer, so you can pass in an address of an existing structure or allocate memory for it somewhere else, or initialize it. 
+        \end{itemize}
+    
+    \item The variable datePtr can be assigned just like other pointers:
+        \begin{itemize}
+            \item You can set it to point to todaysDate with the assignment statement. 
+        \end{itemize}
+        \mint{c}{datePtr = &todaysDate;}
+    
+    \item You can then indirectly access any of the members of the date structure pointed to by datePtr.
+        \mint{c}{(*datePtr).day = 21;}
+    
+    \item The above has the effect of setting the day of the structure pointed to by datePtr to 21:
+        \begin{itemize}
+            \item Parentheses are required because the structure member operator ``.'' has precedence than the indirection operator ``*''.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Using structus as pointers}
+\begin{itemize}
+    \item To test the value of month stored in the date structure pointed to by datePtr.
+        \begin{minted}[autogobble]{c}
+            if ((*datePtr).month == 12) {
+                // < Code >;
+            }
+        \end{minted}
+    
+    \item Pointers to structures are so often used in C that a special operator exists
+        \begin{itemize}
+            \item The structure pointer operator ->, which is the dash followed by the greater than sign, permits:
+                \mint{c}{(*x).y}
+            \item to be more clearly expressed as:
+                \mint{c}{x->y}
+        \end{itemize}
+    
+    \item The previous if statement can be conveniently written as:
+        \begin{minted}[autogobble]{c}
+            if (datePtr->month == 12){
+                // < Code >;
+            }
+        \end{minted}
+        \begin{itemize}
+            \item Think of it intuitively as: datePtr is pointing to the member month, at the same time its being dereferenced and compared to 12.
+        \end{itemize}
+    
+    \item If this were a nested structure, you would have to dereference using the structure pointer operator, and then accessing the further data members with the ``.'' operator.
+        \inputcode{c}{\code/structure_pointer_op.c}
+\end{itemize}
+
+\subsubsection{Structures containing pointers}
+\begin{itemize}
+    \item A pointer also can be a member of a structure. 
+        \begin{minted}[autogobble]{c}
+            struct intPtrs{
+                int *p1;
+                int *p2;
+            }
+        \end{minted}
+
+    \item A structure called intPtrs is defined to contain two integer pointers:
+        \begin{itemize}
+            \item The first one called p1.
+            \item The second one p2.
+        \end{itemize}
+    
+    \item You can define a variable of type struct intPtrs:
+        \mint{c}{struct intPtrs pointers;}
+    
+    \item The variable pointers can now be used just like other structs.
+        \begin{itemize}
+            \item Pointers itself is not a pointer, but a structure variable that has two pointers as its members. 
+        \end{itemize}
+        \inputcode{c}{\code/struct_pointers.c}
+\end{itemize}
+
+\subsection{Character arrays or character pointers?}
+\begin{itemize}
+    \item Which one suits me better?
+        \begin{minted}[autogobble]{c}
+            struct names {
+                char first[20];
+                char last[20];
+            };
+            // OR
+            struct pnames {
+                char *first; 
+                char *last;
+            };
+        \end{minted}
+    
+    \item You can do both, however, you need to understand what is happening here. 
+    \item If we say: 
+        \begin{minted}[autogobble]{c}
+            struct names veep = {"Talia", "Summers"};
+            struct pnames treas = {"Brad", "Fallingjaw"};
+            printf("%s and %s", veep.first, treas.first);
+        \end{minted}
+    
+    \item The struct names variable veep:
+        \begin{itemize}
+            \item Strings are stored inside the structure.
+            \item Structure has allocated a total of 40 bytes to hold the two names. 
+            \item 
+        \end{itemize}
+    
+    \item The struct pnames variable traes:
+        \begin{itemize}
+            \item Strings are stored wherever the compiler stores string constants. 
+            \item The structuer holds the two addresses, which takes a total of 16 bytes on out system. 
+            \item The struct pnames structre allocates no space to store strings.
+            \item It can be used only with strings that have had space allocated for them elsewhere.
+                \begin{itemize}
+                    \item Such as string constants or strings in arrays. 
+                \end{itemize}
+            
+            \item You need to use malloc() or calloc().
+        \end{itemize}
+    
+    \item The pointers in a pnames structure should be used only to manage strings that were created and allocated elsewhere in the program. 
+    \item One instance in which it makes sense to use a pointer on a structure to handle a string is if you are dynamically allocating that memory. 
+        \begin{itemize}
+            \item Use a pointer to store the address. 
+            \item Has the advantage that you can ask malloc() to allocate just the amount of space that is needed for a string. 
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            struct namect {
+                char *fname; // using pointers instead of arrays. 
+                char *lname;
+                int letters;
+            };
+        \end{minted}
+    
+    \item Understand that the two strings are not stored in the structure:
+        \begin{itemize}
+            \item They are stored in the chunk of memory managed by malloc().
+            \item The addresses of the two strings are stored in the structure.
+            \item Addresses are what string-handing functions typically work with. 
+        \end{itemize}
+    
+    \item Example: 
+        \begin{minted}[autogobble]{c}
+            void getinfo(struct namect *pst) {
+                char temp[SLEN]; 
+                printf("Please enter your first name.\n"); 
+                
+                // allocate memory to hold name.
+                pst->fname = (char*)malloc(strlen(temp)+1);
+            
+                // copy name to allocated memory. 
+                strcpy(pst->fname,temp);
+                printf("Please enter your last name.\n");
+                s_gets(temp,SLEN);
+                pst->lname = (char*)malloc(strlen(temp)+1);
+                strcpy(pst->lname,temp);
+            }
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Structures and functions}
+\begin{itemize}
+    \item After declaring a structure named Family, how do we pass this structure as an argument to a function? 
+        \begin{minted}[autogobble]{c}
+            struct Family {
+                char name[20]; 
+                int age;
+                char father[20]; 
+                char mother[20];
+            };
+
+            bool siblings(struct Family memeber1, struct Family member2){
+                if (strcmp(member1.mother,member2.mother) == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        \end{minted}
+    \item This function has two parameters, each of which is a structure. 
+\end{itemize}
+
+\subsection{Pointers to structures as function arguments}
+\begin{itemize}
+    \item You whould use a pointer to a structure as an argument:
+        \begin{itemize}
+            \item It can take quite a bit of time to copy large structures as arguments, as well as requiring whatever amount of memory to store the copy of the structure. 
+            \item Pointers to structures avoid the memory consumption and the copying time (this approach only copies the pointer argument).
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            bool siblings(struct Family *pmember1, struct Family *pmember2){
+                if (strcmp(pmember1->mother,pmember2->mother) == 0){ // you can use the -> since they are pointers.
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        \end{minted}
+    
+    \item You can also use the const modifier to not allow any modification of the members of the struct (what the struct is pointing to).
+        \begin{minted}[autogobble]{c}
+            bool siblings(struct Family const *pmember1, struct Family const *pmember2){
+                if (strcmp(pmember1->mother,pmember2->mother) == 0){ // you can use the -> since they are pointers.
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        \end{minted}
+    
+    \item You can also use the const modifier to not allow any modification of the pointer address.
+        \begin{itemize}
+            \item Any attempt to change those structures will cause an error message during compilation.
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            bool siblings(struct Family *const pmember1, struct Family *const pmember2){ // you are passing a copy of the address, thus this is redundant, but there is nothing wrong in leaving it like this. 
+                if (strcmp(pmember1->mother,pmember2->mother) == 0){ // you can use the -> since they are pointers.
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        \end{minted}
+    
+    \item The indirection operator in each parameter definition is now in front of the const keyword.
+        \begin{itemize}
+            \item Not in front of the parameter name.
+            \item You cannot modify the addresses stored in the pointers. 
+            \item It is the pointers that are protected here, not the structures to which they point to. The const is after the asterisk.
+        \end{itemize}
+\end{itemize}
+\inputcode{c}{\code/function_structs.c}
+
+\subsection{Returning a structure from a function}
+\begin{itemize}
+    \item The function prototype has to indicate this return value in the normal way.
+        \mint{c}{struct Date my_funct(void);}
+    
+    \item This is a function prototype for a function taking no arguments that returns a structure of type Date. 
+    \item This can potentially allow you to return more than one value from a function, and more than one data type as well. 
+    \item It is more convenient to return a pointer to a structure.
+        \begin{itemize}
+            \item When returning a pointer to a structure, it should be created on the heap. 
+            \item Because all pointers are created on the heap.
+            \item This means it will be around for longer, and you can create it and delete it at an arbitrary time.
+        \end{itemize}
+    
+    \item Example:
+        \inputcode{c}{\code/struct_func.c}    
+\end{itemize}
+
+\subsection{Reminder}
+\begin{itemize}
+    \item You should always use pointers when passing structures to a function:
+        \begin{itemize}
+            \item It works on older, as well as newer versions of C, and it is quick (just a single address is copied).
+            \item Some versions of C don't allow passing in structures.
+        \end{itemize}
+    
+    \item However, you have less protection for your data.
+        \begin{itemize}
+            \item Some operations in the called function could inadvertently affect data in the original structure.
+            \item Use the const qualifier to solve this problem, use the const before the data type, not after the asterisk. 
+        \end{itemize}
+    
+    \item Advantages of passing structures as arguments:
+        \begin{itemize}
+            \item The function works with copies of the original data, which is safer than working with the original data.
+            \item The programming style tends to be clearer. 
+        \end{itemize}
+    
+    \item Main disadvantages to passing structures as arguments:
+        \begin{itemize}
+            \item Older implementations of C might not handle the code. 
+            \item Wastes time and space. 
+            \item Especially wasteful to pass large structures to a function that uses only one or two members of the structure.
+        \end{itemize}
+    
+    \item Programmers use structure pointers as function arguments for reasons of efficiency and use const when necessary to make it safer.
+    \item Passing structures by value is most often done for structures that are small.
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Challenge - Declaring and initializing a structure}
+\inputcode{c}{\code/challenge_declaring_and_initializing_structs.c}
+\inputcode{c}{\code/challenge_structures_pointers_and_functions.c}
+
+
+
+
+

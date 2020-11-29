@@ -1,0 +1,170 @@
+\begin{minted}[autogobble]{c}
+    int stack[5];
+    int index = -1;
+\end{minted}
+\begin{tabular}{|c | c | c | c |}
+    \hline 
+    \begin{tabular}{ c }
+        3 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{tabular}
+    \begin{tabular}{ |p{0.5cm}| }
+        \hline
+            \\
+        \hline 
+            \\
+        \hline 
+            \\
+        \hline 
+            \\
+        \hline
+    \end{tabular}
+    &
+    \begin{tabular}{ c }
+        3 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{tabular}
+    \begin{tabular}{ |p{0.5cm}| }
+        \hline
+            \\
+        \hline 
+            \\
+        \hline 
+            \\
+        \hline 
+            10 \\
+        \hline
+    \end{tabular}
+    &
+    \begin{tabular}{ c }
+        3 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{tabular}
+    \begin{tabular}{ |p{0.5cm}| }
+        \hline
+            \\
+        \hline 
+            \\
+        \hline 
+            25 \\
+        \hline 
+            10 \\
+        \hline
+    \end{tabular}
+    &
+    \begin{tabular}{ c }
+        3 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{tabular}
+    \begin{tabular}{ |p{0.5cm}| }
+        \hline
+            \\
+        \hline 
+            80\\
+        \hline 
+            25 \\
+        \hline 
+            10 \\
+        \hline
+    \end{tabular}
+    \\[1cm] 
+    % Coments
+    \makecell[l]{Stack is \\ empty or \\ underflowed.}
+    & 
+    \makecell[l]{
+        \mintinline{c}{++index;} \\
+        \mintinline{c}{stack[index] = 10;} \\
+        \mintinline{c}{//index:0}
+    }
+    & 
+    \makecell[l]{
+        \mintinline{c}{++index;} \\
+        \mintinline{c}{stack[index] = 25;} \\
+        \mintinline{c}{//index:1} 
+    }
+    & 
+    \makecell[l]{
+        \mintinline{c}{++index;} \\
+        \mintinline{c}{stack[index] = 80;} 
+    }
+    \\ \hline
+    \begin{tabular}{ c }
+        3 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{tabular}
+    \begin{tabular}{ |p{0.5cm}| }
+        \hline
+            \\
+        \hline 
+            \\
+        \hline 
+            25 \\
+        \hline 
+            10 \\
+        \hline
+    \end{tabular} 
+    & 
+    \begin{tabular}{ c }
+        3 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{tabular}
+    \begin{tabular}{ |p{0.5cm}| }
+        \hline
+            \\
+        \hline 
+            \\
+        \hline 
+            \\
+        \hline 
+            10 \\
+        \hline
+    \end{tabular}
+    &
+    \begin{tabular}{ c }
+        3 \\
+        2 \\
+        1 \\
+        0 \\
+    \end{tabular}
+    \begin{tabular}{ |p{0.5cm}| }
+        \hline
+            \\
+        \hline 
+            \\
+        \hline 
+            \\
+        \hline 
+                \\
+        \hline
+    \end{tabular}
+    &
+    \\ 
+    \makecell[l]{
+        \mintinline{c}{stack[index] = 0;} \\
+        \mintinline{c}{index--;} 
+    }
+    & 
+    \makecell[l]{
+        \mintinline{c}{stack[index] = 0;} \\
+        \mintinline{c}{index--;} 
+    }
+    & 
+    \makecell[l]{
+        \mintinline{c}{stack[index] = 0;} \\
+        \mintinline{c}{index--;} 
+    } &
+    \\ 
+    \hline 
+\end{tabular}

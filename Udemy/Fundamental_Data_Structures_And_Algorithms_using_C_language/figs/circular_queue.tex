@@ -1,0 +1,132 @@
+\begin{center}
+    \begin{itemize}
+        \item Let's suppose that we start at an underflow condition.
+        \item REAR = SIZE - 1 
+        \item FRONT = SIZE - 1
+        \item SIZE = 5
+    \end{itemize}
+    \begin{tabular}{ cc }
+        {R$\rightarrow$}&{4} \\ {}&{3} \\ {}&{2} \\ {}&{1} \\ {}&{0} \\
+    \end{tabular}
+    \begin{tabular}{|p{0.75cm}|}
+        \hline {} \\ \hline {} \\ \hline {} \\ \hline {} \\ \hline {} \\ \hline
+    \end{tabular}
+    \begin{tabular}{ c }
+        {$\leftarrow$F} \\ {} \\ {} \\ {} \\ {} \\
+    \end{tabular}
+
+    \begin{minted}[autogobble]{c}
+        CircularQueue.enqueue(5);
+        // Increase the rear: r = (4+1)%5 -> 0
+    \end{minted}
+
+    \begin{tabular}{ cc }
+        {}&{4} \\ {}&{3} \\ {}&{2} \\ {}&{1} \\ {R$\rightarrow$}&{0} \\
+    \end{tabular}
+    \begin{tabular}{|p{0.75cm}|}
+        \hline {} \\ \hline {} \\ \hline {} \\ \hline {} \\ \hline {5} \\ \hline
+    \end{tabular}
+    \begin{tabular}{ c }
+        {$\leftarrow$F} \\ {} \\ {} \\ {} \\ {} \\
+    \end{tabular}
+
+    \begin{minted}[autogobble]{c}
+        CirucularQueue.enqueue(10);
+        // rear: (5+1)%5 = 1
+    \end{minted}
+
+    \begin{tabular}{ cc }
+        {}&{4} \\ {}&{3} \\ {}&{2} \\ {R$\rightarrow$}&{1} \\ {}&{0} \\
+    \end{tabular}
+    \begin{tabular}{|p{0.75cm}|}
+        \hline {} \\ \hline {} \\ \hline {} \\ \hline {10} \\ \hline {5} \\ \hline
+    \end{tabular}
+    \begin{tabular}{ c }
+        {$\leftarrow$F} \\ {} \\ {} \\ {} \\ {} \\
+    \end{tabular}
+
+    \begin{minted}[autogobble]{c}
+        CircularQueue.enqueue(15);
+        // rear\alpha (6+1)%5 = 2
+    \end{minted}
+
+    \begin{tabular}{ cc }
+        {}&{4} \\ {}&{3} \\ {R$\rightarrow$}&{2} \\ {}&{1} \\ {}&{0} \\
+    \end{tabular}
+    \begin{tabular}{|p{0.75cm}|}
+        \hline {} \\ \hline {} \\ \hline {15} \\ \hline {10} \\ \hline {5} \\ \hline
+    \end{tabular}
+    \begin{tabular}{ c }
+        {$\leftarrow$F} \\ {} \\ {} \\ {} \\ {} \\
+    \end{tabular}
+
+    \begin{minted}[autogobble]{c}
+        CircularQueue.enqueue(20);
+        // rear: (7+1)%5 = 3
+    \end{minted}
+
+    \begin{tabular}{ cc }
+        {}&{4} \\ {R$\rightarrow$}&{3} \\ {}&{2} \\ {}&{1} \\ {}&{0} \\
+    \end{tabular}
+    \begin{tabular}{|p{0.75cm}|}
+        \hline {} \\ \hline {20} \\ \hline {15} \\ \hline {10} \\ \hline {5} \\ \hline
+    \end{tabular}
+    \begin{tabular}{ c }
+        {$\leftarrow$F} \\ {} \\ {} \\ {} \\ {} \\
+    \end{tabular}
+
+    \begin{itemize}
+        \item An error will occur because in the next insertion will satisfy the underflow condition (rear == front).
+    \end{itemize}
+    \begin{minted}[autogobble]{c}
+        CircularQueue.enqueue(25);
+        // rear: (8+1)%5 = 4
+    \end{minted}
+    \begin{itemize}
+        \item This operation will enter the if statement of the queue underflow.
+            \begin{minted}[autogobble]{c}
+                if (rear == front){
+                    printf("Underflow");
+                }
+            \end{minted}
+        
+        \item The insertion will never happen. 
+        \item We need to dequeue the last value at index 4.
+        \begin{minted}[autogobble]{c}
+            CircularQueue.dequeue();
+            // This will set the front back to 0
+            // f = (f+1)%SIZE: (4+1)%5 = 0
+        \end{minted}
+    \end{itemize}
+    \begin{tabular}{ cc }
+        {}&{4} \\ {R$\rightarrow$}&{3} \\ {}&{2} \\ {}&{1} \\ {}&{0} \\
+    \end{tabular}
+    \begin{tabular}{|p{0.75cm}|}
+        \hline {} \\ \hline {20} \\ \hline {15} \\ \hline {10} \\ \hline {5} \\ \hline
+    \end{tabular}
+    \begin{tabular}{ c }
+        {} \\ {} \\ {} \\ {} \\ {$\leftarrow$F} \\
+    \end{tabular}
+    
+
+    \begin{itemize}
+        \item Now we can move the rear to the next element without satisfying the underflow condition (front == rear).
+        \item The queue is now at an overflow state.
+    \end{itemize}
+    \begin{minted}[autogobble]{c}
+        CircularQueue.enqueue(25);
+        // rear: 
+    \end{minted}
+    \begin{itemize}
+        \item You can't enqueue anymore because all are occupied. 
+    \end{itemize}
+    \begin{tabular}{ cc }
+        {R$\rightarrow$}&{4} \\ {}&{3} \\ {}&{2} \\ {}&{1} \\ {}&{0} \\
+    \end{tabular}
+    \begin{tabular}{|p{0.75cm}|}
+        \hline {25} \\ \hline {20} \\ \hline {15} \\ \hline {10} \\ \hline {5} \\ \hline
+    \end{tabular}
+    \begin{tabular}{ c }
+        {} \\ {} \\ {} \\ {} \\ {$\leftarrow$F} \\
+    \end{tabular}
+\end{center}

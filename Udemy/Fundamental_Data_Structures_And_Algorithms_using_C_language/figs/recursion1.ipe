@@ -1,0 +1,409 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipe SYSTEM "ipe.dtd">
+<ipe version="70212" creator="Ipe 7.2.13">
+<info created="D:20200807183519" modified="D:20200807194221" tex="pdftex"/>
+<preamble>\usepackage{listings}</preamble>
+<ipestyle name="basic">
+<symbol name="arrow/arc(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/farc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/ptarc(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fptarc(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="mark/circle(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</symbol>
+<symbol name="mark/disk(sx)" transformations="translations">
+<path fill="sym-stroke">
+0.6 0 0 0.6 0 0 e
+</path>
+</symbol>
+<symbol name="mark/fdisk(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+0.5 0 0 0.5 0 0 e
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+0.6 0 0 0.6 0 0 e
+0.4 0 0 0.4 0 0 e
+</path>
+</group>
+</symbol>
+<symbol name="mark/box(sx)" transformations="translations">
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</symbol>
+<symbol name="mark/square(sx)" transformations="translations">
+<path fill="sym-stroke">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+</path>
+</symbol>
+<symbol name="mark/fsquare(sfx)" transformations="translations">
+<group>
+<path fill="sym-fill">
+-0.5 -0.5 m
+0.5 -0.5 l
+0.5 0.5 l
+-0.5 0.5 l
+h
+</path>
+<path fill="sym-stroke" fillrule="eofill">
+-0.6 -0.6 m
+0.6 -0.6 l
+0.6 0.6 l
+-0.6 0.6 l
+h
+-0.4 -0.4 m
+0.4 -0.4 l
+0.4 0.4 l
+-0.4 0.4 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="mark/cross(sx)" transformations="translations">
+<group>
+<path fill="sym-stroke">
+-0.43 -0.57 m
+0.57 0.43 l
+0.43 0.57 l
+-0.57 -0.43 l
+h
+</path>
+<path fill="sym-stroke">
+-0.43 0.57 m
+0.57 -0.43 l
+0.43 -0.57 l
+-0.57 0.43 l
+h
+</path>
+</group>
+</symbol>
+<symbol name="arrow/fnormal(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/pointed(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/fpointed(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-0.8 0 l
+-1 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/linear(spx)">
+<path stroke="sym-stroke" pen="sym-pen">
+-1 0.333 m
+0 0 l
+-1 -0.333 l
+</path>
+</symbol>
+<symbol name="arrow/fdouble(spx)">
+<path stroke="sym-stroke" fill="white" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<symbol name="arrow/double(spx)">
+<path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
+0 0 m
+-1 0.333 l
+-1 -0.333 l
+h
+-1 0 m
+-2 0.333 l
+-2 -0.333 l
+h
+</path>
+</symbol>
+<pen name="heavier" value="0.8"/>
+<pen name="fat" value="1.2"/>
+<pen name="ultrafat" value="2"/>
+<symbolsize name="large" value="5"/>
+<symbolsize name="small" value="2"/>
+<symbolsize name="tiny" value="1.1"/>
+<arrowsize name="large" value="10"/>
+<arrowsize name="small" value="5"/>
+<arrowsize name="tiny" value="3"/>
+<color name="red" value="1 0 0"/>
+<color name="green" value="0 1 0"/>
+<color name="blue" value="0 0 1"/>
+<color name="yellow" value="1 1 0"/>
+<color name="orange" value="1 0.647 0"/>
+<color name="gold" value="1 0.843 0"/>
+<color name="purple" value="0.627 0.125 0.941"/>
+<color name="gray" value="0.745"/>
+<color name="brown" value="0.647 0.165 0.165"/>
+<color name="navy" value="0 0 0.502"/>
+<color name="pink" value="1 0.753 0.796"/>
+<color name="seagreen" value="0.18 0.545 0.341"/>
+<color name="turquoise" value="0.251 0.878 0.816"/>
+<color name="violet" value="0.933 0.51 0.933"/>
+<color name="darkblue" value="0 0 0.545"/>
+<color name="darkcyan" value="0 0.545 0.545"/>
+<color name="darkgray" value="0.663"/>
+<color name="darkgreen" value="0 0.392 0"/>
+<color name="darkmagenta" value="0.545 0 0.545"/>
+<color name="darkorange" value="1 0.549 0"/>
+<color name="darkred" value="0.545 0 0"/>
+<color name="lightblue" value="0.678 0.847 0.902"/>
+<color name="lightcyan" value="0.878 1 1"/>
+<color name="lightgray" value="0.827"/>
+<color name="lightgreen" value="0.565 0.933 0.565"/>
+<color name="lightyellow" value="1 1 0.878"/>
+<dashstyle name="dashed" value="[4] 0"/>
+<dashstyle name="dotted" value="[1 3] 0"/>
+<dashstyle name="dash dotted" value="[4 2 1 2] 0"/>
+<dashstyle name="dash dot dotted" value="[4 2 1 2 1 2] 0"/>
+<textsize name="large" value="\large"/>
+<textsize name="small" value="\small"/>
+<textsize name="tiny" value="\tiny"/>
+<textsize name="Large" value="\Large"/>
+<textsize name="LARGE" value="\LARGE"/>
+<textsize name="huge" value="\huge"/>
+<textsize name="Huge" value="\Huge"/>
+<textsize name="footnote" value="\footnotesize"/>
+<textstyle name="center" begin="\begin{center}" end="\end{center}"/>
+<textstyle name="itemize" begin="\begin{itemize}" end="\end{itemize}"/>
+<textstyle name="item" begin="\begin{itemize}\item{}" end="\end{itemize}"/>
+<gridsize name="4 pts" value="4"/>
+<gridsize name="8 pts (~3 mm)" value="8"/>
+<gridsize name="16 pts (~6 mm)" value="16"/>
+<gridsize name="32 pts (~12 mm)" value="32"/>
+<gridsize name="10 pts (~3.5 mm)" value="10"/>
+<gridsize name="20 pts (~7 mm)" value="20"/>
+<gridsize name="14 pts (~5 mm)" value="14"/>
+<gridsize name="28 pts (~10 mm)" value="28"/>
+<gridsize name="56 pts (~20 mm)" value="56"/>
+<anglesize name="90 deg" value="90"/>
+<anglesize name="60 deg" value="60"/>
+<anglesize name="45 deg" value="45"/>
+<anglesize name="30 deg" value="30"/>
+<anglesize name="22.5 deg" value="22.5"/>
+<opacity name="10%" value="0.1"/>
+<opacity name="30%" value="0.3"/>
+<opacity name="50%" value="0.5"/>
+<opacity name="75%" value="0.75"/>
+<tiling name="falling" angle="-60" step="4" width="1"/>
+<tiling name="rising" angle="30" step="4" width="1"/>
+</ipestyle>
+<page>
+<layer name="alpha"/>
+<view layers="alpha" active="alpha"/>
+<text layer="alpha" matrix="1 0 0 1 -28 -124" transformations="translations" pos="32 816" stroke="white" type="label" width="191.285" height="44.286" depth="39.4" valign="baseline">\begin{lstlisting}
+void print(int n){
+    if (n &lt;= 0){
+        return; 
+    }
+    print(n-1); 
+    printf(&quot;Hello!!, n = %d&quot;,n); 
+}
+\end{lstlisting}
+</text>
+<text matrix="1 0 0 1 168 -124" transformations="translations" pos="32 816" stroke="white" type="label" width="191.285" height="44.286" depth="39.4" valign="baseline">\begin{lstlisting}
+void print(int n){
+    if (n &lt;= 0){
+        return; 
+    }
+    print(n-1); 
+    printf(&quot;Hello!!, n = %d&quot;,n); 
+}
+\end{lstlisting}
+</text>
+<text matrix="1 0 0 1 364 -124" transformations="translations" pos="32 816" stroke="white" type="label" width="191.285" height="44.286" depth="39.4" valign="baseline">\begin{lstlisting}
+void print(int n){
+    if (n &lt;= 0){
+        return; 
+    }
+    print(n-1); 
+    printf(&quot;Hello!!, n = %d&quot;,n); 
+}
+\end{lstlisting}
+</text>
+<text matrix="1 0 0 1 -28 -32" transformations="translations" pos="32 816" stroke="white" type="label" width="77.709" height="26.381" depth="21.44" valign="baseline">\begin{lstlisting}
+int main() {
+    print(3); 
+    return 0;
+}
+\end{lstlisting}
+</text>
+<path stroke="white" arrow="normal/normal">
+80 792 m
+96 792 l
+96 740 l
+</path>
+<text transformations="translations" pos="100 768" stroke="white" type="label" width="24.245" height="6.42" depth="0" valign="baseline" style="math">n = 3</text>
+<path stroke="white" arrow="normal/normal">
+96 684 m
+144 684 l
+144 764 l
+292 764 l
+292 736 l
+</path>
+<text transformations="translations" pos="200 756" stroke="white" type="label" width="24.245" height="6.42" depth="0" valign="baseline" style="math">n = 2</text>
+<text matrix="1 0 0 1 -5.39953 13.9007" transformations="translations" pos="152 720" stroke="white" type="minipage" width="44" height="28.366" depth="23.44" valign="top" size="small">The print statement won&apos;t be executed just yet.</text>
+<text transformations="translations" pos="100 716" stroke="white" type="label" width="24.547" height="6.918" depth="0" valign="baseline">False.</text>
+<text transformations="translations" pos="296 716" stroke="white" type="label" width="24.547" height="6.918" depth="0" valign="baseline">False.</text>
+<text transformations="translations" pos="492 716" stroke="white" type="label" width="25.1" height="6.918" depth="0" valign="baseline">Falso.</text>
+<path stroke="white" arrow="normal/normal">
+292 684 m
+356 684 l
+356 764 l
+488 764 l
+488 736 l
+</path>
+<text matrix="1 0 0 1 168 -232" transformations="translations" pos="32 816" stroke="white" type="label" width="191.285" height="44.286" depth="39.4" valign="baseline">\begin{lstlisting}
+void print(int n){
+    if (n &lt;= 0){
+        return; 
+    }
+    print(n-1); 
+    printf(&quot;Hello!!, n = %d&quot;,n); 
+}
+\end{lstlisting}
+</text>
+<path stroke="white" arrow="normal/normal">
+488 684 m
+588 684 l
+588 644 l
+292 644 l
+292 632 l
+</path>
+<text transformations="translations" pos="340 636" stroke="white" type="label" width="24.245" height="6.42" depth="0" valign="baseline" style="math">n = 0</text>
+<text transformations="translations" pos="296 608" stroke="white" type="label" width="22.997" height="6.808" depth="0" valign="baseline">True.</text>
+<path stroke="white" arrow="normal/normal">
+292 596 m
+424 596 l
+424 652 l
+516 652 l
+516 664 l
+</path>
+<text transformations="translations" pos="428 656" stroke="white" type="label" width="61.464" height="6.815" depth="1.93" valign="baseline">Now we print.</text>
+<text transformations="translations" pos="228 656" stroke="white" type="label" width="25.349" height="6.808" depth="0" valign="baseline">Print.</text>
+<text matrix="1 0 0 1 0 -4" transformations="translations" pos="36 660" stroke="white" type="label" width="25.349" height="6.808" depth="0" valign="baseline">Print.</text>
+<path stroke="white" arrow="normal/normal">
+24 668 m
+4 668 l
+4 748 l
+12 748 l
+12 792 l
+28 792 l
+</path>
+<text transformations="translations" pos="400 752" stroke="white" type="label" width="24.245" height="6.42" depth="0" valign="baseline" style="math">n = 1</text>
+<path stroke="white">
+4 812 m
+4 760 l
+84 760 l
+84 812 l
+h
+</path>
+<path stroke="white">
+96 788 m
+96 788 l
+96 788 l
+96 788 l
+h
+</path>
+<path stroke="white">
+0 736 m
+0 652 l
+196 652 l
+196 736 l
+h
+</path>
+<path stroke="white">
+199.708 736.411 m
+199.708 651.739 l
+392.843 651.739 l
+392.843 736.411 l
+h
+</path>
+<path stroke="white">
+396.167 737.111 m
+396.167 652.439 l
+591.402 652.439 l
+591.402 737.111 l
+h
+</path>
+<path stroke="white">
+199.533 630.221 m
+199.533 542.051 l
+392.668 542.051 l
+392.668 630.221 l
+h
+</path>
+<path stroke="white" arrow="normal/normal">
+419.084 669.933 m
+389.694 669.933 l
+</path>
+<path stroke="white" arrow="normal/normal">
+223.15 670.633 m
+193.06 671.333 l
+</path>
+</page>
+</ipe>

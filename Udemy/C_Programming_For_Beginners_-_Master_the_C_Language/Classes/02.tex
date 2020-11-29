@@ -1,0 +1,72 @@
+\section{Create a new project in Code::Blocks}
+\begin{itemize}[label=$\downarrow$]
+   \item File 
+   \item New 
+   \item Project
+\end{itemize}
+
+\section{Set up a project in vscode}
+\begin{itemize}[label=$\downarrow$]
+   \item Install C/C++ extension from Microsoft. 
+   \item Search in command palette: \verb|C/C++: Edit configurations (UI)|
+      \begin{itemize}
+         \item Search for the compiler path and set it for: \verb|C:/cygwin64/bin/gcc.exe| 
+         \item Set intelligence mode to: gcc-x64
+         \item This will create a .vscode folder containing a file called \verb|c_cpp_properties.json|
+         \item Open the \verb|c_cpp_properties.json|:
+            \inputcode{json}{Code/.vscode/c_cpp_properties.json}
+      \end{itemize}
+   \item Search in command palette: \verb|Tasks: Configure Default Build Task|
+      \begin{itemize}
+         \item Create a new \verb|tasks.json| file from template.
+         \item Then select the \verb|others| template.
+         \item Enter the following arguments: 
+            \begin{itemize}
+               \item ``label'': ``build \placeholder{name of project}''
+               \item ``type'': ``shell''
+               \item ``command'': ``gcc''
+               \item ``args'': 
+                  \begin{itemize}
+                     \item -g means global 
+                     \item -o means to modify the name of the file to.
+                     \item write the source file with and without extension: ``\placeholder{name}'', ``\placeholder{name.c}''
+                  \end{itemize}
+            \end{itemize}
+            \inputcode{json}{Code/.vscode/tasks.json}
+      \end{itemize}
+   
+   \item Search in command palette: \verb|Debug: Open launch.json| then select the \verb|C++(GDB/LLDB)| environment.
+      \begin{itemize}
+         \item Change the workspace folder in ``program''
+         \item set stopAtEntry to true 
+         \item set miDebuggerPath to \verb|C:/cygwin64/bin/gdb.exe|
+      \end{itemize}
+      \inputcode{json}{Code/.vscode/launch.json}
+
+      
+   \item Search in command palette: \verb|Preferences: Open Settings (JSON)|
+      \begin{itemize}
+         \item set file.associations to ``*.c'':``c''
+         \item set ``terminal.integrated.shell.windows'':``\verb|C:\\cygwin64\\bin\\bash.exe|'' to specify a default terminal.
+      \end{itemize}
+      \inputcode{json}{Code/.vscode/settings.json}
+   
+   \item Exit the IDE and reenter so that the changes specified go in to effect. 
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+
+\subsection{Use the settings and shortcuts}  
+\begin{itemize}
+   \item F5 to display the debugger. 
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Structure of a c programs}
+\begin{itemize}
+   \item main() is a function, it's the entry point of a program, there should be at least one main in all c programs and only one main function.
+   \item C is a case-sensitive language.
+   \item C isn't tab sensitive like Python, you can actually not indent code and it will compile, however it's recommended to do so. 
+   \item Readability is very important. 
+\end{itemize}

@@ -1,0 +1,664 @@
+\section{Introduction to the stack}
+\begin{itemize}
+    \item The stack is a linear data structure where the elements could be added or deleted only at one open end called the top of the stack. 
+    \item The elements follow ``Last in first out'', typically called LIFO.
+    \item Insertion into the stack is called ``push'' operation and deletion from the stack is called the ``pop'' operation.
+        \begin{itemize}
+            \item If you need to add an element to the stack, you need to call the push operation.
+            \item If you need to delete an element of the stack, you need to call the pop operation.
+        \end{itemize}
+    
+    \item If the stack is full it is said to be in ``Overflow'' state, and push is rejected if stack is overflowed.
+    \item If the stack is empty it is said to be in ``Underflow'' state, and pop is rejected if the stack is underflowed. 
+\end{itemize}
+
+\subsection{Example of the stack and the push, pop method}
+\input{figs/stack_example.tex}
+
+%----------------------------------------------------------------------------------------
+\section{Practical examples where stacks are used}
+\begin{itemize}
+    \item Text editors use a stack when registering new words and undoing one with ctrl+z. In the example below:
+        \begin{minted}[autogobble]{java}
+            stack.push("First");
+            stack.push("Second");
+            stack.push("Third");
+        \end{minted}
+        \begin{lstlisting}
+            First 
+            Second 
+            Third
+        \end{lstlisting}
+        \begin{minted}[autogobble]{java}
+            // ctrl+z in keyboard
+            stack.pop();
+        \end{minted}
+        \begin{lstlisting}
+            First 
+            Second 
+        \end{lstlisting}
+        \begin{minted}[autogobble]{java}
+            stack.pop();
+        \end{minted}
+        \begin{lstlisting}
+            First 
+        \end{lstlisting}
+    
+    \item The back button in the browser is also a stack implementation. 
+    \item In the command line, the terminal saves the commands executed in a stack, the upper arrow key access the commands. The commands are stored in a stack. 
+    \item There are plenty of examples. 
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Basic algorithm for stack data structure}
+\begin{itemize}
+    \item Implementation of stack using 1-D array.
+        \input{figs/implementation_of_stack_1d_array.tex}
+    
+    \item Push pseudo-code:
+        \begin{center}
+            \begin{algorithm}[H]
+                \SetAlgoLined
+                % \DontPrintSemiColon
+                initialize(stack)\; 
+                \If{stack.top $\neq$  stack.size - 1}{
+                    display "STACK OVERFLOW"\; 
+                    exit push\; 
+                }
+                stack.top = stack.top + 1; \Comment{Increment by one}\;
+                stack[stack.top] = v; \Comment{Assign element at the top position}\;
+                end procedure push\; 
+                \caption{Procedure Push (v)}
+            \end{algorithm}
+        \end{center}
+        % \begin{lstlisting}
+        %     PROCEDURE PUSH (v)
+        %     IF TOP := SIZE - 1 THEN 
+        %         DISPLAY "STACK OVERFLOW" 
+        %         EXIT PUSH 
+        %     END IF
+        %     TOP := TOP + 1 // Increment by one.
+        %     S[TOP] := v // Assign element at the to position of the stack
+        %     END PROCEDURE PUSH 
+        % \end{lstlisting}
+    
+    \item Pop pseudo-code:
+        \begin{center}
+            \begin{algorithm}[H]
+                \SetAlgoLined
+                \large
+                % \SetAlgoNlRelativeSize{1}
+                % \DontPrintSemiColon
+                \If{stack.top == -1}{
+                    display "STACK OVERFLOW"\; 
+                    exit pop\; 
+                }
+                v = stack[stack.top]\;
+                stack.top = stack.top - 1\; 
+                return v\; 
+                end procedure POP\;
+                \caption{Procedure pop ()}
+            \end{algorithm}
+        \end{center}
+        % \begin{lstlisting}
+        %     PROCEDURE POP() 
+        %     IF S.TOP = -1 THEN 
+        %         DISPLAY "STACK UNDERFLOW" 
+        %         EXIT POP 
+        %     END IF 
+        %     v := S[TOP] 
+        %     TOP := TOP - 1
+        %     RETURN v 
+        %     END PROCEDURE
+        % \end{lstlisting}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Implementation of stack - Code along}
+\begin{itemize}
+    \item After including the standard libraries:
+        \begin{minted}[autogobble]{c}
+            #include <stdio.h>
+            #include <stdlib.h>
+        \end{minted}
+    \item Lets implement a typedef struct with a fixed size member array called item.
+        \begin{minted}[autogobble]{c}
+            #define SIZE 10
+            typedef struct {
+                int item[SIZE];
+                int top; 
+            } Stack; 
+        \end{minted}
+    
+    \item Now the functions pertinent to the stack: push, pop. 
+        \begin{minted}[autogobble]{c}
+            // Prototype declarations
+            void push(Stack *, int );
+            int pop(Stack *);
+        \end{minted}
+        \begin{minted}[autogobble]{c}
+            void push(Stack *sp, int value ){
+                if (sp->top == SIZE -1){
+                    perror("Stack overflow.\n");
+                    exit(-1);
+                }
+                ++sp->top;
+                sp->item[sp->top] = value;
+            }
+            int pop(Stack *sp){
+                if (sp->top == -1){
+                    printf("Stack underflow.\n");
+                    return -9999; // this will be the error code. 
+                }
+                --sp->top; // don't mind 
+                return sp->item[sp->top + 1];
+            }
+        \end{minted}
+    
+    \item For functionality we'll implement some utility functions called init, print\_s:
+        \begin{itemize}
+            \item init(): initializes the top struct stack member to -1.
+            \item print\_s(): prints the used members of the stack array (item).
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            // protype declarations
+            void init(Stack *);
+            void print_s(Stack *, const char[]);
+        \end{minted}
+        \begin{minted}[autogobble]{c}
+            void init(Stack *sp){
+                sp->top = -1;
+            }
+            void print_s(Stack *sp, const char str[]){
+                printf("%s:\n",str);
+                for (int i = 0; i < sp->top + 1; i++) {
+                    printf("\t%d\n",sp->item[i]);
+                }
+            }
+        \end{minted}
+    
+    \item Now we'll implement the main function and call every function that we have declared thus far.
+        \begin{minted}[autogobble]{c}
+            int main() {
+                Stack s1 = {}, s2 = {}; // initialize everything to 0
+                init(&s1);
+                init(&s2);
+                // push to s1
+                push(&s1,100);
+                push(&s1,200);
+                push(&s1,356);
+                push(&s1,120);
+                // push to s2
+                push(&s2,189);
+                push(&s2,167);
+                push(&s2,156);
+                push(&s2,789);
+
+                print_s(&s1,"s1"); // print used elements in s1.item
+
+                // pop operation
+                printf("deleted from s1: %d\n\n",pop(&s1));
+                printf("deleted from s1: %d\n\n",pop(&s1));
+                printf("deleted from s1: %d\n\n",pop(&s1));
+
+                print_s(&s1,"s1"); // print used elements in s1.item
+
+                printf("---------------------------\n");
+                
+                print_s(&s2,"s2"); // print used elements in s2.item
+
+                // pop operation 
+                printf("deleted from s2: %d\n\n",pop(&s2));
+                printf("deleted from s2: %d\n\n",pop(&s2));
+                printf("deleted from s2: %d\n\n",pop(&s2));
+                
+                print_s(&s2,"s2"); // print used elements in s1.item
+                return 0;
+            }
+        \end{minted}
+    
+    \item The results are as follows:
+        \begin{minted}[autogobble]{c}
+            /* Output: 
+            s1:
+                100
+                200
+                356
+                120
+            deleted from s1: 120
+
+            deleted from s1: 356
+
+            deleted from s1: 200
+
+            s1:
+                100
+            ---------------------------
+            s2:
+                189
+                167
+                156
+                789
+            deleted from s2: 789
+
+            deleted from s2: 156
+
+            deleted from s2: 167
+
+            s2:
+                189
+
+            */
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Making a menu for the stack}
+\begin{itemize}
+    \item To add a menu to the stack implementation previously demonstrated, apart from the libraries already included, include the stdbool.h header file:
+        \begin{minted}[autogobble]{c}
+            #include <stdio.h>
+            #include <stdlib.h>
+            #include <stdbool.h>
+        \end{minted}
+    
+    \item The struct Stack definition remains the same, as well as the the functions: print\_s, init, pop, push.
+    \item The main function gets a menu added.
+        \begin{itemize}
+            \item We'll add a switch statement for menu purposes.
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            int main() {
+                Stack s1 = {}; 
+                init(&s1);
+
+                printf("1. Push\n2. Pop\n3. Print Stack\n4. Exit\n\n");
+                int choice, value; 
+
+                while (true){
+                    printf("Enter choice:");
+                    scanf("%d",&choice);
+                    switch (choice) {
+                    case 1:
+                        printf("Enter integer value: ");
+                        scanf("%d",&value);
+                        push(&s1,value);
+                        printf("\n");
+                        break;
+                    case 2:
+                        value = pop(&s1);
+                        if (value != -9999){
+                            printf("Poped data: %d\n", value);
+                        }
+                        break; 
+                    case 3:
+                        print_s(&s1,"s1");
+                        break; 
+                    case 4: 
+                        exit(0);
+                    default:
+                        printf("Invalid choice.\n");
+                        break;
+                    }
+                }
+                return 0;
+            }
+        \end{minted}
+    
+    \item An exemplary result is:
+        \begin{minted}[autogobble]{c}
+            /* Output: 
+            1. Push
+            2. Pop
+            3. Print Stack
+            4. Exit
+
+            Enter choice:1
+            Enter integer value: 123131
+
+            Enter choice:1
+            Enter integer value: 3423
+
+            Enter choice:1
+            Enter integer value: 234234
+
+            Enter choice:1
+            Enter integer value: 23425
+
+            Enter choice:1
+            Enter integer value: 890
+
+            Enter choice:3
+            s1:
+                [0]: 123131
+                [1]: 3423
+                [2]: 234234
+                [3]: 23425
+                [4]: 890
+            Enter choice:2
+            Poped data: 890
+            Enter choice:2
+            Poped data: 23425
+            Enter choice:2
+            Poped data: 234234
+            Enter choice:2
+            Poped data: 3423
+            Enter choice:3
+            s1:
+                    [0]: 123131
+            Enter choice:4
+
+            */
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Dynamic memory in the usage of our stack, stack evolution}
+\begin{itemize}
+    \item For this include the libraries:
+        \begin{minted}[autogobble]{c}
+            #include <stdio.h>
+            #include <stdlib.h>
+            #include <stdbool.h>
+        \end{minted}
+
+    \item The struct Stack member item is a fixed size array, optimally we would like to allocate memory dynamically for this member. Thus, we re-declare the struct Stack member item as a pointer: 
+        \begin{minted}[autogobble]{c}
+            typedef struct {
+                int *item;
+                int top; 
+                int size; 
+            } Stack; 
+        \end{minted}
+    
+    \item Redefine some functions:
+        \begin{minted}[autogobble]{c}
+            // Prototype declarations
+            void push(Stack *, int );
+            int pop(Stack *);
+            void init(Stack *, int);
+            void print_s(Stack *, const char[]);
+            void deallocate(Stack *);
+        \end{minted}
+        \begin{itemize}
+            \item The push function is redefined to include the dynamic memory reallocation in case of stack overflow.
+            \item The pop function stays the same.
+            \item The init function is changed to include memory allocation using malloc() for the member item, and modify the size accordingly.
+            \item The print\_s is changed to include printing of members all the way up to the size of memory allocated for the array.
+            \item The deallocate function, frees the space dynamically allocated by the malloc function, also 
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            void push(Stack *sp, int value ){
+                if (sp->top == sp->size -1){
+                    printf("Stack overflow.\n");
+                    sp->item = (int*)realloc(sp->item,sizeof(sp->size)*2);
+                    if (sp->item == NULL)
+                        printf("Error in realloc.\n");
+                    sp->size *= 2;
+                }
+                ++sp->top;
+                sp->item[sp->top] = value;
+            }
+
+            int pop(Stack *sp){
+                if (sp->top == -1){
+                    printf("Stack underflow.\n");
+                    return -9999;
+                }
+                --sp->top; // don't mind 
+                return sp->item[sp->top + 1];
+            }
+
+            void init(Stack *sp, int size){
+                sp->top = -1;
+                sp->item = (int*) malloc(size * sizeof(int));
+                if (sp->item == NULL){
+                    printf("Error.\n");
+                    exit(1);
+                }
+                sp->size = size;
+            }
+
+            void print_s(Stack *sp, const char str[]){
+                printf("%s:\n",str);
+                for (int i = 0; i < sp->size; i++) {
+                    printf("\t[%d]: %d\n",i,sp->item[i]);
+                }
+            }
+
+            void deallocate(Stack *sp){
+                if (sp->item != NULL)
+                    free(sp->item);
+                sp->top = -1; 
+                sp->size = 0;
+            }
+        \end{minted}
+    
+    \item The main function changes to be:
+        \begin{itemize}
+            \item The exit function includes the deallocate function, and the previously redefined push function reallocates the memory every time a stack overflow occurs.
+        \end{itemize}
+        \begin{minted}[autogobble]{c}
+            int main() {
+                Stack s1 = {}; 
+                init(&s1,3);
+
+                printf("1. Push\n2. Pop\n3. Print Stack\n4. Exit\n\n");
+                int choice, value; 
+
+                while (true){
+                    printf("Size of the stack is: %d\n",s1.size);
+                    printf("Enter choice:");
+                    scanf("%d",&choice);
+                    printf("\n");
+                    switch (choice) {
+                    case 1:
+                        printf("Enter integer value: ");
+                        scanf("%d",&value);
+                        push(&s1,value);
+                        printf("\n");
+                        break;
+                    case 2:
+                        value = pop(&s1);
+                        if (value != -9999){
+                            printf("Poped data: %d\n", value);
+                        }
+                        break; 
+                    case 3:
+                        print_s(&s1,"s1");
+                        printf("\n");
+                        break; 
+                    case 4: 
+                        deallocate(&s1);
+                        exit(0);
+                        break;
+                    default:
+                        printf("Invalid choice.\n");
+                        break;
+                    }
+                }
+                return 0;
+            }
+        \end{minted}
+    
+    \item All of which prompt the following exemplary results:
+        \begin{minted}[autogobble]{c}
+            /* Output: 
+            1. Push
+            2. Pop
+            3. Print Stack
+            4. Exit
+
+            Size of the stack is: 3
+            Enter choice:1
+
+            Enter integer value: 45
+
+            Size of the stack is: 3
+            Enter choice:1
+
+            Enter integer value: 56
+
+            Size of the stack is: 3
+            Enter choice:1
+
+            Enter integer value: 12
+
+            Size of the stack is: 3
+            Enter choice:1
+
+            Enter integer value: 23
+            Stack overflow.
+
+            Size of the stack is: 6
+            Enter choice:1
+
+            Enter integer value: 25
+
+            Size of the stack is: 6
+            Enter choice:1
+
+            Enter integer value: 14
+
+            Size of the stack is: 6
+            Enter choice:1
+
+            Enter integer value: 36
+            Stack overflow.
+
+            Size of the stack is: 12
+            Enter choice:1
+
+            Enter integer value: 17
+
+            Size of the stack is: 12
+            Enter choice:1
+
+            Enter integer value: 18
+
+            Size of the stack is: 12
+            Enter choice:1
+
+            Enter integer value: 19
+
+            Size of the stack is: 12
+            Enter choice:1
+
+            Enter integer value: 20
+
+            Size of the stack is: 12
+            Enter choice:3
+
+            s1:
+                [0]: 45
+                [1]: 56
+                [2]: 12
+                [3]: 23
+                [4]: 25
+                [5]: 14
+                [6]: 36
+                [7]: 17
+                [8]: 18
+                [9]: 19
+                [10]: 20
+                [11]: 0
+
+            Size of the stack is: 12
+            Enter choice:2
+
+            Poped data: 20
+            Size of the stack is: 12
+            Enter choice:2
+
+            Poped data: 19
+            Size of the stack is: 12
+            Enter choice:2
+
+            Poped data: 18
+            Size of the stack is: 12
+            Enter choice:2
+
+            Poped data: 17
+            Size of the stack is: 12
+            Enter choice:3
+            */
+        \end{minted}
+\end{itemize}
+
+%----------------------------------------------------------------------------------------
+\section{Stack in action - Decimal to binary conversion}
+\subsection{Decimal to binary conversion}
+\begin{itemize}
+    \item Let's say we want to convert 10 to a binary representation. 
+        \begin{align*}
+            10  \rightarrow 10+\frac{0}{2}:\; & \p{10 \pmod{2}} =  0 \;\text{ LSB }\\ 
+            10/2\rightarrow 5+\frac{0}{2}:\;  & \p{5 \pmod{2}} = 1 \\  
+            5/2 \rightarrow 2+\frac{1}{2}:\;  & \p{2  \pmod{2}} = 0 \\ 
+            2/2 \rightarrow 1+\frac{0}{2}:\;  & \p{1 \pmod{2}} = 1 \;\text{ MSB }\\
+        \end{align*}
+\end{itemize}
+
+\subsection{Let's implement the function printBinary}
+\begin{itemize}
+    \item Taking in to account the process observed above. 
+        \begin{minted}[autogobble]{c}
+            // function prototype
+            void printBinary(unsigned int);
+        \end{minted}
+        \begin{minted}[autogobble]{c}
+            void printBinary(unsigned int num){
+                Stack s; 
+                const int base = 2; 
+                const int num_ = num;
+                init(&s,10);
+                int rem;
+
+                while (num > 0){
+                    rem = num % base; 
+                    push(&s,rem);
+                    num /= base; 
+                }
+                printf("Binary equivalent of %d is: \n", num_);
+                while (s.top != -1){
+                    printf("%d", pop(&s));
+                }
+                deallocate(&s);
+            }
+        \end{minted}
+    
+    \item Defining a test main function we have:
+        \begin{minted}[autogobble]{c}
+            int main() {
+                printBinary(10);
+                return 0;
+            }
+        \end{minted}
+    
+    \item Of which results are:
+        \begin{minted}[autogobble]{c}
+            /* Output: 
+            Binary equivalent of 10 is:
+            1010
+            */
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Stack in action: Reversing the content of a text file}
+\begin{itemize}
+    \item Data structure needed: stack of characters.
+    \item Algorithm:
+        \begin{enumerate}
+            \item Go on reading characters from source file until End-Of-File is reached.
+            \item PUSH each character read into the stack.
+            \item When done, POP characters from the stack and write them into the destination file until stack is underflow.
+        \end{enumerate}
+\end{itemize}
+
+\inputcode{c}{\code/invert_file_cont_stack.c}
+
+

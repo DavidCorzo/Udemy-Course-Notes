@@ -1,0 +1,33 @@
+\section{Introduction}
+\begin{itemize}
+    \item Another comparison based sorting algorithm.
+    \item Worst case complexity of $O(n\log_{}\p{ n } )$. 
+    \item The space complexity of heap sort is contant $O(1)$.
+    \item Heap sort is a improved version of selection sort that uses the heap data structure.
+    \item Consists of: Build a heap with the unsorted data, then delete the elements from unsorted, and order them in another heap.
+\end{itemize}
+
+\section{Almost complete binary}
+A binary tree in which nodes can only me added from left to right. 
+
+
+\section{Representing an almost complete binary tree as an array}
+\begin{itemize}
+    \item For any parent $i$ the children are: 
+        \begin{itemize}
+            \item Left: $2i$ 
+            \item Right: $2i+1$ 
+        \end{itemize}
+    
+    \item For any child node $k$, the parent is $\left\lfloor k/2 \right\rfloor$.
+\end{itemize}
+
+\section{Formal definition of heap}
+Maxheap:
+\begin{itemize}
+    \item The largest value is stored in the root.
+\end{itemize}
+Minheap: 
+\begin{itemize}
+    \item The smallest value is stored in the root.
+\end{itemize}

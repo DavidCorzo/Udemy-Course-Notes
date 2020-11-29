@@ -1,0 +1,64 @@
+\section{pip install and pypi}
+\subsection{PyPI}
+\begin{itemize}
+    \item PyPI is a repository for open source third party python packages.
+    \item Similar to NPM in node.js 
+\end{itemize}
+
+\section{pip}
+\begin{itemize}
+    \item Used to Python standard libraries of Python. 
+\end{itemize}
+\begin{Verbatim}[breaklines=true, breakanywhere=true]
+C:\Users\DAVIDCORZO>pip install requests
+\end{Verbatim}
+
+%----------------------------------------------------------------------------------------
+\section{Modules and packages}
+\subsection{Modules}
+\begin{itemize}
+    \item Modules: importing .py scripts into others. 
+\end{itemize}
+
+\subsection{Packages}
+Follow a directory structure: 
+\begin{Verbatim}[breaklines=true, breakanywhere=true]
+C:SomeDir\mypackage
+# Create file inside "mypackage" dir 
+C:SomeDir\mypackage\__init__.py 
+# Add modules inside this directory
+\end{Verbatim}
+In python import it as: 
+\begin{Verbatim}[breaklines=true, breakanywhere=true]
+from mypackage import some_module
+\end{Verbatim}
+Subpackages: 
+\begin{Verbatim}[breaklines=true, breakanywhere=true]
+# Add subpackage inside mypackage 
+C:SomeDir\mypackage\mysubpackage
+# Add the __init__.py
+C:SomeDir\mypackage\mysubpackage\__init__.py 
+\end{Verbatim}
+In python do: 
+\begin{Verbatim}[breaklines=true, breakanywhere=true]
+from mypackage.mysubpackage import some_module
+\end{Verbatim}
+
+\subsubsection{import specific functions inside a subpackage or a package}
+
+
+%----------------------------------------------------------------------------------------
+\section{The \_\_name\_\_ == ``\_\_main\_\_'' statement}
+\begin{itemize}
+    \item Used to distinguish between modules and main files.
+    \item In Python all the code in the first level gets runned, the built-in variable \verb|__name__| is also always equals to \verb|__main__|.
+    \item This is why the main function is runned in this famous if statement. 
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    def main():
+        pass 
+    if __name__ == "__main__": # This is always going yo be the case.
+        main()
+    else: 
+        print("Not excecuted")
+\end{minted}

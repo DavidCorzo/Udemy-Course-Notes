@@ -1,0 +1,250 @@
+\section{Overview}
+\begin{itemize}
+    \item Operators are functions that use symbolic name, used for mathematical and logical functions. 
+    \item Operators are predefined in C, 
+\end{itemize}
+\subsection{Operators}
+\begin{itemize}
+    \item Logical operators. 
+    \item Arithmetic operators. 
+    \item Relational.
+    \item Bitwise. 
+\end{itemize}
+
+\subsection{Expressions and statements}
+\begin{itemize}
+    \item They are different. 
+    \item Statements: form the basic program in C, most statements are constructed from expressions. 
+        \begin{itemize}
+            \item They are the building blocks of a programs. Simple statements are short oneliners that end in a ; 
+            \item A complete instruction to the computer.
+            \item Examples of simple statements: 
+                \begin{itemize}
+                    \item declaration statement: \mintinline{c}{int a;}
+                    \item Assignment statement: \mintinline{c}{a = 5;}
+                    \item Function call statement: \mintinline{c}{funct();}
+                    \item Structure statement: \mintinline{c}{while (condition) var = num;}
+                    \item return statement: \mintinline{c}{return 0;}
+                \end{itemize}
+            \item C considers any expression to be a statement if you append a semicolon (expression statements).
+        \end{itemize}
+    \item Expressions: consists of a combination of operators and operands: example: -6, 4+21
+        \begin{itemize}
+            \item Operands are what an operator operates on. 
+            \item Operands can be constants, variables, or combinations of the two.
+            \item Every expression has value. 
+            \item Expressions generally return values. 
+        \end{itemize}
+\end{itemize}
+\subsection{Compond statements}
+\begin{itemize}
+    \item Two or more statements grouped together by enclosing them in braces (block).
+    \item Example: \mintinline{c}{int i = 0; while (i < 10) {printf("hello");i++;}} the while statement is enclosing the printf() function statement, they are compound statements. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Basic operators}
+\begin{itemize}
+    \item Arithmetic: performs mathematical operations. 
+    \item Logical operator: boolean operator. 
+    \item Assignment operators: set variables equal to values. 
+    \item Relational operator: compares variables against each other.
+\end{itemize}
+\begin{center}
+    \begin{tabular}{ |p{5cm}|p{7cm}| }
+        \hline
+            Operator & Type  \\
+        \hline
+            \mintinline{c}{+} & Addition \\ 
+            \mintinline{c}{-} & Subtraction \\ 
+            \mintinline{c}{*} & Multiplication \\ 
+            \mintinline{c}{/} & Division \\ 
+            \mintinline{c}{%} & Modulus \\ 
+            \mintinline{c}{++} & Increment by one. \\ 
+            \mintinline{c}{--} & Decrement by one. \\ 
+            \hline
+    \end{tabular}
+\end{center}
+Taken from tutorial point website.
+\subsubsection{Example}
+\inputcode{\lang}{\code/arithmetic_operators.c}
+
+\subsection{Logical operators}
+\begin{center}
+    \begin{tabular}{ |p{5cm}|p{7cm}| }
+        \hline
+            Operator & Type \\
+        \hline
+            \mintinline{c}{&&} & and \\ 
+            \mintinline{c}{|} & or operator \\ 
+            \mintinline{c}{!} & not operator \\ 
+        \hline
+    \end{tabular}
+\end{center}
+\subsubsection{Example}
+\inputcode{\lang}{\code/logical_operators.c}
+
+\subsection{Assignment operators}
+\begin{center}
+    \begin{tabular}{ |p{5cm}|p{7cm}| }
+        \hline
+            Operator & Type \\
+        \hline
+           \mintinline{c}{=} & assignment operator \\ 
+           \mintinline{c}{+=} & add and assignment operator \\ 
+           \mintinline{c}{-=} & subtract and assign operator \\ 
+           \mintinline{c}{*=} & multiply and assign operator \\ 
+           \mintinline{c}{/=} & divide and assign operator \\ 
+           \mintinline{c}{%=} & modulus and assign operator \\ 
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Relational operators}
+\begin{center}
+    \begin{tabular}{ |p{5cm}|p{7cm}| }
+        \hline
+            Operator & Type \\
+        \hline
+           \mintinline{c}{==} & equality operator \\ 
+           \mintinline{c}{!=} & inequality operator \\ 
+           \mintinline{c}{>} & greater than \\ 
+           \mintinline{c}{<} & less than \\ 
+           \mintinline{c}{>=} & greater or equal than \\ 
+           \mintinline{c}{<=} & less than or equal than \\ 
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{Bitwise operators}
+\begin{itemize}
+    \item C offers bitwise logical operators and shift operators. 
+    \item They operate of bits, inside the integers. 
+    \item Useful for: turning on and off bits inside data types. 
+    \item Example: using just one int variable store binary data such as (using 0 bit, or 8 bits): makes you more memory efficient. 
+        \begin{itemize}
+            \item First bit store weather a person is female or male. 
+            \item Second bit if they can speak English. 
+            \item Third bit to represent if they can speak German. 
+            \item Fourth bit ... eight bit. 
+        \end{itemize}
+\end{itemize}
+\subsection{Binary numbers}
+\begin{itemize}
+    \item A binary number is a number that includes only ones or zeros. 
+    \item Each position of a binary number has value. 
+\end{itemize}
+Bitwise: 
+\begin{center}
+    \begin{tabular}{ |p{5cm}|p{7cm}| }
+        \hline
+            \mintinline{c}{&} & Binary AND operator \\
+            \mintinline{c}{|} & Binary OR operator \\
+            \mintinline{c}{^} & Binary XOR operator \\
+            \mintinline{c}{~} & Binary ones component operator \\
+            \mintinline{c}{<<} & Binary Left Shift operator \\
+            \mintinline{c}{>>} & Binary Right Shift operator \\
+        \hline
+    \end{tabular}
+\end{center}
+Truth table: 
+\begin{center}
+    \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+        \hline
+    $p$ & $q$ & $p$\&$q$ & $p$\textbar$q$  & $p$\verb|^|$q$   \\
+        \hline
+        0& 0& 0& 0& 0\\ 
+        0& 1& 0& 1& 1\\ 
+        1& 1& 1& 1& 0\\ 
+        1& 0& 0& 1& 1\\ 
+        \hline
+    \end{tabular}
+\end{center}
+\subsection{Examples}
+\inputcode{\lang}{\code/bitwise_operators.c}
+
+
+%----------------------------------------------------------------------------------------
+\section{The cast and sizeof operators}
+\begin{itemize}
+    \item These look like functions, but they are not, they are actually operators.
+\end{itemize}
+\subsection{Type conversions}
+\begin{itemize}
+    \item You can convert data automatically, known as implicit conversion. 
+    \item Converted data can be truncated or promoted, truncated is become less precise, promoted is become more precise. 
+    \item Example: a float is converted to an int, decimal portion will be truncated. \mintinline{c}{int x = 0; float f = 12.125; x = f} x will only keep the integer part. This is an example of implicit conversion. 
+    \item By contrast if you go from int to float, nothing will happen, this will be promoted. 
+    \item Two ints are doing division, the result is going to be truncated to an int if it is a decimal. 
+    \item Explicit conversions are done with the casting operator, you want to do this to accurately transcribe the data to the desired type. 
+    \item Type cast operator has higher precedence than all the arithmetic operators except unary minus and unary plus. 
+    \item Example: \mintinline{c}{(int)21.51 + (int)26.99} is going to be \mintinline{c}{21 + 26}
+\end{itemize}
+\subsection{sizeof}
+\begin{itemize}
+    \item Tells you how many bytes are occupied in memory. 
+    \item sizeof() is an operator not a function. 
+    \item sizeof() is evaluated in compile time, not in runtime, unless a variable-length array is used in its argument. 
+    \item Arguments of sizeof can be: basic data types, array names, variables, name derived from a data type, or an expression (such as \mintinline{c}{x+y}). 
+    \item Use the sizeof as much as you can, sizeof(int) can be 4 in one system or 8 in another, you want programs that aren't system dependent. 
+\end{itemize}
+Other operators: 
+\begin{itemize}
+    \item \mintinline{c}{*} is used for pointers. 
+    \item \mintinline{c}{?:} is an operator used for comparisons: 
+        \begin{itemize}
+            \item if condition is true ? then value x : otherwise value y.
+            \item name is the ternary operator. 
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Operator precedence}
+\begin{itemize}
+    \item Determines how an expression is evaluated. 
+    \item Determines the order of evaluation in the expression. 
+    \item If parentheses are provided to prioritize an expression to evaluate. 
+    \item Associativity: rules that determine what to do in a situation such as: two expressions have the same precedence, associativity is used to apply additional rules in order to determine which goes first. 
+    \item Associativity usually favors what comes first. \mintinline{c}{1 == 2 != 3}: what do you evaluate first?, the prior expression is equal to \mintinline{c}{((1 == 2) != 3)}, this is implicit, provide the parentheses in order to prioritize an expression.  
+\end{itemize}
+Operator precedence (highest to lowest):
+\begin{center}
+    \begin{tabular}{ |p{4cm}|p{5cm}|p{6cm}| }
+        \hline
+            Category & Operator & Associativity  \\
+        \hline
+            Postfix & \mintinline{c}{()[]->.++--} & left to right \\ 
+            Unary & \mintinline{c}{+-!~++--(type)*&sizeof} & right to left \\ 
+            Multiplicative & \mintinline{c}{*/%} & left to right \\ 
+            Additive & \mintinline{c}{+-} & left to right \\ 
+            Shift & \mintinline{c}{<<>>} & left to right \\ 
+            Relational & \mintinline{c}{<<=>>=} & left to right \\ 
+            Equality & \mintinline{c}{== !=} & left to right \\ 
+        \hline
+    \end{tabular}
+\end{center}
+Bitwise precedence (highest to lowest):
+\begin{center}
+    \begin{tabular}{ |p{4cm}|p{5cm}|p{6cm} }
+        \hline
+            Category & Operator & Associativity \\
+        \hline
+            Bitwise AND & \mintinline{c}{&} & left to right  \\ 
+            Bitwise XOR & \mintinline{c}{^} & left to right  \\ 
+            Bitwise OR & \mintinline{c}{|} & left to right \\ 
+            Logical AND & \mintinline{c}{&&} & left to right  \\ 
+            Logical OR & \mintinline{c}{||} &  left to right \\ 
+            Conditional & \mintinline{c}{?:} & right to left  \\ 
+            Assignment  & \mintinline{c}{=+=-=*=/=%/=>>=<<=&=^=|=} & right to left  \\ 
+            Comma & \mintinline{c}{,} & left to right \\ 
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{Challenge years to days provided minutes}
+\inputcode{\lang}{\code/challenge_years_min_days.c}
+
+\section{Challenge on printing the bytesize of data}
+\inputcode{\lang}{\code/bytesize_of_data.c}

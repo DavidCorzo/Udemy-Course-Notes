@@ -1,0 +1,212 @@
+\section{Object-oriented programming}
+\begin{itemize}
+    \item Methods: act as functions that use information about the object, as well as the object itself to return results, or change the current object. 
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Attributes and class keyword}
+\begin{itemize}
+    \item By convention class names are written in upper camel case convention. 
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    class Sample():
+        pass
+    my_sample = Sample()
+    type(my_sample)
+    # output: __main__Sample
+
+    class Dog():
+        # This is the constructor method.
+        def __init__(self,breed,name,spots): 
+            # By convention the attribute name and the parameter name are the same.
+            # Attributes 
+            # We take in the argument 
+            # Assign it using self.attribute_name
+            self.breed = breed
+            self.name = name
+            self.spots = spots
+
+    my_dog = Dog(breed="Lab",name="Sammy",spots=False)
+    type(my_dog)
+    # output: __main__.Dog
+    my_dog.breed
+    # output: 'Lab'
+    my_dog.name
+    # output: 'Sammy'
+    my_dog.spots
+    # output: False
+\end{minted}
+
+%----------------------------------------------------------------------------------------
+\section{OOP Class object attributes}
+\begin{itemize}
+    \item Class object attributes are defined before the constructor.
+    \item They are the same for any instance of the class. 
+    \item Class object attributes can be referenced in two ways: 
+        \begin{enumerate}
+            \item \placeholder{Class name}.\placeholder{class object attribute} 
+            \item self.\placeholder{class object attribute}     
+        \end{enumerate}
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    class Circle():
+        # CLASS OBJECT ATTRIBUTE 
+        pi = 3.14
+
+        def __init__(self, radious=1):
+            self.radious = radious
+            self.area = (radious ** 2) * Circle.pi
+
+        def get_circumference(self):
+            return self.radious * self.pi * 2
+
+    my_circle = Circle(30)
+    my_circle.pi
+    # output: 3.14
+    my_circle.radious
+    # output: 30
+    my_circle.get_circumference()
+    # output: 188.4
+    my_circle.area
+    # output: 2826.0
+\end{minted}
+
+
+%----------------------------------------------------------------------------------------
+\section{OOP Inheritance and polymorphism}
+\begin{itemize}
+    \item Inheritance: form new classes using classes that have already been defined, it's goal is to reuse code and to reduce complexity. 
+        \begin{itemize}
+            \item All methods from the base class can be overwritten and used in the inheritance class. 
+        \end{itemize}
+        \begin{minted}[autogobble]{python}
+            # BASE CLASS
+            class Animal():
+                def __init(self):
+                    print("Animal created")
+                
+                def who_im_i(self):
+                    print("I'm an animal")
+                
+                def eat(self):
+                    print("I'm eating")
+
+            # INHERITANCE OF DOG FROM THE ANIMAL CLASS
+            class Dog(Animal):
+                def __init__(self): 
+                    Animal.__init__(self) # Copy Animal class constructor
+                    print("Dog created")
+                def who_im_i(self):
+                    print("I'm a dog!")
+                def bark(self):
+                    print("I'm a dog eating")
+
+            mydog = Dog()
+            # output: Animal created
+            # output: Dog created
+            mydog.who_im_i()
+            # output: I'm a dog!
+            mydog.bark()
+            # output: I'm a dog eating
+        \end{minted}
+    
+    \item Polymorphism: diferent object classes with identical method names. 
+        \begin{minted}[autogobble]{python}
+            class Dog():
+                def __init__(self,name):
+                    self.name = name 
+                def speak(self):
+                    print(self.name + " says woof!")
+
+            class Cat():
+                def __init__(self,name):
+                    self.name = name 
+                def speak(self):
+                    print(self.name + " says meow!")
+
+            niko = Dog("niko")
+            felix = Cat("felix")
+            print(niko.speak())
+            # output: niko says woof!
+            print(felix.speak())
+            # output: felix says meow!
+
+            for pet in [niko,felix]:
+                print(type(pet))
+                print(pet.speak())
+            # output: <class '__main__.Dog'>
+            # output: niko says woof!
+            # output: <class '__main__.Dog'>
+            # output: felix says meow!
+        \end{minted}
+\end{itemize}
+\begin{itemize}
+    \item An abstract class is a class which is not intended to be instanciated, it's only used as a base class. 
+        \begin{minted}[autogobble]{python}
+            # ABSTRACT CLASSES
+            class Animal():
+                def __init__(self,name):
+                    self.name = name 
+                def speak(self):
+                    raise NotImplementedError("Subclass must implement this abstract method.")
+            class Dog(Animal):
+                def __init__(self,name):
+                    self.name = name 
+                def speak(self):
+                    print(self.name + " says woof!")
+
+            class Cat(Animal):
+                def __init__(self,name):
+                    self.name = name 
+                def speak(self):
+                    print(self.name + " says meow!")
+
+            fido = Dog("Fido")
+            isis = Cat("Isis")
+            print(fido.speak())
+            print(isis.speak())
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Special (Magic/Dunder) methods}
+\begin{itemize}
+    \item Make python built-in methods interact with the user defined objects and classes. 
+\end{itemize}
+\begin{minted}[autogobble]{python}
+    class Book():
+        def __init__(self,title,author,pages):
+            self.title = title
+            self.author = author 
+            self.pages = pages 
+        
+    b = Book("Python","David",200)
+    print(b)
+    # output: <__main__.Book object at 0x000001B7E92102B0>
+    # I want to be able to print this in a string form so...
+
+    class Book():
+        def __init__(self,title,author,pages):
+            self.title = title
+            self.author = author 
+            self.pages = pages 
+        
+        def __str__(self):
+            return f"{self.title} by {self.author}"
+        
+        def __len__(self):
+            return self.pages
+
+        def __del__(self):
+            print(f"The book object '{self.__str__()}'' has been deleted")
+
+    b = Book("Python","David",200)
+    print(b)
+    # output: Python by David
+    print(len(b))
+    # output: 200
+    del b 
+    # output: The book object 'Python by David' has been deleted
+\end{minted}
