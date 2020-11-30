@@ -3,6 +3,7 @@
     "emmet.showSuggestionsAsSnippets": true,
     "files.associations": {
         "*.rmd": "markdown",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp"
     }
 }

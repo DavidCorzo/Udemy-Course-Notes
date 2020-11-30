@@ -1,0 +1,3 @@
+{"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\Qcpp12LL a long long integer.\\E$"}
+{"rule":"SENTENCE_FRAGMENT","sentence":"^\\QWhich means they are data types made out of other data types.\\E$"}
+{"rule":"THERE_S_MANY","sentence":"^\\QThere is no bounds checking.\\E$"}

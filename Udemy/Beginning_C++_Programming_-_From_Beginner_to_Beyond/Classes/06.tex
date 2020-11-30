@@ -378,3 +378,62 @@
 
 %----------------------------------------------------------------------------------------
 \section{What is a constant?}
+\begin{itemize}
+    \item Constants are very much like variables in C++. 
+    \item The follow the same naming convensions of variables.
+    \item They occupy storage.
+    \item And they are usually typed. 
+    \item However, their value cannot change once declared. 
+\end{itemize}
+
+\subsection{Literal constants}
+\begin{itemize}
+    \item The most obvious kind of constant. 
+    \item Integer literal constants:
+        \begin{itemize}
+            \item \mintinline{cpp}{12} an integer.
+            \item \mintinline{cpp}{12U} an unsigned integer.
+            \item \mintinline{cpp}{12L} a long integer.
+            \item \mintinline{cpp}{12LL} a long long integer.
+        \end{itemize}
+    \item Floating-point literal constants:
+        \begin{itemize}
+            \item \mintinline{cpp}{12.1} a double.
+            \item \mintinline{cpp}{12.1F} a float.
+            \item \mintinline{cpp}{12.1L} a long double.
+        \end{itemize}
+    \item Character literal constants (escape codes).
+        \begin{itemize}
+            \item \mintinline{cpp}{\n} newline.
+            \item \mintinline{cpp}{\r} return.
+            \item \mintinline{cpp}{\t} tab.
+            \item \mintinline{cpp}{\b} backspace. 
+            \item \mintinline{cpp}{\'} single quote.
+            \item \mintinline{cpp}{\"} double quote.
+            \item \mintinline{cpp}{\\} backslash.
+        \end{itemize}
+\end{itemize}
+
+\subsection{Defined constants}
+\begin{itemize}
+    \item Constants that are declared using the \mintinline{cpp}{const} keyword.
+        \begin{minted}[autogobble]{cpp}
+            const double pi {3.1415926};
+            const int months_in_year {12};
+            pi = 2.5; // compiler error.
+        \end{minted}
+\end{itemize}
+
+\subsubsection{Defined constants}
+\begin{itemize}
+    \item Constants defined as preprocessor directive. 
+        \begin{minted}[autogobble]{cpp}
+            #define pi 3.1415926
+        \end{minted}
+    
+    \item Notice you don't declare a type, this is sort of a blind find and replace done before compilation of the program, whenever the program encounters \mintinline{cpp}{pi} it will replace it with the value of the define constant, since the preprocessor does not know C++ it can't type check and this can make it difficult to find errors. The best is to never define constants and to always use the \mintinline{cpp}{const} keyword in your code.
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+
