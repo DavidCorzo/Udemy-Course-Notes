@@ -28,3 +28,83 @@
 \BOOKMARK [1][-]{section.5.4}{The main\(\) function}{chapter.5}% 28
 \BOOKMARK [1][-]{section.5.5}{Namespaces}{chapter.5}% 29
 \BOOKMARK [1][-]{section.5.6}{Basic input and output }{chapter.5}% 30
+\BOOKMARK [2][-]{subsection.5.6.1}{cpp<< with cppcout}{section.5.6}% 31
+\BOOKMARK [2][-]{subsection.5.6.2}{cpp>> with cppcin}{section.5.6}% 32
+\BOOKMARK [0][-]{chapter.6}{Variables and constants}{}% 33
+\BOOKMARK [1][-]{section.6.1}{What is a variable?}{chapter.6}% 34
+\BOOKMARK [1][-]{section.6.2}{Declaring and initializing variables}{chapter.6}% 35
+\BOOKMARK [2][-]{subsection.6.2.1}{Naming rules and conventions}{section.6.2}% 36
+\BOOKMARK [2][-]{subsection.6.2.2}{Declaring and initializing}{section.6.2}% 37
+\BOOKMARK [2][-]{subsection.6.2.3}{Example}{section.6.2}% 38
+\BOOKMARK [1][-]{section.6.3}{Global variables}{chapter.6}% 39
+\BOOKMARK [1][-]{section.6.4}{C++ Built-in Primitive Types}{chapter.6}% 40
+\BOOKMARK [2][-]{subsection.6.4.1}{Type sizes}{section.6.4}% 41
+\BOOKMARK [2][-]{subsection.6.4.2}{Character types}{section.6.4}% 42
+\BOOKMARK [2][-]{subsection.6.4.3}{Integer data types}{section.6.4}% 43
+\BOOKMARK [2][-]{subsection.6.4.4}{Floating point type}{section.6.4}% 44
+\BOOKMARK [2][-]{subsection.6.4.5}{Boolean type}{section.6.4}% 45
+\BOOKMARK [2][-]{subsection.6.4.6}{Buffer overflows}{section.6.4}% 46
+\BOOKMARK [1][-]{section.6.5}{What is the size of a variable?}{chapter.6}% 47
+\BOOKMARK [2][-]{subsection.6.5.1}{Examples}{section.6.5}% 48
+\BOOKMARK [1][-]{section.6.6}{What is a constant?}{chapter.6}% 49
+\BOOKMARK [2][-]{subsection.6.6.1}{Literal constants}{section.6.6}% 50
+\BOOKMARK [2][-]{subsection.6.6.2}{Defined constants}{section.6.6}% 51
+\BOOKMARK [0][-]{chapter.7}{Arrays and vectors}{}% 52
+\BOOKMARK [1][-]{section.7.1}{Arrays and vectors}{chapter.7}% 53
+\BOOKMARK [1][-]{section.7.2}{What is an array?}{chapter.7}% 54
+\BOOKMARK [2][-]{subsection.7.2.1}{Characteristics}{section.7.2}% 55
+\BOOKMARK [1][-]{section.7.3}{Declaring and initializing arrays}{chapter.7}% 56
+\BOOKMARK [2][-]{subsection.7.3.1}{Declaring arrays}{section.7.3}% 57
+\BOOKMARK [2][-]{subsection.7.3.2}{Initializing arrays}{section.7.3}% 58
+\BOOKMARK [1][-]{section.7.4}{Accessing and modifying array elements}{chapter.7}% 59
+\BOOKMARK [2][-]{subsection.7.4.1}{How do arrays work?}{section.7.4}% 60
+\BOOKMARK [2][-]{subsection.7.4.2}{Examples}{section.7.4}% 61
+\BOOKMARK [1][-]{section.7.5}{Multidimentional arrays}{chapter.7}% 62
+\BOOKMARK [1][-]{section.7.6}{Declaring and initializing vectors}{chapter.7}% 63
+\BOOKMARK [2][-]{subsection.7.6.1}{Vectors}{section.7.6}% 64
+\BOOKMARK [2][-]{subsection.7.6.2}{Declaring vectors}{section.7.6}% 65
+\BOOKMARK [2][-]{subsection.7.6.3}{Initializing vectors}{section.7.6}% 66
+\BOOKMARK [2][-]{subsection.7.6.4}{Vector caracteristics}{section.7.6}% 67
+\BOOKMARK [1][-]{section.7.7}{Accessing and modifying vector elements}{chapter.7}% 68
+\BOOKMARK [2][-]{subsection.7.7.1}{Vectors changing in size dynamically}{section.7.7}% 69
+\BOOKMARK [2][-]{subsection.7.7.2}{Out of bounds errors}{section.7.7}% 70
+\BOOKMARK [0][-]{chapter.8}{Statements and operators}{}% 71
+\BOOKMARK [1][-]{section.8.1}{Expressions and statements}{chapter.8}% 72
+\BOOKMARK [1][-]{section.8.2}{Using operators}{chapter.8}% 73
+\BOOKMARK [1][-]{section.8.3}{The assignment operator}{chapter.8}% 74
+\BOOKMARK [2][-]{subsection.8.3.1}{Example}{section.8.3}% 75
+\BOOKMARK [1][-]{section.8.4}{Arithmetic operators}{chapter.8}% 76
+\BOOKMARK [2][-]{subsection.8.4.1}{Examples}{section.8.4}% 77
+\BOOKMARK [1][-]{section.8.5}{Increment and decrement operators}{chapter.8}% 78
+\BOOKMARK [2][-]{subsection.8.5.1}{Example}{section.8.5}% 79
+\BOOKMARK [1][-]{section.8.6}{Mixed expressions and conversions}{chapter.8}% 80
+\BOOKMARK [2][-]{subsection.8.6.1}{Conversions}{section.8.6}% 81
+\BOOKMARK [2][-]{subsection.8.6.2}{Example type coercion}{section.8.6}% 82
+\BOOKMARK [2][-]{subsection.8.6.3}{Examples explicit type casting}{section.8.6}% 83
+\BOOKMARK [1][-]{section.8.7}{Testing for equality}{chapter.8}% 84
+\BOOKMARK [2][-]{subsection.8.7.1}{Example}{section.8.7}% 85
+\BOOKMARK [1][-]{section.8.8}{Relational operators}{chapter.8}% 86
+\BOOKMARK [2][-]{subsection.8.8.1}{Example}{section.8.8}% 87
+\BOOKMARK [1][-]{section.8.9}{Logical operators}{chapter.8}% 88
+\BOOKMARK [2][-]{subsection.8.9.1}{Precedence}{section.8.9}% 89
+\BOOKMARK [2][-]{subsection.8.9.2}{Examples}{section.8.9}% 90
+\BOOKMARK [2][-]{subsection.8.9.3}{Short-Circuit evaluation}{section.8.9}% 91
+\BOOKMARK [2][-]{subsection.8.9.4}{Example}{section.8.9}% 92
+\BOOKMARK [1][-]{section.8.10}{Compound assignment operators}{chapter.8}% 93
+\BOOKMARK [1][-]{section.8.11}{Operator Precedence}{chapter.8}% 94
+\BOOKMARK [2][-]{subsection.8.11.1}{Example}{section.8.11}% 95
+\BOOKMARK [0][-]{chapter.9}{Controlling program flow}{}% 96
+\BOOKMARK [1][-]{section.9.1}{Section overview}{chapter.9}% 97
+\BOOKMARK [2][-]{subsection.9.1.1}{Selection: Decision}{section.9.1}% 98
+\BOOKMARK [2][-]{subsection.9.1.2}{Iteration: Looping}{section.9.1}% 99
+\BOOKMARK [1][-]{section.9.2}{If statement}{chapter.9}% 100
+\BOOKMARK [2][-]{subsection.9.2.1}{Examples of single if statements}{section.9.2}% 101
+\BOOKMARK [2][-]{subsection.9.2.2}{Block if statements}{section.9.2}% 102
+\BOOKMARK [2][-]{subsection.9.2.3}{Example of block ifs}{section.9.2}% 103
+\BOOKMARK [1][-]{section.9.3}{If else statement}{chapter.9}% 104
+\BOOKMARK [2][-]{subsection.9.3.1}{Example of single if else statements}{section.9.3}% 105
+\BOOKMARK [2][-]{subsection.9.3.2}{If else block}{section.9.3}% 106
+\BOOKMARK [2][-]{subsection.9.3.3}{If else if construct}{section.9.3}% 107
+\BOOKMARK [2][-]{subsection.9.3.4}{Example}{section.9.3}% 108
+\BOOKMARK [1][-]{section.9.4}{Nested if statement}{chapter.9}% 109
+\BOOKMARK [2][-]{subsection.9.4.1}{Example}{section.9.4}% 110

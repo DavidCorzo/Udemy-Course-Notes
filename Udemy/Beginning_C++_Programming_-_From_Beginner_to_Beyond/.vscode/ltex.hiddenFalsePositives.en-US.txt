@@ -1,3 +1,5 @@
 {"rule":"ENGLISH_WORD_REPEAT_RULE","sentence":"^\\Qcpp12LL a long long integer.\\E$"}
 {"rule":"SENTENCE_FRAGMENT","sentence":"^\\QWhich means they are data types made out of other data types.\\E$"}
 {"rule":"THERE_S_MANY","sentence":"^\\QThere is no bounds checking.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qothers that work with objects and pointers which will be introduced later.\\E$"}
+{"rule":"DT_JJ_NO_NOUN","sentence":"^\\QThese operators compare the values of two expressions and evaluate to a boolean.\\E$"}
