@@ -108,3 +108,34 @@
 \BOOKMARK [2][-]{subsection.9.3.4}{Example}{section.9.3}% 108
 \BOOKMARK [1][-]{section.9.4}{Nested if statement}{chapter.9}% 109
 \BOOKMARK [2][-]{subsection.9.4.1}{Example}{section.9.4}% 110
+\BOOKMARK [1][-]{section.9.5}{Switch-case statement}{chapter.9}% 111
+\BOOKMARK [2][-]{subsection.9.5.1}{Example}{section.9.5}% 112
+\BOOKMARK [2][-]{subsection.9.5.2}{Review}{section.9.5}% 113
+\BOOKMARK [2][-]{subsection.9.5.3}{Example}{section.9.5}% 114
+\BOOKMARK [1][-]{section.9.6}{Conditional operator}{chapter.9}% 115
+\BOOKMARK [2][-]{subsection.9.6.1}{Example}{section.9.6}% 116
+\BOOKMARK [1][-]{section.9.7}{Looping}{chapter.9}% 117
+\BOOKMARK [2][-]{subsection.9.7.1}{Use cases of looping}{section.9.7}% 118
+\BOOKMARK [2][-]{subsection.9.7.2}{C++ looping constructs}{section.9.7}% 119
+\BOOKMARK [1][-]{section.9.8}{cppfor loop}{chapter.9}% 120
+\BOOKMARK [2][-]{subsection.9.8.1}{Examples}{section.9.8}% 121
+\BOOKMARK [2][-]{subsection.9.8.2}{Other details}{section.9.8}% 122
+\BOOKMARK [2][-]{subsection.9.8.3}{Examples}{section.9.8}% 123
+\BOOKMARK [1][-]{section.9.9}{Range based for loop}{chapter.9}% 124
+\BOOKMARK [2][-]{subsection.9.9.1}{Examples}{section.9.9}% 125
+\BOOKMARK [1][-]{section.9.10}{While}{chapter.9}% 126
+\BOOKMARK [2][-]{subsection.9.10.1}{Example}{section.9.10}% 127
+\BOOKMARK [1][-]{section.9.11}{do-while loop}{chapter.9}% 128
+\BOOKMARK [2][-]{subsection.9.11.1}{Examples}{section.9.11}% 129
+\BOOKMARK [1][-]{section.9.12}{cppcontinue and cppbreak}{chapter.9}% 130
+\BOOKMARK [2][-]{subsection.9.12.1}{Example}{section.9.12}% 131
+\BOOKMARK [1][-]{section.9.13}{Infinite loops}{chapter.9}% 132
+\BOOKMARK [2][-]{subsection.9.13.1}{Example}{section.9.13}% 133
+\BOOKMARK [1][-]{section.9.14}{Nested loops}{chapter.9}% 134
+\BOOKMARK [2][-]{subsection.9.14.1}{Examples}{section.9.14}% 135
+\BOOKMARK [0][-]{chapter.10}{Characters and strings}{}% 136
+\BOOKMARK [1][-]{section.10.1}{Character functions}{chapter.10}% 137
+\BOOKMARK [1][-]{section.10.2}{C-Style strings}{chapter.10}% 138
+\BOOKMARK [2][-]{subsection.10.2.1}{Examples}{section.10.2}% 139
+\BOOKMARK [1][-]{section.10.3}{Working with C-Style strings examples}{chapter.10}% 140
+\BOOKMARK [1][-]{section.10.4}{C++ strings}{chapter.10}% 141
