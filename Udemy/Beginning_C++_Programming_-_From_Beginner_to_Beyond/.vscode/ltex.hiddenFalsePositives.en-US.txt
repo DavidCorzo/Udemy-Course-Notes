@@ -5,3 +5,7 @@
 {"rule":"DT_JJ_NO_NOUN","sentence":"^\\QThese operators compare the values of two expressions and evaluate to a boolean.\\E$"}
 {"rule":"SENTENCE_FRAGMENT","sentence":"^\\QWhile specific condition(s) remains true.\\E$"}
 {"rule":"SENTENCE_FRAGMENT","sentence":"^\\QUntil a specific condition becomes false.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QUnderstand what the function returns.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QUnderstand any errors the function my produce.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QUnderstand any performance constraints.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QDivide the rest of the problem into subproblems and do a recursive call.\\E$"}
