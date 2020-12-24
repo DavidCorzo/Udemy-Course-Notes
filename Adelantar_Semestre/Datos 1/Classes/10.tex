@@ -1,0 +1,54 @@
+\section{SELECT statements and prompts}
+\begin{itemize}
+    \item Find all employees:
+        \begin{minted}[autogobble]{sql}
+            SELECT * FROM employee;
+        \end{minted}
+    
+    \item Find all the clients:
+        \begin{minted}[autogobble]{sql}
+            SELECT * FROM client;
+        \end{minted}
+    
+    \item Find all employees ordered by salary:
+        \begin{minted}[autogobble]{sql}
+            SELECT * FROM employee ORDER BY salary; 
+        \end{minted}
+    
+    \item Find all employees ordered by salary from largest to smallest:
+        \begin{minted}[autogobble]{sql}
+            SELECT * FROM employee ORDER BY salary DESC;
+        \end{minted}
+    
+    \item Order all employees ordered by sex and then name:
+        \begin{minted}[autogobble]{sql}
+            SELECT * FROM employee ORDER BY sex, first_name, last_name; 
+        \end{minted}
+    
+    \item Find the first 5 employees in the table:
+        \begin{minted}[autogobble]{sql}
+            SELECT * FROM employee LIMIT 5;
+        \end{minted}
+    
+    \item Find the first and last names of all employees:
+        \begin{minted}[autogobble]{sql}
+            SELECT first_name, last_name FROM employee;
+        \end{minted}
+    
+    \item  Find the forename and surnames of all employees:
+        \begin{minted}[autogobble]{sql}
+            SELECT first_name AS forename, last_name AS surname FROM employee;
+        \end{minted}
+        \begin{itemize}
+            \item \mintinline{sql}{AS} Allows you to select the columns differently to their names.
+        \end{itemize}
+    
+    \item Find out all the different genders:
+        \begin{minted}[autogobble]{sql}
+            SELECT  DISTINCT sex FROM employee;
+        \end{minted}
+        \begin{itemize}
+            \item \mintinline{sql}{DISTINCT} allows you to know all the values stored in a column. 
+        \end{itemize}
+\end{itemize}
+

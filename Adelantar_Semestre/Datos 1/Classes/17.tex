@@ -1,0 +1,34 @@
+\begin{itemize}
+    \item A trigger is basically is a block of SQL code that will define what needs to happen when a certain operation gets performed on a database.
+    
+    \item Making a trigger needs to be done from the command line.
+        \begin{minted}[autogobble]{sql}
+            DELIMITER $$ 
+                CREATE 
+                    TRIGGER my_trigger BEFORE INSERT 
+                    ON employee
+                    FOR EACH ROW BEGIN 
+                        INSERT INTO trigger_test VALUES('added new people');
+                    END$$
+                DELIMITER ;
+        \end{minted}
+    
+    \item Example:
+        \begin{minted}[autogobble]{sql}
+            DELIMITERDELIMITER $$ 
+                CREATE TRIGGER my_trigger2 BEFORE INSERT 
+                ON employee 
+                FOR EACH ROW BEGIN 
+                    IF NEW.sex = 'M' THEN 
+                        INSERT INTO trigger_test VALUES('added male employee');
+                    ELSEIF NEW.sex = 'F' THEN 
+                        INSERT INTO trigger_test VALUES('added female');
+                    ELSE 
+                        INSERT INTO trigger_test VALUES('added other employee');
+                    END IF;
+                END$$
+            DELIMITER ;
+        \end{minted}
+    
+    \item Use \mintinline{sql}{drop trigger} command to eliminate the trigger.
+\end{itemize}
