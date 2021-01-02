@@ -1,4 +1,579 @@
 \section{What is a pointer?}
 \begin{itemize}
-    \item 
+    \item A variable.
+        \begin{itemize}
+            \item Whose value is an address.
+        \end{itemize}
+
+    \item What can be at that address?
+        \begin{itemize}
+            \item Another variable.
+            \item A function.
+        \end{itemize}
+    
+    \item Pointers have a memory location that is bound to, type and has a value, this value is address in memory.
+    \item If x is an integer variable and its value is 10 then I can declare a pointer that points to it.
+    \item To use the data that the pointer is pointing to you must know its type.
 \end{itemize}
+
+\subsection{Why use pointers?}
+\begin{itemize}
+    \item Can't I just use the variable or the function itself?
+        \begin{itemize}
+            \item Yes, but you can't always do that.
+        \end{itemize}
+    
+    \item Inside functions, pointers can be used to access data that are defined outside the function. Those values may not be in scope so you can't access them by their name.
+    \item Pointers can be used to operate on arrays very efficiently.
+    \item We can allocate memory dynamically on the heap or free store.
+        \begin{itemize}
+            \item This memory doesn't even have a variable name.
+            \item The only way to get to it is via a pointer.
+        \end{itemize}
+    
+    \item With object-oriented programming,  pointers are how polymorphism works.
+    \item Can access specific addresses in memory.
+        \begin{itemize}
+            \item Useful in embedded and system applications.
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Declaring pointer variables}
+\begin{itemize}
+    \item We declare pointer variables in very much the same way any other variable would, except an asterisk must be between the type and the identifier:
+        \begin{verbatim}
+            variable_type *pointer_name;
+        \end{verbatim}
+        \begin{minted}[autogobble]{cpp}
+            int *int_ptr; // pointer to int.
+            double *double_ptr; // pointer to double.
+            char *char_ptr; // pointer char.
+            std::string *string_ptr; // pointer to a std::string.
+        \end{minted}
+        \begin{itemize}
+            \item Keep in mind that there are many conventions to declaration of pointers, such as the one where the asterisk is next to the type \mintinline{cpp}{int* name;}, others where the asterisk is previous to the name \mintinline{cpp}{int *name;} or even a space from each \mintinline{cpp}{int * name;}
+        \end{itemize}
+    
+    \item Intializing pointer variables to ``point no where'' or null:
+        \begin{itemize}
+            \item If you don't initialize your pointers they will have garbage data.
+            \item In this case that data will be addresses.
+            \item Just as an int was as convention initialized to a value, say 0, a pointer is usually initialized to null which means it doesn't point to any memory location. 
+            \item You do this with the \mintinline{cpp}{nullptr} or the \mintinline{cpp}{NULL} keywords.
+        \end{itemize}
+        \begin{verbatim}
+            variable_type *pointer_name {nullptr};
+        \end{verbatim}
+        \begin{minted}[autogobble]{cpp}
+            int *int_ptr {};
+            double *double_ptr {nullptr};
+            char *char_ptr {nullptr};
+            string *string_ptr {nullptr};
+        \end{minted}
+    
+    \item Always initialize variable pointers to 'point no where 'or null.
+        \begin{itemize}
+            \item Always initialize.
+            \item Uninitialized pointers contain garbage data and can 'point anywhere' in memory.
+            \item Initializing to zero or \mintinline{cpp}{nullptr} (C++11) represents address zero.
+                \begin{itemize}
+                    \item Implies that the pointer is 'pointing nowhere'.
+                \end{itemize}
+            
+            \item If you don't initialize a pointer to point to a variable or function then you should initialize it to \mintinline{cpp}{nullptr} to 'make it null'.
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Accessing the pointer address and storing address in a pointer}
+\begin{itemize}
+    \item The address operator.
+        \begin{itemize}
+            \item Variables are stored in unique addresses.
+            \item Unary operator.
+            \item Evaluates to the address of its operand.
+                \begin{itemize}
+                    \item Operand cannot be a constant or expression that evaluates to temp values.
+                \end{itemize}
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                int num{10};
+                cout << "Value of num is: " << num << endl;
+                cout << "Size of num is: " << sizeof num << endl;
+                cout << "Address of num is: " << &num << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            Value of num is: 10
+            Size of num is: 4
+            Address of num is: 0x61fe1c
+            */
+        \end{minted}
+    
+    \item Example:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                int *p;
+                cout << "Value of p is: " << p << endl; // garbage data.
+                cout << "Address of p is: " << &p << endl; // value of p.
+                cout << "Size of p is: " << sizeof p << endl; // size of p.
+                p = nullptr;
+                cout << "Value of p is: " << p << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            Value of p is: 0x10
+            Address of p is: 0x61fe18
+            Size of p is: 8
+            Value of p is: 0
+
+            */
+        \end{minted}
+\end{itemize}
+
+\subsection{sizeof a pointer variable}
+\begin{itemize}
+    \item Don't confuse the size of a pointer variable and the size of what it points to.
+    \item All pointers in a program have the same size.
+    \item They may be pointing to a very large or very small types.
+\end{itemize}
+\begin{minted}[autogobble]{cpp}
+    int *p1 {nullptr};
+    double *p2 {nullptr};
+    unsigned long long *p3 {nullptr};
+    vector<string> *p4 {nullptr};
+    string *p5 {nullptr};
+\end{minted}
+
+\subsection{Storing an address in a pointer variable?}
+Typed pointers.
+\begin{itemize}
+    \item The compiler will make sure that the address stored in a pointer variable is of the correct type.
+\end{itemize}
+\begin{minted}[autogobble]{cpp}
+    int score {10};
+    double high_temp {100.7};
+    int *score_ptr {nullptr};
+    score_ptr = &score;
+    score_ptr = &high_temp; // compiler error because high_temp is a double and score_ptr is an int.
+\end{minted}
+
+\subsection{\& the address of operator}
+\begin{itemize}
+    \item Pointers are variables so they can change.
+    \item Pointers can be null.
+    \item Pointers can be uninitialized.
+\end{itemize}
+
+
+
+%----------------------------------------------------------------------------------------
+\section{Dereferencing the pointer}
+\begin{itemize}
+    \item Access the data we're pointing to is called dereferencing a pointer.
+    \item If \verb|score_ptr| is a pointer and has a valid address.
+    \item Then you can access the data at the address contained in the \verb|score_ptr| using the dereferencing operator.
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                int score {100};
+                int *score_ptr {&score};
+                cout << *score_ptr << endl; // 100
+                *score_ptr = 200;
+                cout << *score_ptr << endl;
+                cout << score << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            100
+            200
+            200
+            */
+        \end{minted}
+        \begin{itemize}
+            \item Declaring and dereferencing is done using the asterisk, C++ has received some criticism about this, but once you understand where and how to use the asterisk you'll be fine.
+        \end{itemize}
+
+    
+    \item Example:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            #include <vector>
+            using namespace std;
+            int main() {
+                vector<string> stooges {"Larry", "Moe", "Curly"};
+                vector<string> *vector_ptr {nullptr};
+                vector_ptr = &stooges;
+                cout << "First stooge: " << (*vector_ptr).at(0) << endl;
+                cout << "Stooges: ";
+                for (auto stooge: *vector_ptr) {
+                    cout << stooge << " ";
+                }
+                cout << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            First stooge: Larry
+            Stooges: Larry Moe Curly
+            */
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Dynamic Memory Allocation}
+\begin{itemize}
+    \item Allocating storage from the heap at runtime.
+    \item We often don't knot how much storage we need until we need it.
+    \item We can allocate storage for a variable at run time.
+    \item Recall C++ arrays:
+        \begin{itemize}
+            \item We had to explicitly provide the size and it was fixed.
+            \item But vectors grow and shrink dynamically.
+        \end{itemize}
+    
+    \item We can use pointers to access newly allocated heap storage.
+\end{itemize}
+
+\subsection{Allocating and deallocating memory}
+\begin{itemize}
+    \item The \mintinline{cpp}{new} keyword
+        \begin{itemize}
+            \item Using the new keyword to allocate storage.
+            \begin{minted}[autogobble]{cpp}
+                #include <iostream>
+                using namespace std;
+                int main() {
+                    int *int_ptr {nullptr};
+                    int_ptr = new int; // allocate an integer on the heap.
+                    cout << int_ptr << endl; // address of int_ptr.
+                    cout << *int_ptr << endl; // garbage. Notice the dereferencing.
+                    *int_ptr = 100;
+                    cout << *int_ptr << endl; // 100.
+                    return 0;
+                }
+                /* OUTPUT:
+                0x25824f0
+                39331936
+                100
+                */
+            \end{minted}
+    
+        \item If you loose the pointer because it goes out of scope or other such incidents, that is called a memory leak and you lost the only way you have to access that memory.
+        \item You also must deallocate the pointer after you are done using it.
+        \end{itemize}
+    
+    \item The \mintinline{cpp}{delete} keyword
+        \begin{itemize}
+            \item The delete keyword is used to deallocate allocated space.
+                \begin{minted}[autogobble]{cpp}
+                    int *int_ptr {nullptr}; // allocate an integer on the heap.
+                    delete int_ptr; // frees the allocated storage.
+                \end{minted}
+        \end{itemize}
+    
+    \item The \mintinline{cpp}{new[]} keyword
+        \begin{itemize}
+            \item The \mintinline{cpp}{new[]} is used to allocate an array.
+                \begin{minted}[autogobble]{cpp}
+                    int *array_ptr {nullptr};
+                    int size {};
+                    cout << "How big do you want the array: ";
+                    cin >> size;
+                    array_ptr = new int[size]; // allocate array on the heap.
+                \end{minted}
+            \item Keep in mind that these brackets must be empty.
+        \end{itemize}
+    
+
+    \item The \mintinline{cpp}{delete[]} keyword is used to deallocate storage of an array.
+        \begin{minted}[autogobble]{cpp}
+            int *array_ptr {nullptr};
+            int size {};
+            cout << "How big do you want the array: ";
+            cin >> size;
+            array_ptr = new int[size]; // allocate array on the heap.
+            delete[] array_ptr; // free allocated storage.
+        \end{minted}
+        \begin{itemize}
+            \item Keep in mind that these brackets must be empty.
+        \end{itemize}
+    
+    \item When you allocate dynamically you are allocating into the heap or the free store, the stack houses the pointer to the dynamically allocated data.
+        \begin{itemize}
+            \item Example:
+                \begin{minted}[autogobble]{cpp}
+                    #include <iostream>
+                    using namespace std;
+                    int main() {
+                        size_t size{0}; // allocated on the stack.
+                        double *temp_ptr {nullptr}; // allocated on the stack.
+                        cout << "How many temps: "; 
+                        cin >> size;
+                        temp_ptr = new double[size]; // allocated on the heap.
+                        cout << temp_ptr << endl;
+                        delete[] temp_ptr; // dealocated on the heap.
+                        return 0;
+                    }
+                \end{minted}
+        \end{itemize}
+\end{itemize}
+
+
+
+%----------------------------------------------------------------------------------------
+\section{Relationship between arrays and pointers}
+\begin{itemize}
+    \item The value of an array name is the address of the first element in the array.
+    \item The value of a pointer variable is an address.
+    \item If the pointer points to the same data types as the array element then the pointer and array name can be used interchangeably (almost).
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                int scores[] {100,95,89};
+                cout << scores << endl;
+                cout << *scores << endl;
+                int *score_ptr {scores};
+                cout << score_ptr << endl;
+                cout << *score_ptr << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            0x61fe0c
+            100
+            0x61fe0c
+            100
+            */
+        \end{minted}
+    
+    \item We can also use array subscripting on a pointer using the square brackets operator.
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                int scores[] {100,95,89};
+                int *score_ptr {scores};
+                cout << score_ptr[0] << endl;
+                cout << score_ptr[1] << endl;
+                cout << score_ptr[2] << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            100
+            95
+            89
+            */
+        \end{minted}
+    
+    \item You can perform pointer arithmetic, which is adding numbers to a pointer:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                int scores[] {100,95,89};
+                int *score_ptr {scores};
+                cout << score_ptr << endl;
+                cout << (score_ptr + 1) << endl;
+                cout << (score_ptr + 2) << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            0x61fe0c
+            0x61fe10
+            0x61fe14
+            */
+        \end{minted}
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                int scores[] {100,95,89};
+                int *score_ptr {scores};
+                cout << *score_ptr << endl;
+                cout << *(score_ptr + 1) << endl;
+                cout << *(score_ptr + 2) << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            100
+            95
+            89
+            */
+        \end{minted}
+\end{itemize}
+
+\subsection{Subscript and offset notation equivalence}
+\begin{itemize}
+    \item You can write this in two ways:
+        \begin{minted}[autogobble]{cpp}
+            int array_name[] {1,2,3,4,5};
+            int *pointer_name {array_name};
+        \end{minted}
+        \begin{center}
+            \begin{tabular}{ |c|c| }
+                \hline
+                    Subscript notation & Offset notation \\
+                \hline
+                    \begin{minted}[autogobble]{cpp}
+                        array_name[index];
+                        pointer_name[index];
+                    \end{minted}
+                &
+                    \begin{minted}[autogobble]{cpp}
+                        *(array_name + index);
+                        *(pointer_name + index);
+                    \end{minted}
+                \hline
+                \\ 
+            \end{tabular}
+        \end{center}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Pointer arithmetic}
+\begin{itemize}
+    \item Pointers can be used in:
+        \begin{itemize}
+            \item Assignment expressions.
+            \item Arithmetic expressions.
+            \item Comparison expressions.
+        \end{itemize}
+    
+    \item C++ allows pointer arithmetic.
+    \item Pointer arithmetic only makes sense with raw arrays.
+\end{itemize}
+
+\subsection{++ and --}
+\begin{itemize}
+    \item ++ increments a pointer to point to the next array element.
+        \begin{minted}[autogobble]{cpp}
+            int_ptr++;
+        \end{minted}
+    \item -- decrements a pointer to point to the previous array element.
+        \begin{minted}[autogobble]{cpp}
+            int_ptr--;
+        \end{minted}
+    
+    \item Keep in mind that in pointer arithmetic, adding one means adding whatever number of bytes the elements occupy in order to get to the next element.
+\end{itemize}
+
+\subsection{+ and -}
+\begin{itemize}
+    \item + increment pointer by some number: (\mintinline{cpp}{n * sizeof(type)})
+        \begin{minted}[autogobble]{cpp}
+            int_ptr += n; or int_ptr = int_ptr + n;
+        \end{minted}
+    
+    \item - decrement pointer by some number: (\mintinline{cpp}{n * sizeof(type)})
+        \begin{minted}[autogobble]{cpp}
+            int_ptr -= n; or int_ptr = int_ptr - n;
+        \end{minted}
+\end{itemize}
+
+\subsection{Subtracting two pointers}
+\begin{itemize}
+    \item Determine the number of elements between the pointers.
+    \item both pointers must point to the same data type:
+        \begin{minted}[autogobble]{cpp}
+            int n = int_ptr2 - int_ptr1;
+        \end{minted}
+\end{itemize}
+
+\subsection{Compare two pointers == and !=}
+\begin{itemize}
+    \item Determine if two pointers point to the same location.
+        \begin{itemize}
+            \item Does not compare the data where they point.
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                string s1 {"Frank"};
+                string s2 {"Frank"};
+                string *p1 {&s1};
+                string *p2 {&s2};
+                string *p3 {&s1};
+                cout << boolalpha;
+                cout << (p1 == p2) << endl; 
+                cout << (p1 == p3) << endl; 
+                return 0;
+            }
+            /* OUTPUT:
+            false
+            true
+            */
+        \end{minted}
+\end{itemize}
+
+\subsection{Comparing the data pointers point to}
+\begin{itemize}
+    \item Determine if two pointers point to the same data.
+    \item You must compare the referenced pointers.
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+            int main() {
+                string s1 {"Frank"};
+                string s2 {"Frank"};
+                string *p1 {&s1};
+                string *p2 {&s2};
+                string *p3 {&s1};
+                cout << boolalpha;
+                cout << (*p1 == *p2) << endl; 
+                cout << (*p1 == *p3) << endl; 
+                return 0;
+            }
+            /* OUTPUT:
+            false
+            true
+            */
+        \end{minted}
+\end{itemize}
+
+\subsection{Examples}
+\begin{minted}[autogobble]{cpp}
+    #include <iostream>
+    using namespace std;
+    int main() {
+        int scores[] {100,95,89,68,-1};
+        int *score_ptr {scores};
+        while (*score_ptr != -1) {
+            cout << *score_ptr << endl;
+            score_ptr++;
+        }
+        return 0;
+    }
+    /* OUTPUT:
+    100
+    95
+    89
+    68
+    */
+\end{minted}
+
+\begin{minted}[autogobble]{cpp}
+    #include <iostream>
+    using namespace std;
+    int main() {
+        char name[] {"Frank"};
+        char *char_ptr1 = &name[0];
+        char *char_ptr2 = &name[3];
+        cout << "In the string " << name << ", " << *char_ptr2 << " is " << (char_ptr2 - char_ptr1) << " characters away from " << *char_ptr1 << endl;
+        return 0;
+    }
+    /* OUTPUT:
+    In the string Frank, n is 3 characters away from F
+    */
+\end{minted}

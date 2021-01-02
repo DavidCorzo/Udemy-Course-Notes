@@ -9,3 +9,6 @@
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QUnderstand any errors the function my produce.\\E$"}
 {"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QUnderstand any performance constraints.\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QDivide the rest of the problem into subproblems and do a recursive call.\\E$"}
+{"rule":"ENGLISH_WORD_REPEAT_BEGINNING_RULE","sentence":"^\\QPointers can be uninitialized.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAllocating and deallocating memory.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q#include <iostream> using namespace std; int main() int scores[] 100,95,89; cout << scores << endl; cout << *scores << endl; int *score_ptr scores; cout << score_ptr << endl; cout << *score_ptr << endl; return 0; /* OUTPUT: 0x61fe0c 100 0x61fe0c 100 */ We can also use array subscripting on a pointer.\\E$"}
