@@ -577,3 +577,234 @@ Typed pointers.
     In the string Frank, n is 3 characters away from F
     */
 \end{minted}
+
+
+%----------------------------------------------------------------------------------------
+\section{Passing pointers to a function}
+const and pointers:
+\begin{itemize}
+    \item There are several ways to qualify pointers using const.
+        \begin{itemize}
+            \item Pointers to constants.
+            \item Constant pointers.
+            \item Constant pointers to constants.
+        \end{itemize}
+    
+    \item Pointers to constants:
+        \begin{itemize}
+            \item The data pointed to by the pointers is constant and cannot be changed.
+            \item The pointer itself can change and point somewhere else.
+            \item Pointers to constants follow the syntax: \verb|const type *var_name|.
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            int high_score {100};
+            int low_score {65};
+            const int *score_ptr {&high_score};
+            *score_ptr = 86; // error, changing the data being pointed to.
+            score_ptr = &low_score; // Ok.
+        \end{minted}
+    
+    \item Constant pointers:
+        \begin{itemize}
+            \item The data pointed to by the pointers can be changed.
+            \item The pointer itself cannot change and point somewhere else.
+            \item Const pointers follow the syntax: \verb|type const *var_name|.
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            int high_score {100};
+            int low_score {65};
+            int const *score_ptr {&high_score};
+            *score_ptr = 86; // Ok.
+            score_ptr = &low_score; // Error, changing the pointer.
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Passing pointers to functions}
+\begin{itemize}
+    \item Pass-by-reference with pointer parameters.
+    \item We can use pointers and the dereference operator to achieve pass-by-reference.
+    \item The function parameter is a pointer.
+    \item The actual parameter can be a pointer of address of a variable.
+    \item Example:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+
+            void double_data(int *int_ptr);
+
+            void double_data(int *int_ptr) {
+                *int_ptr *= 2;
+            }
+
+            int main() {
+                int value {10};
+                cout << value << endl; // 10
+                double_data(&value);
+                cout << value << endl; // 20
+                return 0;
+            }
+            /* OUTPUT:
+            10
+            20
+            */
+        \end{minted}
+    
+    \item Example swap two variables:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+
+            void swap(int *a, int *b) {
+                int temp {*a};
+                *a = *b;
+                *b = temp;
+            }
+
+            int main() {
+                int x {100}, y {200};
+                cout << "x: " << x << endl;
+                cout << "y: " << y << endl;
+                swap(&x, &y);
+                cout << "x: " << x << endl;
+                cout << "y: " << y << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            x: 100
+            y: 200
+            x: 200
+            y: 100
+            */
+        \end{minted}
+    
+    \item Example of passing pointer to vector:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            #include <vector>
+            using namespace std;
+
+            void display(const vector<string> const *v) { // the pointer is constant and the data is constant.
+                for (auto str : *v) {
+                    cout << str << ' ';
+                }
+                cout << endl;
+            }
+
+            int main() {
+                vector<string> stooges {"Larry", "Moe", "Curly"};
+                display(&stooges);
+                return 0;
+            }
+            /* OUTPUT:
+            Larry Moe Curly
+            */
+        \end{minted}
+    
+    \item Example or updating pointers:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+
+            void display(int *array, int sentinel) {
+                while (*array != sentinel) { 
+                    cout << *array++ << endl; // dereference the pointer and print it, then increment the pointer.
+                }
+                cout << endl;
+            }
+
+            int main() {
+                int scores[] {100,98,97,79,85,-1};
+                display(scores, -1);
+                return 0;
+            }
+            /* OUTPUT:
+
+            */
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Returning a pointer from a function}
+\begin{itemize}
+    \item In C++ functions can return pointers.
+        \begin{verbatim}
+            type *function();
+        \end{verbatim}
+
+    \item Should return pointers to:
+        \begin{itemize}
+            \item Memory dynamically allocated in the function.
+            \item To data that was passed in.
+        \end{itemize}
+    
+    \item Never return a pointer to a local function variable.
+    
+    \item Example, return the pointer to the largest int:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+
+            int *largest_int(int *int_ptr1, int *int_ptr2) {
+                if (*int_ptr1 > *int_ptr2) {
+                    return int_ptr1;
+                } else {
+                    return int_ptr2;
+                }
+            }
+
+            int main() {
+                int a {100}, b {200};
+                int *largest_ptr {nullptr};
+                largest_ptr = largest_int(&a, &b);
+                cout << *largest_ptr << endl; // 200
+                return 0;
+            }
+            /* OUTPUT:
+            200
+            */
+        \end{minted}
+    
+    \item Example, returning dynamically allocated memory:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            using namespace std;
+
+            int *create_array(size_t size, int init_value = 0) {
+                int *new_storage {nullptr};
+                new_storage = new int[size];
+                for (size_t i {0}; i < size; ++i ) {
+                    *(new_storage + i) = init_value;
+                }
+                return new_storage;
+            }
+
+            int main() {
+                int *my_array;
+                my_array = create_array(100,200);
+                delete[] my_array;
+                return 0;
+            }
+            /* OUTPUT:
+            */
+        \end{minted}
+    
+    \item Never return a pointer to a local variable:
+        \begin{minted}[autogobble]{cpp}
+            int *dont_do_this() {
+                int size {};
+                return &size;
+            }
+
+            int *or_this() {
+                int size {};
+                int *int_ptr {&size};
+                return int_ptr;
+            }
+        \end{minted}
+        \begin{itemize}
+            \item Notice this will compile just fine, since the address returned is the address of an integer, however, all variables are deleted when they go out of scope and you return a pointer to a deleted memory location.
+        \end{itemize}
+\end{itemize}
