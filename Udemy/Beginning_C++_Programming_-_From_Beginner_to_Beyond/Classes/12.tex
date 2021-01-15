@@ -808,3 +808,269 @@ const and pointers:
             \item Notice this will compile just fine, since the address returned is the address of an integer, however, all variables are deleted when they go out of scope and you return a pointer to a deleted memory location.
         \end{itemize}
 \end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{Potential pointer pitfalls}
+\begin{itemize}
+    \item Uninitialized pointers.
+        \begin{itemize}
+            \item Contain garbage, the pointer might be pointing to a very important area in memory and cause serious crashes even in the OS.
+            \item Sometimes makes debugging much harder because sometimes your program does not crash and when you add somethin it unexpectedly crashes and you think it is because of the new change but its actually a bug that has been in the code for a long time.
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            int *int_ptr; // pointing anywhere.
+            int *int_ptr = 100; // Hopefully a crash.
+        \end{minted}
+        
+    \item Dangling pointers.
+        \begin{itemize}
+            \item Pointers that are pointing to memory that is no longer valid or released memory:
+                \begin{itemize}
+                    \item For example: 2 pointers point to the same data.
+                    \item 1 pointer releases the data with delete.
+                    \item The other pointer accesses the release data.
+                    \item This causes undefined behaviour.
+                \end{itemize}
+            
+            \item Pointer that points to memory that is invalid:
+                \begin{itemize}
+                    \item We saw this when we returned a pointer to a function's local variable.
+                \end{itemize}
+        \end{itemize}
+
+    \item Not checing if new failed to allocate memory.
+        \begin{itemize}
+            \item If \mintinline{cpp}{new} fails an exception is thrown.
+            \item We can use exception handling to catch exceptions.
+            \item Dereferencing a null pointer will cause your program to crash.
+            \item This is good in testing but bad in production.
+        \end{itemize}
+
+    \item Leaking memory.
+        \begin{itemize}
+            \item Forgetting to release dynamically allocated memory with delete.
+            \item If you lose your pointer to the storage allocated on the heap you have not way to get to that storage again.
+            \item The memory is orphaned or leaked.
+            \item One of the most common pointer problems.
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{What is a reference?}
+\begin{itemize}
+    \item An alias for a variable, not a pointer.
+    \item Must be initialized to a variable when declared.
+    \item Cannot be null.
+    \item Once initialized cannot be made to refer to a different variable.
+    \item Very useful as function parameters.
+    \item Might be helpful to think of a  reference as a constant pointer that is automatically dereferenced.   
+\end{itemize}
+
+\subsection{Using references in range-based for loops}
+\begin{itemize}
+    \item In the next example, we iterate a vector but are unable to change the data.
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            #include <vector>
+            using std::vector;
+            using std::string;
+            using std::cout;
+            using std::endl;
+        
+            int main() {
+                vector<string> stooges {"Larry", "Moe", "Curly"};
+                for (auto str: stooges) {
+                    str = "Funny"; // changes the copy.
+                }
+                for (auto str: stooges) {
+                    cout << str << endl; // Larry, Curly, Moe
+                }
+            }
+        
+            /* OUTPUT:
+            Larry
+            Moe
+            Curly
+            */
+        \end{minted}
+    
+    \item Using references we can change the data.
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            #include <vector>
+            using std::vector;
+            using std::string;
+            using std::cout;
+            using std::endl;
+
+            int main() {
+                vector<string> stooges {"Larry", "Moe", "Curly"};
+                for (auto &str: stooges) {
+                    str = "Funny"; // changes the actual.
+                }
+                for (auto str: stooges) {
+                    cout << str << endl; // Funny, Funny, Funny
+                }
+            }
+            /* OUTPUT:
+            Funny
+            Funny
+            Funny
+            */
+        \end{minted}
+    
+    \item Be careful using the \mintinline{cpp}{const} qualifier in range based for loops if you plan to change the data.
+        \begin{minted}[autogobble]{cpp}
+            vector<string> stooges {"Larry", "Moe", "Curly"};
+            for (auto const &str: stooges) {
+                str = "Funny"; // compiler error.
+            }
+        \end{minted}
+    
+    \item It makes sense to use const if you don't want to change the data, using references you do not copy the elements, just the elements.
+        \begin{minted}[autogobble]{cpp}
+            vector<string> stooges {"Larry", "Moe", "Curly"};
+            for (auto const &str: stooges) {
+                cout << str << endl; // Larry, Moe, Curly
+            }
+        \end{minted}
+\end{itemize}
+
+\subsection{Examples}
+\begin{itemize}
+    \item Example: references are aliases to a variable.
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            #include <vector>
+            using namespace std;
+            int main() {
+                int num {100};
+                int &ref {num};
+                cout << num << endl;
+                cout << ref << endl;
+
+                num = 200;
+                cout << num << endl;
+                cout << ref << endl;
+
+                ref = 300;
+                cout << num << endl;
+                cout << ref << endl;
+            }
+            /* OUTPUT:
+            100
+            100
+            200
+            200
+            300
+            300
+            */
+        \end{minted}
+    
+    \item References in range based for loops:
+        \begin{minted}[autogobble]{cpp}
+            #include <iostream>
+            #include <vector>
+            using namespace std;
+            int main() {
+                vector<string> stooges {"Larry", "Moe", "Curly"};
+                for (auto str: stooges) {
+                    str = "Funny"; // changing a copy.
+                }
+                for (auto str: stooges) {
+                    cout << str << " ";
+                } 
+                cout << endl;
+                for (auto &str: stooges) {
+                    str = "Funny"; // changing the actual.
+                }
+                for (auto str: stooges) {
+                    cout << str << " ";
+                }
+                cout << endl;
+                return 0;
+            }
+            /* OUTPUT:
+            Larry Moe Curly
+            Funny Funny Funny
+            */
+        \end{minted}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{L-values and R-values}
+\subsection{L-values}
+\begin{itemize}
+    \item Values that have names and are addressable.
+    \item Modifiable if they are not constants.
+        \begin{minted}[autogobble]{cpp}
+            int x {100}; // x is an l-value.
+            x = 1000;
+            x = 1000 + 20;
+            string name; //name is an l-value.
+            name = "Frank";
+        \end{minted}
+    
+    \item l-value:
+        \begin{itemize}
+            \item Values that have names and are addressable.
+            \item Modifiable if they are not constants. 
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            100 = x; // 100 is not an r-value.
+            (1000+20) = x; // (1000 + 20) is an l-value.
+        \end{minted}
+    
+    \item r-values:
+        \begin{itemize}
+            \item A value that is not an l-value. We can define it like this using exclusion.
+            \item On the right hand side of an assignment expression.
+            \item A literal.
+            \item A temporary which is intended to be non-modifiable.
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            string name; 
+            name = "Frank";
+            "Frank" = name; // "Frank" is an r-value.
+            int max_num = max(20,30); // max(20,30) is an r-value.
+        \end{minted}
+        \begin{itemize}
+            \item r-values can be assigned to l-values explicitly.
+                \begin{minted}[autogobble]{cpp}
+                    int x {100};
+                    int y {0};
+                    y = 100; // r-value 100 assigned to l-value y.
+                    x = x + y; // r-value (x-y) assigned to l-value x.
+                \end{minted}
+        \end{itemize}
+    
+    \item References from the perpective of l and r values:
+        \begin{itemize}
+            \item The references we've used are l-value references.
+            \item Because we are referencing l-values.
+        \end{itemize}
+        \begin{minted}[autogobble]{cpp}
+            int x {100};
+            int &ref1 = x; // ref1 is reference to l-value.
+            ref1 = 1000;
+            int &ref2 = 100; // error: 100 is an r-value.
+        \end{minted}
+        \begin{itemize}
+            \item The same is true when we pass-by-reference to a function:
+                \begin{minted}[autogobble]{cpp}
+                    int square(int &n) {
+                        return n*n;
+                    }
+                    int num {10};
+                    square(num); // ok.
+                    square(5); // error: can't reference r-value 5.
+                \end{minted}
+        \end{itemize}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------------------
+\section{}
