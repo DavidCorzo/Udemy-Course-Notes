@@ -17,33 +17,30 @@
         \begin{itemize}
             \item Which code is better?
         \end{itemize}
-        \begin{center}
-            \begin{tabular}{ |c|c| }
-                \hline
-                    Without functions & With functions \\
-                \hline
-                    \begin{minted}[autogobble]{cpp}
-                        int main() {
-                            // read input
-                            statement1;
-                            statement2;
-                            statement3;
-                            statement4;
-                            // process input
-                            statement5;
-                            statement6;
-                            statement7;
-                            // provide input
-                            statement8;
-                            statement9;
-                            statement10;
-                            return 0;
-                        }
-
-                    \end{minted}
-                    & 
-                    \begin{minted}[autogobble]{cpp}
-                        int main() {
+        \begin{itemize}
+            \item Without functions:
+                \begin{minted}[autogobble]{cpp}
+                    int main() {
+                        // read input
+                        statement1;
+                        statement2;
+                        statement3;
+                        statement4;
+                        // process input
+                        statement5;
+                        statement6;
+                        statement7;
+                        // provide input
+                        statement8;
+                        statement9;
+                        statement10;
+                        return 0;
+                    }
+                \end{minted}
+            
+            \item With functions:
+                \begin{minted}[autogobble]{cpp}
+                    int main() {
                         // read input
                         read_input();
                         // process input
@@ -52,10 +49,8 @@
                         provide_input();
                         return 0;
                     }
-                    \end{minted} \\ 
-                \hline
-            \end{tabular}
-        \end{center}
+                \end{minted}
+        \end{itemize}
         \begin{itemize}
             \item Functions allow for abstraction.
             \item Functions allow us to use the same code again and again and not having to be copying and pasting everything.

@@ -139,3 +139,53 @@
 \BOOKMARK [2][-]{subsection.10.2.1}{Examples}{section.10.2}% 139
 \BOOKMARK [1][-]{section.10.3}{Working with C-Style strings examples}{chapter.10}% 140
 \BOOKMARK [1][-]{section.10.4}{C++ strings}{chapter.10}% 141
+\BOOKMARK [0][-]{chapter.11}{Functions}{}% 142
+\BOOKMARK [1][-]{section.11.1}{What is a function?}{chapter.11}% 143
+\BOOKMARK [2][-]{subsection.11.1.1}{Example}{section.11.1}% 144
+\BOOKMARK [1][-]{section.11.2}{Function definition}{chapter.11}% 145
+\BOOKMARK [2][-]{subsection.11.2.1}{Example}{section.11.2}% 146
+\BOOKMARK [1][-]{section.11.3}{Function prototypes}{chapter.11}% 147
+\BOOKMARK [1][-]{section.11.4}{Function parameters and the return statement}{chapter.11}% 148
+\BOOKMARK [2][-]{subsection.11.4.1}{Function parameters}{section.11.4}% 149
+\BOOKMARK [2][-]{subsection.11.4.2}{Function return statement}{section.11.4}% 150
+\BOOKMARK [1][-]{section.11.5}{Default arguments}{chapter.11}% 151
+\BOOKMARK [2][-]{subsection.11.5.1}{Example}{section.11.5}% 152
+\BOOKMARK [1][-]{section.11.6}{Overloading functions}{chapter.11}% 153
+\BOOKMARK [2][-]{subsection.11.6.1}{Example}{section.11.6}% 154
+\BOOKMARK [1][-]{section.11.7}{Passing arrays to functions}{chapter.11}% 155
+\BOOKMARK [1][-]{section.11.8}{Pass by reference}{chapter.11}% 156
+\BOOKMARK [1][-]{section.11.9}{Scope rules}{chapter.11}% 157
+\BOOKMARK [1][-]{section.11.10}{How do function calls work?}{chapter.11}% 158
+\BOOKMARK [1][-]{section.11.11}{Inline functions}{chapter.11}% 159
+\BOOKMARK [1][-]{section.11.12}{Recursive functions}{chapter.11}% 160
+\BOOKMARK [0][-]{chapter.12}{Pointers and references}{}% 161
+\BOOKMARK [1][-]{section.12.1}{What is a pointer?}{chapter.12}% 162
+\BOOKMARK [2][-]{subsection.12.1.1}{Why use pointers?}{section.12.1}% 163
+\BOOKMARK [1][-]{section.12.2}{Declaring pointer variables}{chapter.12}% 164
+\BOOKMARK [1][-]{section.12.3}{Accessing the pointer address and storing address in a pointer}{chapter.12}% 165
+\BOOKMARK [2][-]{subsection.12.3.1}{sizeof a pointer variable}{section.12.3}% 166
+\BOOKMARK [2][-]{subsection.12.3.2}{Storing an address in a pointer variable?}{section.12.3}% 167
+\BOOKMARK [2][-]{subsection.12.3.3}{\046 the address of operator}{section.12.3}% 168
+\BOOKMARK [1][-]{section.12.4}{Dereferencing the pointer}{chapter.12}% 169
+\BOOKMARK [1][-]{section.12.5}{Dynamic Memory Allocation}{chapter.12}% 170
+\BOOKMARK [2][-]{subsection.12.5.1}{Allocating and deallocating memory}{section.12.5}% 171
+\BOOKMARK [1][-]{section.12.6}{Relationship between arrays and pointers}{chapter.12}% 172
+\BOOKMARK [2][-]{subsection.12.6.1}{Subscript and offset notation equivalence}{section.12.6}% 173
+\BOOKMARK [1][-]{section.12.7}{Pointer arithmetic}{chapter.12}% 174
+\BOOKMARK [2][-]{subsection.12.7.1}{++ and \205}{section.12.7}% 175
+\BOOKMARK [2][-]{subsection.12.7.2}{+ and -}{section.12.7}% 176
+\BOOKMARK [2][-]{subsection.12.7.3}{Subtracting two pointers}{section.12.7}% 177
+\BOOKMARK [2][-]{subsection.12.7.4}{Compare two pointers == and !=}{section.12.7}% 178
+\BOOKMARK [2][-]{subsection.12.7.5}{Comparing the data pointers point to}{section.12.7}% 179
+\BOOKMARK [2][-]{subsection.12.7.6}{Examples}{section.12.7}% 180
+\BOOKMARK [1][-]{section.12.8}{Passing pointers to a function}{chapter.12}% 181
+\BOOKMARK [1][-]{section.12.9}{Passing pointers to functions}{chapter.12}% 182
+\BOOKMARK [1][-]{section.12.10}{Returning a pointer from a function}{chapter.12}% 183
+\BOOKMARK [1][-]{section.12.11}{Potential pointer pitfalls}{chapter.12}% 184
+\BOOKMARK [1][-]{section.12.12}{What is a reference?}{chapter.12}% 185
+\BOOKMARK [2][-]{subsection.12.12.1}{Using references in range-based for loops}{section.12.12}% 186
+\BOOKMARK [2][-]{subsection.12.12.2}{Examples}{section.12.12}% 187
+\BOOKMARK [1][-]{section.12.13}{L-values and R-values}{chapter.12}% 188
+\BOOKMARK [2][-]{subsection.12.13.1}{L-values}{section.12.13}% 189
+\BOOKMARK [1][-]{section.12.14}{Using the debugger}{chapter.12}% 190
+\BOOKMARK [1][-]{section.12.15}{Section recap}{chapter.12}% 191

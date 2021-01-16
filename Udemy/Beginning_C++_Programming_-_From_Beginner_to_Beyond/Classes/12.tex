@@ -419,24 +419,18 @@ Typed pointers.
             int array_name[] {1,2,3,4,5};
             int *pointer_name {array_name};
         \end{minted}
-        \begin{center}
-            \begin{tabular}{ |c|c| }
-                \hline
-                    Subscript notation & Offset notation \\
-                \hline
-                    \begin{minted}[autogobble]{cpp}
-                        array_name[index];
-                        pointer_name[index];
-                    \end{minted}
-                &
-                    \begin{minted}[autogobble]{cpp}
-                        *(array_name + index);
-                        *(pointer_name + index);
-                    \end{minted}
-                \hline
-                \\ 
-            \end{tabular}
-        \end{center}
+    
+    \item Subscript notation:
+        \begin{minted}[autogobble]{cpp}
+            array_name[index];
+            pointer_name[index];
+        \end{minted}
+    
+    \item Offset notation:
+        \begin{minted}[autogobble]{cpp}
+            *(array_name + index);
+            *(pointer_name + index);
+        \end{minted}
 \end{itemize}
 
 
@@ -1072,5 +1066,61 @@ const and pointers:
 \end{itemize}
 
 
+----------------------------------------------------------------------------------------
+\section{Using the debugger}
+\begin{itemize}
+    \item Using F5 you will compile and run your program, your program will stop when it encounters a break point.
+    \item On the break point you can see the local variables that exist, the functions as well as the locations of these elements.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{./Figs/2021-01-15-09-19-44.png}
+        % 	\caption{}
+        \end{figure}
+    
+    \item Step in: if the line is a function it allows us execute a break point inside the function.
+    \item Step out: if you've pressed step in, steping out will continue where you left off.
+    \item Continue/Next: will go to the next line.
+    \item Watches: alloc you to check for conditions.
+\end{itemize}
+
+
 %----------------------------------------------------------------------------------------
-\section{}
+\section{Section recap}
+\begin{itemize}
+    \item When to use pointers vs. reference parameters:
+        \begin{itemize}
+            \item Pass by value.
+                \begin{itemize}
+                    \item When the function does not modify the actual parameter, and the parameter is small and efficient to copy like simple types (int, char, double, etc.)
+                \end{itemize}
+            
+            \item Pass by reference using a pointer:
+                \begin{itemize}
+                    \item When the function does moddify the actual parameter, and the parameter is expensive to copy.
+                    \item Its OK for a pointer to be null, references cannot be null.
+                \end{itemize}
+            
+            \item Pass by reference usign a pointer to const:
+                \begin{itemize}
+                    \item Pass by reference using a pointer to \mintinline{cpp}{const}
+                        \begin{itemize}
+                            \item When the function does not modify the actual parameter, and the parameter is expensive to copy, and its ok for the pointer to be a null value.
+                        \end{itemize}
+                \end{itemize}
+            
+            \item Pass by reference using a const pointer to const:
+                \begin{itemize}
+                    \item When the fucntion does not modify the actual parameter, adn the parameter is expensive to copy, and its OK for the pointer to be a null value, you don't want to modify the pointer itself.
+                \end{itemize}
+            
+            \item Pass by reference using a reference:
+                \begin{itemize}
+                    \item When the function does modify the actual parameter, and the parameter is expensive to copy, and the parameter will never be a null value.
+                \end{itemize}
+            
+            \item Pass by reference using a const reference:
+                \begin{itemize}
+                    \item When the function does not modify the actual parameter, and the parameter is expensive to copy, and the parameter will never be a null value.
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
